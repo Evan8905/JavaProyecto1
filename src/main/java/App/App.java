@@ -11,7 +11,7 @@ public class App {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Estamos en GitHub");
+        System.out.println("Estamos en");
     }
     
 }
