@@ -1,2 +1,2 @@
 # JavaProyecto1
-Proyecto para el manejo de artistas, albunes y canciones
+Proyecto para el manejo de artistas, álbumes y canciones
