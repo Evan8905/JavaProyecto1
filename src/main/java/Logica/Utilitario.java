@@ -33,4 +33,14 @@ public class Utilitario {
         return resultado;
     }
 
+    /**
+     * Inicializa los datos del sistema. 
+     * Este método se encarga de realizar la inicialización de todos los datos del sistema.
+     *
+     * @see #inicializarArtistas()
+     */
+    public static void inicializarDatosSistema() {
+        inicializarArtistas();
+    }
+
 }

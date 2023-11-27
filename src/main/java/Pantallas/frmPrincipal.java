@@ -1,5 +1,7 @@
 package Pantallas;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author eefre
@@ -29,8 +31,8 @@ public class frmPrincipal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
+        ItemCargarDatos = new javax.swing.JMenuItem();
+        ItemSalir = new javax.swing.JMenuItem();
         crudCancion = new javax.swing.JMenu();
         crudArtista = new javax.swing.JMenuItem();
         crudAlbum = new javax.swing.JMenuItem();
@@ -53,11 +55,21 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         jMenu1.setText("Inicio");
 
-        jMenuItem11.setText("Cargar Datos");
-        jMenu1.add(jMenuItem11);
+        ItemCargarDatos.setText("Cargar Datos");
+        ItemCargarDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ItemCargarDatosActionPerformed(evt);
+            }
+        });
+        jMenu1.add(ItemCargarDatos);
 
-        jMenuItem12.setText("Salir");
-        jMenu1.add(jMenuItem12);
+        ItemSalir.setText("Salir");
+        ItemSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ItemSalirActionPerformed(evt);
+            }
+        });
+        jMenu1.add(ItemSalir);
 
         jMenuBar1.add(jMenu1);
 
@@ -163,6 +175,16 @@ public class frmPrincipal extends javax.swing.JFrame {
         formGenero.setVisible(true);
     }//GEN-LAST:event_crudGeneroActionPerformed
 
+    private void ItemCargarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemCargarDatosActionPerformed
+        Logica.Utilitario.inicializarDatosSistema();
+        JOptionPane.showMessageDialog(null, "Datos Cargados con éxito");
+    }//GEN-LAST:event_ItemCargarDatosActionPerformed
+
+    private void ItemSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemSalirActionPerformed
+        JOptionPane.showMessageDialog(null, "Saliendo del Sistema...");
+        System.exit(0);
+    }//GEN-LAST:event_ItemSalirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -199,6 +221,8 @@ public class frmPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem ItemCargarDatos;
+    private javax.swing.JMenuItem ItemSalir;
     private javax.swing.JMenuItem crudAlbum;
     private javax.swing.JMenuItem crudArtista;
     private javax.swing.JMenu crudCancion;
@@ -209,8 +233,6 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
     // End of variables declaration//GEN-END:variables
