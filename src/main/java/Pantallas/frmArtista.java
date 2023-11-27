@@ -4,17 +4,27 @@
  */
 package Pantallas;
 
+import Clases.Artista;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author eefre
  */
 public class frmArtista extends javax.swing.JFrame {
 
+    ArrayList<Artista> ListaArtistas = Logica.Utilitario.listaArtistas;
+
+    DefaultListModel modelo = new DefaultListModel();
+
     /**
      * Creates new form frmArtista
      */
     public frmArtista(frmPrincipal aThis, boolean par) {
+
         initComponents();
+        lstArtistas.setModel(modelo);
     }
 
     /**
@@ -31,7 +41,6 @@ public class frmArtista extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         lstArtistas = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         btnEditarArtista = new javax.swing.JButton();
         btnEliminarArtista = new javax.swing.JButton();
         btnCerrarCrudArtista = new javax.swing.JButton();
@@ -59,9 +68,11 @@ public class frmArtista extends javax.swing.JFrame {
         rbtnInactivo = new javax.swing.JRadioButton();
         rbtnPausa = new javax.swing.JRadioButton();
         btnGuardarArtista = new javax.swing.JButton();
+        btnMostrarArtista = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        lstArtistas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(lstArtistas);
 
         jLabel1.setText("Mantenimiento de Artistas");
@@ -140,6 +151,13 @@ public class frmArtista extends javax.swing.JFrame {
 
         btnGuardarArtista.setText("Guardar Registro");
 
+        btnMostrarArtista.setText("Mostrar");
+        btnMostrarArtista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarArtistaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -153,15 +171,16 @@ public class frmArtista extends javax.swing.JFrame {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(125, 125, 125))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(btnMostrarArtista)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnEditarArtista)
-                                .addGap(34, 34, 34)
-                                .addComponent(btnEliminarArtista)
-                                .addGap(36, 36, 36))
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnEliminarArtista)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -237,22 +256,12 @@ public class frmArtista extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNombreArtista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnEditarArtista)
-                            .addComponent(btnEliminarArtista))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCerrarCrudArtista)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
+                            .addComponent(txtNombreArtista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(rbtnSolista)
@@ -289,7 +298,17 @@ public class frmArtista extends javax.swing.JFrame {
                             .addComponent(rbtnActivo))
                         .addGap(18, 18, 18)
                         .addComponent(btnGuardarArtista)
-                        .addGap(0, 55, Short.MAX_VALUE))))
+                        .addGap(0, 55, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnEditarArtista)
+                            .addComponent(btnEliminarArtista)
+                            .addComponent(btnMostrarArtista))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCerrarCrudArtista)
+                        .addContainerGap())))
         );
 
         pack();
@@ -314,6 +333,18 @@ public class frmArtista extends javax.swing.JFrame {
     private void btnCerrarCrudArtistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarCrudArtistaActionPerformed
         dispose();
     }//GEN-LAST:event_btnCerrarCrudArtistaActionPerformed
+
+    private void btnMostrarArtistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarArtistaActionPerformed
+        // Limpiar el modelo antes de agregar elementos
+        modelo.clear();
+
+        // Iterar sobre la lista de artistas y agregar los nombres al modelo
+        for (Artista artista : ListaArtistas) {
+            String nombre = artista.getNombre();
+            modelo.addElement(nombre);
+        }
+
+    }//GEN-LAST:event_btnMostrarArtistaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -362,10 +393,10 @@ public class frmArtista extends javax.swing.JFrame {
     private javax.swing.JButton btnEditarArtista;
     private javax.swing.JButton btnEliminarArtista;
     private javax.swing.JButton btnGuardarArtista;
+    private javax.swing.JButton btnMostrarArtista;
     private javax.swing.ButtonGroup buttonGroupArtistas;
     private javax.swing.ButtonGroup buttonGroupEstadoArtista;
     private javax.swing.JComboBox<String> cmbGeneros;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
