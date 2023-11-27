@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Pantallas;
 
 /**
@@ -28,21 +24,78 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        jMenuItem11 = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
+        crudCancion = new javax.swing.JMenu();
+        crudArtista = new javax.swing.JMenuItem();
+        crudAlbum = new javax.swing.JMenuItem();
+        itemCrudCancion = new javax.swing.JMenuItem();
+        crudGenero = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
         jMenuItem2.setText("jMenuItem2");
 
+        jMenuItem13.setText("jMenuItem13");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setText(" Sistema Gestor Musical Digital(SGMD) ");
+        jLabel1.setMaximumSize(new java.awt.Dimension(206, 20));
+        jLabel1.setPreferredSize(new java.awt.Dimension(206, 20));
+
+        jLabel2.setText("Power By Evan & Mauricio, 2023");
+
         jMenu1.setText("Inicio");
+
+        jMenuItem11.setText("Cargar Datos");
+        jMenu1.add(jMenuItem11);
+
+        jMenuItem12.setText("Salir");
+        jMenu1.add(jMenuItem12);
+
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        crudCancion.setText("Mantenimiento");
+
+        crudArtista.setText("Artista");
+        crudArtista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crudArtistaActionPerformed(evt);
+            }
+        });
+        crudCancion.add(crudArtista);
+
+        crudAlbum.setText("Álbum");
+        crudAlbum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crudAlbumActionPerformed(evt);
+            }
+        });
+        crudCancion.add(crudAlbum);
+
+        itemCrudCancion.setText("Canción");
+        itemCrudCancion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCrudCancionActionPerformed(evt);
+            }
+        });
+        crudCancion.add(itemCrudCancion);
+
+        crudGenero.setText("Género");
+        crudGenero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crudGeneroActionPerformed(evt);
+            }
+        });
+        crudCancion.add(crudGenero);
+
+        jMenuBar1.add(crudCancion);
 
         setJMenuBar(jMenuBar1);
 
@@ -50,15 +103,65 @@ public class frmPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(258, 258, 258)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(269, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 277, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(186, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(185, 185, 185)
+                .addComponent(jLabel2)
+                .addGap(15, 15, 15))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void crudArtistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crudArtistaActionPerformed
+        frmArtista formArtistas = new frmArtista(this, true);
+
+        formArtistas.setTitle("Artistas");
+        formArtistas.setLocationRelativeTo(this);
+        formArtistas.setResizable(false);
+        formArtistas.setVisible(true);
+
+
+    }//GEN-LAST:event_crudArtistaActionPerformed
+
+    private void crudAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crudAlbumActionPerformed
+        frmAlbum formAlbum = new frmAlbum(this, true);
+
+        formAlbum.setTitle("Albumes");
+        formAlbum.setLocationRelativeTo(this);
+        formAlbum.setResizable(false);
+        formAlbum.setVisible(true);
+    }//GEN-LAST:event_crudAlbumActionPerformed
+
+    private void itemCrudCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCrudCancionActionPerformed
+        frmCancion formCancion = new frmCancion(this, true);
+
+        formCancion.setTitle("Canciones");
+        formCancion.setLocationRelativeTo(this);
+        formCancion.setResizable(false);
+        formCancion.setVisible(true);
+    }//GEN-LAST:event_itemCrudCancionActionPerformed
+
+    private void crudGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crudGeneroActionPerformed
+        frmGenero formGenero = new frmGenero(this, true);
+
+        formGenero.setTitle("Genero");
+        formGenero.setLocationRelativeTo(this);
+        formGenero.setResizable(false);
+        formGenero.setVisible(true);
+    }//GEN-LAST:event_crudGeneroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -96,10 +199,19 @@ public class frmPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem crudAlbum;
+    private javax.swing.JMenuItem crudArtista;
+    private javax.swing.JMenu crudCancion;
+    private javax.swing.JMenuItem crudGenero;
+    private javax.swing.JMenuItem itemCrudCancion;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
     // End of variables declaration//GEN-END:variables
 }

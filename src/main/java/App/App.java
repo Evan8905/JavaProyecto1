@@ -1,5 +1,6 @@
-
 package App;
+
+import Pantallas.frmPrincipal;
 
 /**
  *
@@ -11,7 +12,12 @@ public class App {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Proyecto 1 Java, Evan y Mauricio");
+        frmPrincipal formPrincipal = new frmPrincipal();
+        formPrincipal.setTitle("Menú Principal");
+        formPrincipal.setVisible(true);
+         formPrincipal.setLocationRelativeTo(null);
+        formPrincipal.setResizable(false);
+                             
     }
-    
+
 }
