@@ -7,12 +7,14 @@ import javax.swing.JOptionPane;
  * @author eefre
  */
 public class frmPrincipal extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form frmPrincipal
      */
     public frmPrincipal() {
+        
         initComponents();
+        
     }
 
     /**
@@ -216,6 +218,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new frmPrincipal().setVisible(true);
+                
             }
         });
     }

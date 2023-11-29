@@ -15,6 +15,8 @@ public class frmAlbum extends javax.swing.JFrame {
      */
     public frmAlbum(frmPrincipal aThis, boolean par) {
         initComponents();
+        //Linea para que no se salga
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**
