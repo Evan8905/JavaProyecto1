@@ -22,10 +22,11 @@ public class frmArtista extends javax.swing.JFrame {
      * Creates new form frmArtista
      */
     public frmArtista(frmPrincipal aThis, boolean par) {
-        //Linea para que no se salga
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        
         initComponents();
         lstArtistas.setModel(modelo);
+         //Linea para que no se salga
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -181,7 +182,7 @@ public class frmArtista extends javax.swing.JFrame {
                                 .addComponent(btnEditarArtista)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnEliminarArtista)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -299,7 +300,7 @@ public class frmArtista extends javax.swing.JFrame {
                             .addComponent(rbtnActivo))
                         .addGap(18, 18, 18)
                         .addComponent(btnGuardarArtista)
-                        .addGap(0, 55, Short.MAX_VALUE))
+                        .addGap(0, 98, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1)
                         .addGap(18, 18, 18)
