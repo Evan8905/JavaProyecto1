@@ -14,6 +14,8 @@ public class frmCancion extends javax.swing.JFrame {
      * Creates new form frmCancion
      */
     public frmCancion(frmPrincipal aThis, boolean par) {
+        //Linea para que no se salga
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         initComponents();
     }
 

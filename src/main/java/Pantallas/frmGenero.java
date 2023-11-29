@@ -14,6 +14,8 @@ public class frmGenero extends javax.swing.JFrame {
      * Creates new form frmGenero
      */
     public frmGenero(frmPrincipal aThis, boolean par) {
+       //Linea para que no se salga
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         initComponents();
     }
 
