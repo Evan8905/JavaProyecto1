@@ -40,6 +40,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         crudAlbum = new javax.swing.JMenuItem();
         itemCrudCancion = new javax.swing.JMenuItem();
         crudGenero = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -110,6 +111,9 @@ public class frmPrincipal extends javax.swing.JFrame {
         crudCancion.add(crudGenero);
 
         jMenuBar1.add(crudCancion);
+
+        jMenu2.setText("Filtros");
+        jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
@@ -234,6 +238,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem13;
