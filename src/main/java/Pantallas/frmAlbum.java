@@ -4,6 +4,8 @@
  */
 package Pantallas;
 
+import java.awt.Color;
+
 /**
  *
  * @author eefre
@@ -17,6 +19,7 @@ public class frmAlbum extends javax.swing.JFrame {
         initComponents();
         //Linea para que no se salga
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        
     }
 
     /**
@@ -29,64 +32,367 @@ public class frmAlbum extends javax.swing.JFrame {
     private void initComponents() {
 
         grupoOpcs = new javax.swing.ButtonGroup();
+        jLabel2 = new javax.swing.JLabel();
+        op4 = new javax.swing.JRadioButton();
+        cmbGeneros = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        btnGuardarArtista = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        op1 = new javax.swing.JRadioButton();
-        op2 = new javax.swing.JRadioButton();
+        opEstudio = new javax.swing.JRadioButton();
+        opEnVivo = new javax.swing.JRadioButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        lstAlbumes = new javax.swing.JList<>();
+        txtNombreAlbum = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        opEp = new javax.swing.JRadioButton();
+        opRecopilatorio = new javax.swing.JRadioButton();
+        opSencillo = new javax.swing.JRadioButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtNumeroAlbum = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        ftfPublicacionAlbum = new javax.swing.JFormattedTextField();
+        cmbGenerosAlbum = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
+        txtDiscografia = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        txtNumeroCanciones = new javax.swing.JTextField();
+        btnGuardarAlbum = new javax.swing.JButton();
+        btnEditarAlbum = new javax.swing.JButton();
+        btnEliminarAlbum = new javax.swing.JButton();
+        btnMostrarAlbum = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel2.setText("Mantenimiento de Artistas");
 
-        jLabel1.setText("Album");
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        grupoOpcs.add(op4);
+        op4.setText("EP");
+        op4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                op4ActionPerformed(evt);
             }
         });
 
-        grupoOpcs.add(op1);
-        op1.setText("OPC 1");
+        jLabel9.setText("Géneros");
 
-        grupoOpcs.add(op2);
-        op2.setText("OPC 2");
+        btnGuardarArtista.setText("Guardar Registro");
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel3.setText("Mantenimiento de Album");
+
+        jLabel1.setText("Registro Albumes");
+
+        grupoOpcs.add(opEstudio);
+        opEstudio.setText("Estudio");
+        opEstudio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opEstudioActionPerformed(evt);
+            }
+        });
+
+        grupoOpcs.add(opEnVivo);
+        opEnVivo.setText("En Vivo");
+        opEnVivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opEnVivoActionPerformed(evt);
+            }
+        });
+
+        lstAlbumes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(lstAlbumes);
+
+        txtNombreAlbum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreAlbumActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Nombre");
+
+        jLabel5.setText("Albumes");
+
+        grupoOpcs.add(opEp);
+        opEp.setText("EP");
+        opEp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opEpActionPerformed(evt);
+            }
+        });
+
+        grupoOpcs.add(opRecopilatorio);
+        opRecopilatorio.setText("Recopilatorio");
+        opRecopilatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opRecopilatorioActionPerformed(evt);
+            }
+        });
+
+        grupoOpcs.add(opSencillo);
+        opSencillo.setText("Sencillo");
+        opSencillo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opSencilloActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Tipo");
+
+        jLabel7.setText("Publicación");
+
+        txtNumeroAlbum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNumeroAlbumActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Número");
+
+        ftfPublicacionAlbum.setText("YYYY-MM-DD");
+        ftfPublicacionAlbum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ftfPublicacionAlbumActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("Géneros");
+
+        txtDiscografia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDiscografiaActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setText("Discografia");
+
+        jLabel12.setText("N. Canciones");
+
+        txtNumeroCanciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNumeroCancionesActionPerformed(evt);
+            }
+        });
+
+        btnGuardarAlbum.setText("Guardar Registro");
+
+        btnEditarAlbum.setText("Editar");
+
+        btnEliminarAlbum.setText("Eliminar");
+        btnEliminarAlbum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarAlbumActionPerformed(evt);
+            }
+        });
+
+        btnMostrarAlbum.setText("Mostrar");
+        btnMostrarAlbum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarAlbumActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnMostrarAlbum)
+                                .addGap(27, 27, 27)
+                                .addComponent(btnEditarAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(btnEliminarAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(30, 30, 30)
+                                        .addComponent(txtDiscografia, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(opRecopilatorio)
+                                            .addComponent(opEp, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(88, 88, 88))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel10)
+                                            .addComponent(jLabel8)
+                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(50, 50, 50)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(opEnVivo)
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                        .addComponent(opEstudio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(opSencillo))
+                                                    .addGap(210, 210, 210))
+                                                .addComponent(txtNombreAlbum))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(txtNumeroAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(ftfPublicacionAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(cmbGenerosAlbum, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(txtNumeroCanciones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(12, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(btnGuardarAlbum)
+                                        .addGap(179, 179, 179))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(109, 109, 109))))))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(298, 298, 298))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnGuardarAlbum)
+                            .addComponent(btnEliminarAlbum)
+                            .addComponent(btnMostrarAlbum)
+                            .addComponent(btnEditarAlbum)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(37, 37, 37)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtNombreAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(opEstudio)
+                            .addComponent(opEp))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(opEnVivo))
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(opSencillo)
+                            .addComponent(opRecopilatorio))
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(txtNumeroAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
+                            .addComponent(ftfPublicacionAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(cmbGenerosAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(37, 37, 37)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNumeroCanciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12)
+                            .addComponent(txtDiscografia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11))))
+                .addGap(45, 45, 45))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(op2)
-                    .addComponent(op1)
-                    .addComponent(jLabel1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(529, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(29, 29, 29))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jLabel1)
-                .addGap(79, 79, 79)
-                .addComponent(op1)
-                .addGap(18, 18, 18)
-                .addComponent(op2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 273, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(20, 20, 20))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void opEstudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opEstudioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_opEstudioActionPerformed
+
+    private void txtNombreAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreAlbumActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreAlbumActionPerformed
+
+    private void opEpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opEpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_opEpActionPerformed
+
+    private void op4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_op4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_op4ActionPerformed
+
+    private void opRecopilatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opRecopilatorioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_opRecopilatorioActionPerformed
+
+    private void opSencilloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opSencilloActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_opSencilloActionPerformed
+
+    private void opEnVivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opEnVivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_opEnVivoActionPerformed
+
+    private void txtNumeroAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroAlbumActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNumeroAlbumActionPerformed
+
+    private void ftfPublicacionAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftfPublicacionAlbumActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ftfPublicacionAlbumActionPerformed
+
+    private void txtDiscografiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDiscografiaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDiscografiaActionPerformed
+
+    private void txtNumeroCancionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroCancionesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNumeroCancionesActionPerformed
+
+    private void btnMostrarAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarAlbumActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMostrarAlbumActionPerformed
+
+    private void btnEliminarAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarAlbumActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarAlbumActionPerformed
 
     /**
      * @param args the command line arguments
@@ -131,10 +437,39 @@ public class frmAlbum extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEditarAlbum;
+    private javax.swing.JButton btnEliminarAlbum;
+    private javax.swing.JButton btnGuardarAlbum;
+    private javax.swing.JButton btnGuardarArtista;
+    private javax.swing.JButton btnMostrarAlbum;
+    private javax.swing.JComboBox<String> cmbGeneros;
+    private javax.swing.JComboBox<String> cmbGenerosAlbum;
+    private javax.swing.JFormattedTextField ftfPublicacionAlbum;
     private javax.swing.ButtonGroup grupoOpcs;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JRadioButton op1;
-    private javax.swing.JRadioButton op2;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> lstAlbumes;
+    private javax.swing.JRadioButton op4;
+    private javax.swing.JRadioButton opEnVivo;
+    private javax.swing.JRadioButton opEp;
+    private javax.swing.JRadioButton opEstudio;
+    private javax.swing.JRadioButton opRecopilatorio;
+    private javax.swing.JRadioButton opSencillo;
+    private javax.swing.JTextField txtDiscografia;
+    private javax.swing.JTextField txtNombreAlbum;
+    private javax.swing.JTextField txtNumeroAlbum;
+    private javax.swing.JTextField txtNumeroCanciones;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,5 +1,6 @@
 package Pantallas;
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,6 +15,9 @@ public class frmPrincipal extends javax.swing.JFrame {
     public frmPrincipal() {
         
         initComponents();
+        
+        
+
         
     }
 
