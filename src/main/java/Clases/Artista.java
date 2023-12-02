@@ -32,9 +32,9 @@ public class Artista {
         this.estadoActual = estadoActual;
     }
 
-    public Artista(String nombreArtista, boolean esSolista, List<String> generoSeleccionado) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+//    public Artista(String nombreArtista, boolean esSolista, List<String> generoSeleccionado) {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//    }
 
     public String getNombre() {
         return nombre;

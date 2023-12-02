@@ -17,13 +17,13 @@ public class Utilitario {
 
     public static void inicializarArtistas() {
         // Agregar instancias de artistas a lstArtistas
-        // Crear el objeto Artista para Shakira y agregarlo a la lista de artistas
-          listaArtistas.add(new Artista("Shakira", true, Arrays.asList("Pop", "Clásico"), 0, "US", "www.shakira.com", 10, 20, 1));
-//        listaArtistas.add(new Artista("Shakira", true, generos, anoInicio, "Pop", web, cantAlbumes, cantCanciones, estadoActual));
-//        listaArtistas.add(new Artista("The Beatles", true, generos, anoInicio, "Pop", web, cantAlbumes, cantCanciones, estadoActual));
-//        listaArtistas.add(new Artista("Beyoncé", true, generos, anoInicio, "Pop", web, cantAlbumes, cantCanciones, estadoActual));
-//        listaArtistas.add(new Artista("Bob Marley", true, generos, anoInicio, "Pop", web, cantAlbumes, cantCanciones, estadoActual));
-//        listaArtistas.add(new Artista("Queen", true, generos, anoInicio, "Pop", web, cantAlbumes, cantCanciones, estadoActual));
+        // Crear el objeto Artista y lo agregarlo a la lista de artistas
+        listaArtistas.add(new Artista("Shakira", true, Arrays.asList("Pop", "Clásico"), 0, "Colombia", "www.shakira.com", 10, 20, 1));
+        listaArtistas.add(new Artista("Michael Jackson", true, Arrays.asList("Pop", "R&B"), 1964, "Estados Unidos", "www.michaeljackson.com", 10, 30, 2));
+        listaArtistas.add(new Artista("Adele", true, Arrays.asList("Pop", "Soul"), 2006, "Reino Unido", "www.adele.com", 5, 15, 1));
+        listaArtistas.add(new Artista("Metallica", false, Arrays.asList("Metal", "Rock"), 1981, "Estados Unidos", "www.metallica.com", 10, 100, 1));
+        listaArtistas.add(new Artista("Mozart", true, Arrays.asList("Clásico"), 1756, "Austria", "www.mozart.com", 41, 626, 2));
+
     }
 
     public static void inicializarGeneros() {
@@ -67,7 +67,6 @@ public class Utilitario {
     public static void inicializarDatosSistema() {
         inicializarArtistas();
         inicializarGeneros();
-
 
     }
 

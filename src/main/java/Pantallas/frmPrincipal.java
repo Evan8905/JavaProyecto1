@@ -42,8 +42,10 @@ public class frmPrincipal extends javax.swing.JFrame {
         crudAlbum = new javax.swing.JMenuItem();
         itemCrudCancion = new javax.swing.JMenuItem();
         crudGenero = new javax.swing.JMenuItem();
+        crudGeneroArtista = new javax.swing.JMenuItem();
         itemMostrar = new javax.swing.JMenu();
-        itemFiltros = new javax.swing.JMenuItem();
+        itemInformacionGeneral = new javax.swing.JMenuItem();
+        itemBusqueda = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -107,7 +109,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         });
         crudCancion.add(itemCrudCancion);
 
-        crudGenero.setText("Género");
+        crudGenero.setText("Géneros");
         crudGenero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 crudGeneroActionPerformed(evt);
@@ -115,17 +117,23 @@ public class frmPrincipal extends javax.swing.JFrame {
         });
         crudCancion.add(crudGenero);
 
+        crudGeneroArtista.setText("Géneros por artista");
+        crudCancion.add(crudGeneroArtista);
+
         jMenuBar1.add(crudCancion);
 
-        itemMostrar.setText("Mostrar Datos");
+        itemMostrar.setText("Consultas");
 
-        itemFiltros.setText("Filtros");
-        itemFiltros.addActionListener(new java.awt.event.ActionListener() {
+        itemInformacionGeneral.setText("Información general");
+        itemMostrar.add(itemInformacionGeneral);
+
+        itemBusqueda.setText("Búsqueda");
+        itemBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemFiltrosActionPerformed(evt);
+                itemBusquedaActionPerformed(evt);
             }
         });
-        itemMostrar.add(itemFiltros);
+        itemMostrar.add(itemBusqueda);
 
         jMenuBar1.add(itemMostrar);
 
@@ -135,14 +143,14 @@ public class frmPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
             .addGroup(layout.createSequentialGroup()
-                .addGap(258, 258, 258)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(269, Short.MAX_VALUE))
+                .addGap(261, 261, 261)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(261, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,14 +213,14 @@ public class frmPrincipal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_ItemSalirActionPerformed
 
-    private void itemFiltrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemFiltrosActionPerformed
+    private void itemBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemBusquedaActionPerformed
         frmFiltros formFiltros = new frmFiltros(this, true);
 
         formFiltros.setTitle("Artistas");
         formFiltros.setLocationRelativeTo(this);
         formFiltros.setResizable(false);
         formFiltros.setVisible(true);
-    }//GEN-LAST:event_itemFiltrosActionPerformed
+    }//GEN-LAST:event_itemBusquedaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -265,8 +273,10 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem crudArtista;
     private javax.swing.JMenu crudCancion;
     private javax.swing.JMenuItem crudGenero;
+    private javax.swing.JMenuItem crudGeneroArtista;
+    private javax.swing.JMenuItem itemBusqueda;
     private javax.swing.JMenuItem itemCrudCancion;
-    private javax.swing.JMenuItem itemFiltros;
+    private javax.swing.JMenuItem itemInformacionGeneral;
     private javax.swing.JMenu itemMostrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

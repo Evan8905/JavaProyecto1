@@ -1,7 +1,5 @@
 package App;
 
-import static Logica.Utilitario.inicializarArtistas;
-import static Logica.Utilitario.inicializarDatosSistema;
 import Pantallas.frmPrincipal;
 
 /**
@@ -20,8 +18,6 @@ public class App {
         formPrincipal.setVisible(true);
         formPrincipal.setLocationRelativeTo(null);
         formPrincipal.setResizable(false);
-        //inicializarArtistas();
-        //inicializarDatosSistema();
 
     }
 
