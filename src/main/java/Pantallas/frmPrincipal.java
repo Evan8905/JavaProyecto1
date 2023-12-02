@@ -8,17 +8,14 @@ import javax.swing.JOptionPane;
  * @author eefre
  */
 public class frmPrincipal extends javax.swing.JFrame {
-    
+
     /**
      * Creates new form frmPrincipal
      */
     public frmPrincipal() {
-        
-        initComponents();
-        
-        
 
-        
+        initComponents();
+
     }
 
     /**
@@ -33,6 +30,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -44,13 +42,16 @@ public class frmPrincipal extends javax.swing.JFrame {
         crudAlbum = new javax.swing.JMenuItem();
         itemCrudCancion = new javax.swing.JMenuItem();
         crudGenero = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        itemMostrar = new javax.swing.JMenu();
+        itemFiltros = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
         jMenuItem2.setText("jMenuItem2");
 
         jMenuItem13.setText("jMenuItem13");
+
+        jMenuItem3.setText("jMenuItem3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -116,8 +117,17 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(crudCancion);
 
-        jMenu2.setText("Filtros");
-        jMenuBar1.add(jMenu2);
+        itemMostrar.setText("Mostrar Datos");
+
+        itemFiltros.setText("Filtros");
+        itemFiltros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemFiltrosActionPerformed(evt);
+            }
+        });
+        itemMostrar.add(itemFiltros);
+
+        jMenuBar1.add(itemMostrar);
 
         setJMenuBar(jMenuBar1);
 
@@ -195,6 +205,15 @@ public class frmPrincipal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_ItemSalirActionPerformed
 
+    private void itemFiltrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemFiltrosActionPerformed
+        frmFiltros formFiltros = new frmFiltros(this, true);
+
+        formFiltros.setTitle("Artistas");
+        formFiltros.setLocationRelativeTo(this);
+        formFiltros.setResizable(false);
+        formFiltros.setVisible(true);
+    }//GEN-LAST:event_itemFiltrosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -209,16 +228,24 @@ public class frmPrincipal extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmPrincipal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmPrincipal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmPrincipal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmPrincipal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -226,7 +253,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new frmPrincipal().setVisible(true);
-                
+
             }
         });
     }
@@ -239,13 +266,15 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu crudCancion;
     private javax.swing.JMenuItem crudGenero;
     private javax.swing.JMenuItem itemCrudCancion;
+    private javax.swing.JMenuItem itemFiltros;
+    private javax.swing.JMenu itemMostrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     // End of variables declaration//GEN-END:variables
 }

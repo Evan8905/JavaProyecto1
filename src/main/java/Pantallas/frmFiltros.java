@@ -13,9 +13,12 @@ public class frmFiltros extends javax.swing.JFrame {
     /**
      * Creates new form frmFiltros
      */
-    public frmFiltros() {
+    public frmFiltros(frmPrincipal aThis, boolean par) {
         initComponents();
+        //Linea para que no se salga
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -90,7 +93,14 @@ public class frmFiltros extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmFiltros().setVisible(true);
+                frmCancion dialog = new frmCancion((frmPrincipal) new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
