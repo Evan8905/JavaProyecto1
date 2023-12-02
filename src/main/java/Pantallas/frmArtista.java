@@ -1,12 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Pantallas;
 
 import Clases.Artista;
+import Clases.Genero;
+import Logica.Utilitario;
+import static Logica.Utilitario.listaGeneros;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,19 +14,24 @@ import javax.swing.DefaultListModel;
  */
 public class frmArtista extends javax.swing.JFrame {
 
+    ArrayList<Genero> listaGeneros = Logica.Utilitario.listaGeneros;
     ArrayList<Artista> ListaArtistas = Logica.Utilitario.listaArtistas;
 
     DefaultListModel modelo = new DefaultListModel();
+    DefaultListModel modeloGenero = new DefaultListModel();
 
     /**
      * Creates new form frmArtista
      */
     public frmArtista(frmPrincipal aThis, boolean par) {
-        
+
         initComponents();
+        //se setea el modelo en cada una de las listas, sino se hace esto no se muestran los datos en la lista
         lstArtistas.setModel(modelo);
-         //Linea para que no se salga
+        lstGeneros.setModel(modeloGenero);
+        //Linea para que no se salga
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        cargarCombos(); // Carga los elementos al combo de genero
     }
 
     /**
@@ -53,7 +58,6 @@ public class frmArtista extends javax.swing.JFrame {
         rbtnSolista = new javax.swing.JRadioButton();
         rbtnBanda = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
-        cmbGeneros = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         txtAnoInicial = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -70,6 +74,8 @@ public class frmArtista extends javax.swing.JFrame {
         rbtnPausa = new javax.swing.JRadioButton();
         btnGuardarArtista = new javax.swing.JButton();
         btnMostrarArtista = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        lstGeneros = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -144,6 +150,11 @@ public class frmArtista extends javax.swing.JFrame {
         rbtnPausa.setText("Pausa");
 
         btnGuardarArtista.setText("Guardar Registro");
+        btnGuardarArtista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarArtistaActionPerformed(evt);
+            }
+        });
 
         btnMostrarArtista.setText("Mostrar");
         btnMostrarArtista.addActionListener(new java.awt.event.ActionListener() {
@@ -151,6 +162,8 @@ public class frmArtista extends javax.swing.JFrame {
                 btnMostrarArtistaActionPerformed(evt);
             }
         });
+
+        jScrollPane2.setViewportView(lstGeneros);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -176,60 +189,59 @@ public class frmArtista extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel5))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(rbtnSolista)
-                                                .addGap(30, 30, 30)
-                                                .addComponent(rbtnBanda))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(txtNombreArtista)
-                                                .addGap(18, 18, 18))))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel10)
-                                                .addGap(26, 26, 26)
-                                                .addComponent(txtCantAlbumes, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel6)
-                                                    .addComponent(jLabel7))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(cmbGeneros, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(txtAnoInicial)))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel8)
-                                                    .addComponent(jLabel9))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(txtOrigen)
-                                                    .addComponent(txtWeb)))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel11)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(txtCantCanciones)))
-                                        .addGap(18, 18, 18)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel12)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(rbtnActivo)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(rbtnInactivo)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(rbtnPausa)
-                                    .addContainerGap()))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnGuardarArtista)
-                                .addGap(122, 122, 122))))))
+                                    .addGap(112, 112, 112)
+                                    .addComponent(btnGuardarArtista))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel7)
+                                            .addGap(11, 11, 11)
+                                            .addComponent(txtAnoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(jLabel11)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(txtCantCanciones))
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(jLabel10)
+                                                    .addGap(26, 26, 26)
+                                                    .addComponent(txtCantAlbumes, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel8)
+                                                        .addComponent(jLabel9))
+                                                    .addGap(18, 18, 18)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(txtOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(txtWeb, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel12)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(rbtnActivo)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(rbtnInactivo)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(rbtnPausa)))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel6)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGap(30, 30, 30)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(rbtnSolista)
+                                        .addGap(30, 30, 30)
+                                        .addComponent(rbtnBanda))
+                                    .addComponent(txtNombreArtista, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18))))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(278, 278, 278)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -247,6 +259,15 @@ public class frmArtista extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnEditarArtista)
+                            .addComponent(btnEliminarArtista)
+                            .addComponent(btnMostrarArtista)
+                            .addComponent(btnGuardarArtista))
+                        .addGap(39, 39, 39))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNombreArtista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
@@ -256,9 +277,9 @@ public class frmArtista extends javax.swing.JFrame {
                             .addComponent(rbtnSolista)
                             .addComponent(rbtnBanda))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addComponent(cmbGeneros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
@@ -285,17 +306,7 @@ public class frmArtista extends javax.swing.JFrame {
                             .addComponent(rbtnInactivo)
                             .addComponent(rbtnPausa)
                             .addComponent(rbtnActivo))
-                        .addGap(18, 18, 18)
-                        .addComponent(btnGuardarArtista)
-                        .addGap(0, 98, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnEditarArtista)
-                            .addComponent(btnEliminarArtista)
-                            .addComponent(btnMostrarArtista))
-                        .addGap(39, 39, 39))))
+                        .addContainerGap(84, Short.MAX_VALUE))))
         );
 
         pack();
@@ -328,6 +339,42 @@ public class frmArtista extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnMostrarArtistaActionPerformed
+
+    private void btnGuardarArtistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarArtistaActionPerformed
+        int indiceGenero = lstGeneros.getSelectedIndex();
+        if (txtNombreArtista.getText().isBlank()) {
+            JOptionPane.showMessageDialog(rootPane, "Digite el nombre del Artista", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (!(rbtnSolista.isSelected() || rbtnBanda.isSelected())) {
+            JOptionPane.showMessageDialog(rootPane, "Seleccione un Tipo", "Error", JOptionPane.ERROR_MESSAGE);
+
+        }
+        
+        else if (indiceGenero!= -1){
+            JOptionPane.showMessageDialog(rootPane, "Digite el nombre del Artista", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+
+            String nombreArtista = txtNombreArtista.getText();
+            boolean esSolista = rbtnSolista.isSelected();
+
+            
+            
+                
+
+            // Crear un nuevo objeto Artista con la información capturada
+            Artista nuevoArtista = new Artista(nombreArtista, esSolista);
+
+            // Agregar el nuevo objeto al ArrayList
+            ListaArtistas.add(nuevoArtista);
+
+            // Agregar el nombre del artista al DefaultListModel
+            modelo.addElement(nombreArtista);
+
+            // Puedes limpiar los campos después de agregar el artista si es necesario
+            txtNombreArtista.setText("");
+            // Limpia los campos de ti
+            buttonGroupArtistas.clearSelection();
+        }
+    }//GEN-LAST:event_btnGuardarArtistaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -371,6 +418,16 @@ public class frmArtista extends javax.swing.JFrame {
         });
     }
 
+    public void cargarCombos() {
+        modeloGenero.clear();
+
+        for (Genero genero : listaGeneros) {
+            String nombre = genero.getNomGenero();
+            modeloGenero.addElement(nombre);
+        }
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditarArtista;
     private javax.swing.JButton btnEliminarArtista;
@@ -378,7 +435,6 @@ public class frmArtista extends javax.swing.JFrame {
     private javax.swing.JButton btnMostrarArtista;
     private javax.swing.ButtonGroup buttonGroupArtistas;
     private javax.swing.ButtonGroup buttonGroupEstadoArtista;
-    private javax.swing.JComboBox<String> cmbGeneros;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -392,7 +448,9 @@ public class frmArtista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JList<String> lstArtistas;
+    private javax.swing.JList<String> lstGeneros;
     private javax.swing.JRadioButton rbtnActivo;
     private javax.swing.JRadioButton rbtnBanda;
     private javax.swing.JRadioButton rbtnInactivo;

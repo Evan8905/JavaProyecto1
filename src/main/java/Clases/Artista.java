@@ -1,13 +1,16 @@
-
 package Clases;
+
+import Logica.Utilitario;
+import java.util.ArrayList;
 
 /**
  *
  * @author eefre
  */
 public class Artista {
+
     private String nombre;
-    private int tipo; // 1 = Solista; 2 = Banda.
+    private boolean tipo; // 1 = Solista; 2 = Banda.
     private String generos; // Puede ser 1 o varios
     private int ano; //formación Año en que el artista inició su carrera musical.
     private String origen; //Nacionalidad del artista
@@ -16,7 +19,7 @@ public class Artista {
     private int cantCanciones;
     private int estadoActual;  //1 = Activo; 2 = Inactivo; 3 = Pausa.
 
-    public Artista(String nombre, int tipo, String generos, int ano, String origen, String web, int cantAlbunes, int cantCanciones, int estadoActual) {
+    public Artista(String nombre, boolean tipo) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.generos = generos;
@@ -36,11 +39,11 @@ public class Artista {
         this.nombre = nombre;
     }
 
-    public int getTipo() {
+    public boolean isTipo() {
         return tipo;
     }
 
-    public void setTipo(int tipo) {
+    public void setTipo(boolean tipo) {
         this.tipo = tipo;
     }
 
@@ -99,5 +102,7 @@ public class Artista {
     public void setEstadoActual(int estadoActual) {
         this.estadoActual = estadoActual;
     }
-    
+
+
+
 }

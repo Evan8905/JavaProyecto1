@@ -1,6 +1,7 @@
 package Logica;
 
 import Clases.Artista;
+import Clases.Genero;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -11,36 +12,60 @@ import java.util.LinkedList;
 public class Utilitario {
 
     public static ArrayList<Artista> listaArtistas = new ArrayList<>();
+    public static ArrayList<Genero> listaGeneros = new ArrayList<>();
 
     public static void inicializarArtistas() {
         // Agregar instancias de artistas a lstArtistas
-        listaArtistas.add(new Artista("Shakira", 1, "Pop, Latin", 1990, "Colombia", "http://shakira.com", 15, 100, 1));
-        listaArtistas.add(new Artista("The Beatles", 2, "Rock", 1960, "Reino Unido", "http://thebeatles.com", 12, 200, 1));
-        listaArtistas.add(new Artista("Beyoncé", 1, "R&B, Pop", 1997, "Estados Unidos", "http://beyonce.com", 6, 80, 1));
-        listaArtistas.add(new Artista("Bob Marley", 1, "Reggae", 1962, "Jamaica", "http://bobmarley.com", 10, 70, 2));
-        listaArtistas.add(new Artista("Queen", 2, "Rock", 1970, "Reino Unido", "http://queenonline.com", 15, 150, 1));
+        listaArtistas.add(new Artista("Shakira", true));
+        listaArtistas.add(new Artista("The Beatles", true));
+        listaArtistas.add(new Artista("Beyoncé", false));
+        listaArtistas.add(new Artista("Bob Marley", true));
+        listaArtistas.add(new Artista("Queen", true));
     }
 
-    public static LinkedList<String> crearListaArtistas() {
-        LinkedList<String> resultado = new LinkedList<>();
-
-        for (Artista elemento : listaArtistas) {
-            String artista = elemento.getNombre();
-            resultado.add(artista);
-            System.out.println("Nombre: " + elemento.getNombre());
-        }
-
-        return resultado;
+    public static void inicializarGeneros() {
+        // Agregar instancias de Generos a lstGeneros
+        listaGeneros.add(new Genero("Rock", "Este es un género popular de los años ..."));
+        listaGeneros.add(new Genero("Pop", "El género pop es conocido por su ..."));
+        listaGeneros.add(new Genero("Jazz", "El jazz es un género musical que ..."));
+        listaGeneros.add(new Genero("Hip Hop", "El hip hop es un estilo musical que ..."));
+        listaGeneros.add(new Genero("Clásico", "La música clásica es conocida por su ..."));
     }
 
+//    public static LinkedList<String> crearListaArtistas() {
+//        LinkedList<String> resultado = new LinkedList<>();
+//
+//        for (Artista elemento : listaArtistas) {
+//            String artista = elemento.getNombre();
+//            resultado.add(artista);
+//            System.out.println("Nombre: " + elemento.getNombre());
+//        }
+//
+//        return resultado;
+//    }
+//
+//    public static LinkedList<String> crearListaGeneros() {
+//        LinkedList<String> resultado = new LinkedList<>();
+//
+//        for (Genero elemento : listaGeneros) {
+//            String genero = elemento.getNomGenero();
+//            resultado.add(genero);
+//            System.out.println("Nombre: " + elemento.getNomGenero());
+//        }
+//
+//        return resultado;
+//    }
     /**
-     * Inicializa los datos del sistema. 
-     * Este método se encarga de realizar la inicialización de todos los datos del sistema.
+     * Inicializa los datos del sistema. Este método se encarga de realizar la
+     * inicialización de todos los datos del sistema.
      *
      * @see #inicializarArtistas()
      */
     public static void inicializarDatosSistema() {
         inicializarArtistas();
+        inicializarGeneros();
+
+
     }
 
 }
