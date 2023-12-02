@@ -3,6 +3,7 @@ package Logica;
 import Clases.Artista;
 import Clases.Genero;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 
 /**
@@ -16,11 +17,13 @@ public class Utilitario {
 
     public static void inicializarArtistas() {
         // Agregar instancias de artistas a lstArtistas
-        listaArtistas.add(new Artista("Shakira", true));
-        listaArtistas.add(new Artista("The Beatles", true));
-        listaArtistas.add(new Artista("Beyoncé", false));
-        listaArtistas.add(new Artista("Bob Marley", true));
-        listaArtistas.add(new Artista("Queen", true));
+        // Crear el objeto Artista para Shakira y agregarlo a la lista de artistas
+          listaArtistas.add(new Artista("Shakira", true, Arrays.asList("Pop", "Clásico"), 0, "US", "www.shakira.com", 10, 20, 1));
+//        listaArtistas.add(new Artista("Shakira", true, generos, anoInicio, "Pop", web, cantAlbumes, cantCanciones, estadoActual));
+//        listaArtistas.add(new Artista("The Beatles", true, generos, anoInicio, "Pop", web, cantAlbumes, cantCanciones, estadoActual));
+//        listaArtistas.add(new Artista("Beyoncé", true, generos, anoInicio, "Pop", web, cantAlbumes, cantCanciones, estadoActual));
+//        listaArtistas.add(new Artista("Bob Marley", true, generos, anoInicio, "Pop", web, cantAlbumes, cantCanciones, estadoActual));
+//        listaArtistas.add(new Artista("Queen", true, generos, anoInicio, "Pop", web, cantAlbumes, cantCanciones, estadoActual));
     }
 
     public static void inicializarGeneros() {

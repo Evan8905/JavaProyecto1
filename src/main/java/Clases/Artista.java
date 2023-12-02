@@ -2,6 +2,7 @@ package Clases;
 
 import Logica.Utilitario;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -10,25 +11,29 @@ import java.util.ArrayList;
 public class Artista {
 
     private String nombre;
-    private boolean tipo; // 1 = Solista; 2 = Banda.
-    private String generos; // Puede ser 1 o varios
-    private int ano; //formación Año en que el artista inició su carrera musical.
-    private String origen; //Nacionalidad del artista
+    private boolean tipo; // true = Solista; false = Banda.
+    private List<String> generos; // Puede ser 1 o varios
+    private int ano; // Año en que el artista inició su carrera musical.
+    private String origen; // Nacionalidad del artista
     private String web;
-    private int cantAlbunes;
+    private int cantAlbumes;
     private int cantCanciones;
-    private int estadoActual;  //1 = Activo; 2 = Inactivo; 3 = Pausa.
+    private int estadoActual;  // 1 = Activo; 2 = Inactivo; 3 = Pausa.
 
-    public Artista(String nombre, boolean tipo) {
+    public Artista(String nombre, boolean tipo, List<String> generos, int ano, String origen, String web, int cantAlbumes, int cantCanciones, int estadoActual) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.generos = generos;
         this.ano = ano;
         this.origen = origen;
         this.web = web;
-        this.cantAlbunes = cantAlbunes;
+        this.cantAlbumes = cantAlbumes;
         this.cantCanciones = cantCanciones;
         this.estadoActual = estadoActual;
+    }
+
+    public Artista(String nombreArtista, boolean esSolista, List<String> generoSeleccionado) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     public String getNombre() {
@@ -47,13 +52,14 @@ public class Artista {
         this.tipo = tipo;
     }
 
-    public String getGeneros() {
+    public List<String> getGeneros() {
         return generos;
     }
 
-    public void setGeneros(String generos) {
+    public void setGeneros(List<String> generos) {
         this.generos = generos;
     }
+
 
     public int getAno() {
         return ano;
@@ -79,13 +85,15 @@ public class Artista {
         this.web = web;
     }
 
-    public int getCantAlbunes() {
-        return cantAlbunes;
+    public int getCantAlbumes() {
+        return cantAlbumes;
     }
 
-    public void setCantAlbunes(int cantAlbunes) {
-        this.cantAlbunes = cantAlbunes;
+    public void setCantAlbumes(int cantAlbumes) {
+        this.cantAlbumes = cantAlbumes;
     }
+
+
 
     public int getCantCanciones() {
         return cantCanciones;
