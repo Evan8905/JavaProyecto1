@@ -11,7 +11,7 @@ import java.util.List;
 public class Artista {
 
     private String nombre;
-    private boolean tipo; // true = Solista; false = Banda.
+    private int tipo; // 1 = Solista; 2 = Banda. // se tuvo que hacer asi y no con true or false porque generaba problemas a la hora de editar
     private List<String> generos; // Puede ser 1 o varios
     private int ano; // Año en que el artista inició su carrera musical.
     private String origen; // Nacionalidad del artista
@@ -20,7 +20,7 @@ public class Artista {
     private int cantCanciones;
     private int estadoActual;  // 1 = Activo; 2 = Inactivo; 3 = Pausa.
 
-    public Artista(String nombre, boolean tipo, List<String> generos, int ano, String origen, String web, int cantAlbumes, int cantCanciones, int estadoActual) {
+    public Artista(String nombre, int tipo, List<String> generos, int ano, String origen, String web, int cantAlbumes, int cantCanciones, int estadoActual) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.generos = generos;
@@ -32,9 +32,6 @@ public class Artista {
         this.estadoActual = estadoActual;
     }
 
-//    public Artista(String nombreArtista, boolean esSolista, List<String> generoSeleccionado) {
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-//    }
 
     public String getNombre() {
         return nombre;
@@ -44,13 +41,15 @@ public class Artista {
         this.nombre = nombre;
     }
 
-    public boolean isTipo() {
+    public int getTipo() {
         return tipo;
     }
 
-    public void setTipo(boolean tipo) {
+    public void setTipo(int tipo) {
         this.tipo = tipo;
     }
+
+
 
     public List<String> getGeneros() {
         return generos;

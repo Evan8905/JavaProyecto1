@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 public class frmArtista extends javax.swing.JFrame {
 
     ArrayList<Genero> listaGeneros = Logica.Utilitario.listaGeneros;
-    ArrayList<Artista> ListaArtistas = Logica.Utilitario.listaArtistas;
+    ArrayList<Artista> listaArtistas = Logica.Utilitario.listaArtistas;
 
     DefaultListModel modelo = new DefaultListModel();
     DefaultListModel modeloGenero = new DefaultListModel();
@@ -94,6 +94,11 @@ public class frmArtista extends javax.swing.JFrame {
         });
 
         btnEliminarArtista.setText("Eliminar");
+        btnEliminarArtista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarArtistaActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Artistas");
 
@@ -341,90 +346,11 @@ public class frmArtista extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCantCancionesActionPerformed
 
     private void btnMostrarArtistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarArtistaActionPerformed
-        // Limpiar el modelo antes de agregar elementos
-        modelo.clear();
-
-        // Iterar sobre la lista de artistas y agregar los nombres al modelo
-        for (Artista artista : ListaArtistas) {
-            String nombre = artista.getNombre();
-            
-            modelo.addElement(nombre);
-        }
-
+        cargarListaArtistas();
     }//GEN-LAST:event_btnMostrarArtistaActionPerformed
 
     private void btnGuardarArtistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarArtistaActionPerformed
-        // Verificar si se ha ingresado la informacion para crear un artista, caso contrario muestra una alerta
-
-        //!txtAnoInicial.getText().matches("\\d+") Con esta expresion de regex validamos que lo que se ingresa no sea un numero 
-        if (txtNombreArtista.getText().isBlank()) {
-            JOptionPane.showMessageDialog(rootPane, "Digite el nombre del Artista", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (!(rbtnSolista.isSelected() || rbtnBanda.isSelected())) {
-
-            JOptionPane.showMessageDialog(rootPane, "Seleccione un Tipo", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (lstGeneros.getSelectedValuesList().isEmpty()) {
-
-            JOptionPane.showMessageDialog(rootPane, "Seleccione al menos un Genero", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (txtAnoInicial.getText().isBlank() || !txtAnoInicial.getText().matches("\\d+")) {
-
-            JOptionPane.showMessageDialog(rootPane, "Digite un año válido", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (txtOrigen.getText().isBlank()) {
-
-            JOptionPane.showMessageDialog(rootPane, "Digite el origen (Nacionalidad)", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (txtWeb.getText().isBlank()) {
-
-            JOptionPane.showMessageDialog(rootPane, "Digite el sitio web", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (txtCantAlbumes.getText().isBlank() || !txtCantAlbumes.getText().matches("\\d+")) {
-
-            JOptionPane.showMessageDialog(rootPane, "Digite una cantidad válida de Álbumes", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (txtCantCanciones.getText().isBlank() || !txtCantCanciones.getText().matches("\\d+")) {
-
-            JOptionPane.showMessageDialog(rootPane, "Digite una cantidad válida de Canciones", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (!(rbtnActivo.isSelected() || rbtnInactivo.isSelected() || rbtnPausa.isSelected())) {
-
-            JOptionPane.showMessageDialog(rootPane, "Seleccione el Estado Actual", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-
-            // Obtener la información ingresada
-            String nombreArtista = txtNombreArtista.getText();
-            boolean esSolista = rbtnSolista.isSelected();
-            List<String> generos = lstGeneros.getSelectedValuesList();
-            int anoInicio = Integer.parseInt(txtAnoInicial.getText());
-            String origen = txtOrigen.getText();
-            String web = txtWeb.getText();
-            int cantAlbumes = Integer.parseInt(txtCantAlbumes.getText());
-            int cantCanciones = Integer.parseInt(txtCantCanciones.getText());
-            int estadoActual = 0;  // Puedes ajustar esto según tu lógica de manejo de 
-
-            if (rbtnActivo.isSelected()) {
-                estadoActual = 1;
-            } else if (rbtnInactivo.isSelected()) {
-                estadoActual = 2;
-            } else if (rbtnPausa.isSelected()) {
-                estadoActual = 3;
-            }
-
-            // Crear un nuevo objeto Artista con la información capturada
-            Artista nuevoArtista = new Artista(nombreArtista, esSolista, generos, anoInicio, origen, web, cantAlbumes, cantCanciones, estadoActual);
-
-            // Agrega el nuevo objeto al ArrayList
-            listaArtistas.add(nuevoArtista);
-            
-
-            // Agrega el nombre del artista al DefaultListModel
-            modelo.addElement(nombreArtista);
-            
-            // Limpia los campos después de agregar el artista
-            txtNombreArtista.setText("");
-            txtAnoInicial.setText("");
-            txtOrigen.setText("");
-            txtWeb.setText("");
-            txtCantAlbumes.setText("");
-            txtCantCanciones.setText("");
-            buttonGroupArtistas.clearSelection();
-            buttonGroupEstadoArtista.clearSelection();
-            JOptionPane.showMessageDialog(rootPane, "Datos de Artista Guardados", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-        }
+        crearArtista();
     }//GEN-LAST:event_btnGuardarArtistaActionPerformed
 
     private void rbtnInactivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnInactivoActionPerformed
@@ -432,16 +358,24 @@ public class frmArtista extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtnInactivoActionPerformed
 
     private void btnEditarArtistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarArtistaActionPerformed
-            for (Artista artista : ListaArtistas) {
-            String nombre = artista.getNombre();
-            List<String> generos = artista.getGeneros();
-            
-            String datos = nombre + generos;
-            
-           JOptionPane.showMessageDialog(rootPane,  datos);
-            
-        }
+        editarArtistaSeleccionado();
+
+//        for (Artista artista : listaArtistas) {
+//            String nombre = artista.getNombre();
+//            List<String> generos = artista.getGeneros();
+//
+//            String datos = nombre + generos;
+//
+//            JOptionPane.showMessageDialog(rootPane, datos);
+//
+//        }
     }//GEN-LAST:event_btnEditarArtistaActionPerformed
+
+    private void btnEliminarArtistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarArtistaActionPerformed
+        eliminarArtistaSeleccionado();
+        cargarListaArtistas(); // Actualiza la interfaz después de eliminar
+        JOptionPane.showMessageDialog(null, "Registro de Artista Eliminado");
+    }//GEN-LAST:event_btnEliminarArtistaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -485,6 +419,19 @@ public class frmArtista extends javax.swing.JFrame {
         });
     }
 
+    public void cargarListaArtistas() {
+        // Limpiar el modelo antes de agregar elementos
+        modelo.clear();
+
+        // Iterar sobre la lista de artistas y agregar los nombres al modelo
+        for (Artista artista : listaArtistas) {
+            String nombre = artista.getNombre();
+
+            modelo.addElement(nombre);
+        }
+
+    }
+
     public void cargarCombos() {
         modeloGenero.clear();
 
@@ -492,6 +439,109 @@ public class frmArtista extends javax.swing.JFrame {
             String nombre = genero.getNomGenero();
             modeloGenero.addElement(nombre);
         }
+    }
+
+    public void crearArtista() {
+
+        // Verificar si se ha ingresado la informacion para crear un artista, caso contrario muestra una alerta
+        //!txtAnoInicial.getText().matches("\\d+") Con esta expresion de regex validamos que lo que se ingresa no sea un numero 
+        if (txtNombreArtista.getText().isBlank()) {
+            JOptionPane.showMessageDialog(rootPane, "Digite el nombre del Artista", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (!(rbtnSolista.isSelected() || rbtnBanda.isSelected())) {
+
+            JOptionPane.showMessageDialog(rootPane, "Seleccione un Tipo", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (lstGeneros.getSelectedValuesList().isEmpty()) {
+
+            JOptionPane.showMessageDialog(rootPane, "Seleccione al menos un Genero", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (txtAnoInicial.getText().isBlank() || !txtAnoInicial.getText().matches("\\d+")) {
+
+            JOptionPane.showMessageDialog(rootPane, "Digite un año válido", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (txtOrigen.getText().isBlank()) {
+
+            JOptionPane.showMessageDialog(rootPane, "Digite el origen (Nacionalidad)", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (txtWeb.getText().isBlank()) {
+
+            JOptionPane.showMessageDialog(rootPane, "Digite el sitio web", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (txtCantAlbumes.getText().isBlank() || !txtCantAlbumes.getText().matches("\\d+")) {
+
+            JOptionPane.showMessageDialog(rootPane, "Digite una cantidad válida de Álbumes", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (txtCantCanciones.getText().isBlank() || !txtCantCanciones.getText().matches("\\d+")) {
+
+            JOptionPane.showMessageDialog(rootPane, "Digite una cantidad válida de Canciones", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (!(rbtnActivo.isSelected() || rbtnInactivo.isSelected() || rbtnPausa.isSelected())) {
+
+            JOptionPane.showMessageDialog(rootPane, "Seleccione el Estado Actual", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+
+            // Obtener la información ingresada
+            String nombreArtista = txtNombreArtista.getText();
+            int tipo = 0;
+            if (rbtnSolista.isSelected()) {
+                tipo = 1;
+            } else if (rbtnBanda.isSelected()) {
+                tipo = 2;
+            }
+
+            List<String> generos = lstGeneros.getSelectedValuesList();
+            int anoInicio = Integer.parseInt(txtAnoInicial.getText());
+            String origen = txtOrigen.getText();
+            String web = txtWeb.getText();
+            int cantAlbumes = Integer.parseInt(txtCantAlbumes.getText());
+            int cantCanciones = Integer.parseInt(txtCantCanciones.getText());
+            int estadoActual = 0;  // Puedes ajustar esto según tu lógica de manejo de 
+
+            if (rbtnActivo.isSelected()) {
+                estadoActual = 1;
+            } else if (rbtnInactivo.isSelected()) {
+                estadoActual = 2;
+            } else if (rbtnPausa.isSelected()) {
+                estadoActual = 3;
+            }
+
+            // Crear un nuevo objeto Artista con la información capturada
+            Artista nuevoArtista = new Artista(nombreArtista, tipo, generos, anoInicio, origen, web, cantAlbumes, cantCanciones, estadoActual);
+
+            // Agrega el nuevo objeto al ArrayList
+            listaArtistas.add(nuevoArtista);
+
+            // Agrega el nombre del artista al DefaultListModel
+            modelo.addElement(nombreArtista);
+
+            // Limpia los campos después de agregar el artista
+            txtNombreArtista.setText("");
+            txtAnoInicial.setText("");
+            txtOrigen.setText("");
+            txtWeb.setText("");
+            txtCantAlbumes.setText("");
+            txtCantCanciones.setText("");
+            buttonGroupArtistas.clearSelection();
+            buttonGroupEstadoArtista.clearSelection();
+            JOptionPane.showMessageDialog(rootPane, "Datos de Artista Guardados", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
+    public void editarArtistaSeleccionado() {
+
+        int indiceSeleccionado = lstArtistas.getSelectedIndex();
+
+        if (indiceSeleccionado != -1) {
+            Utilitario.editarArtista(listaArtistas, indiceSeleccionado, txtNombreArtista,
+                    rbtnSolista,rbtnBanda, lstGeneros, txtAnoInicial, txtOrigen,
+                    txtWeb, txtCantAlbumes, txtCantCanciones,
+                    rbtnActivo, rbtnInactivo, rbtnPausa);
+        }
+    }
+
+    // Selecciona el indice de lstArtistas y lo envia al metodo eliminar Artista en utilitario
+    public void eliminarArtistaSeleccionado() {
+
+        int indiceSeleccionado = lstArtistas.getSelectedIndex();
+
+        if (indiceSeleccionado != -1) {
+            Utilitario.eliminarArtista(listaArtistas, indiceSeleccionado);
+
+        }
+
     }
 
 
