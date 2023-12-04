@@ -53,52 +53,96 @@ public class Utilitario {
         listaGeneros.add(new Genero("Clásico", "La música clásica es conocida por su ..."));
     }
 
-public static void editarArtista(ArrayList<Artista> listaArtistas, int indice,
-        JTextField txtNombre, JRadioButton rbtnSolista,JRadioButton rbtnBanda,
-        JList<String> lstGeneros, JTextField txtAnoInicial,
-        JTextField txtOrigen, JTextField txtWeb,
-        JTextField txtCantAlbumes, JTextField txtCantCanciones,
-        JRadioButton rbtnActivo, JRadioButton rbtnInactivo,
-        JRadioButton rbtnPausa) {
+    public static void editarArtista(ArrayList<Artista> listaArtistas, int indice,
+            JTextField txtNombre, JRadioButton rbtnSolista, JRadioButton rbtnBanda,
+            JList<String> lstGeneros, JTextField txtAnoInicial,
+            JTextField txtOrigen, JTextField txtWeb,
+            JTextField txtCantAlbumes, JTextField txtCantCanciones,
+            JRadioButton rbtnActivo, JRadioButton rbtnInactivo,
+            JRadioButton rbtnPausa) {
+
+        if (indice >= 0 && indice < listaArtistas.size()) {
+            Artista artistaSeleccionado = listaArtistas.get(indice);
+
+            // Actualiza los componentes del formulario con los valores del artista seleccionado
+            txtNombre.setText(artistaSeleccionado.getNombre());
+            int tipo = artistaSeleccionado.getTipo();
+            rbtnSolista.setSelected(tipo == 1);
+
+            rbtnBanda.setSelected(tipo == 2);
+
+            // Actualiza los géneros seleccionados en la lista
+            List<String> generosSeleccionados = artistaSeleccionado.getGeneros();
+            int[] indicesGeneros = new int[generosSeleccionados.size()];
+            DefaultListModel<String> modelo = (DefaultListModel<String>) lstGeneros.getModel();
+
+            for (int i = 0; i < generosSeleccionados.size(); i++) {
+                String genero = generosSeleccionados.get(i);
+                int indiceGenero = modelo.indexOf(genero);
+                indicesGeneros[i] = indiceGenero;
+            }
+
+            lstGeneros.setSelectedIndices(indicesGeneros);
+
+            // Actualiza otros componentes según sea necesario
+            txtAnoInicial.setText(Integer.toString(artistaSeleccionado.getAno()));
+            txtOrigen.setText(artistaSeleccionado.getOrigen());
+            txtWeb.setText(artistaSeleccionado.getWeb());
+            txtCantAlbumes.setText(Integer.toString(artistaSeleccionado.getCantAlbumes()));
+            txtCantCanciones.setText(Integer.toString(artistaSeleccionado.getCantCanciones()));
+
+            int estadoActual = artistaSeleccionado.getEstadoActual();
+            rbtnActivo.setSelected(estadoActual == 1);
+            rbtnInactivo.setSelected(estadoActual == 2);
+            rbtnPausa.setSelected(estadoActual == 3);
+        }
+    }
+
+    public static void actualizarArtista(ArrayList<Artista> listaArtistas, int indice,
+            JTextField txtNombre, JRadioButton rbtnSolista, JRadioButton rbtnBanda,
+            JList<String> lstGeneros, JTextField txtAnoInicial,
+            JTextField txtOrigen, JTextField txtWeb,
+            JTextField txtCantAlbumes, JTextField txtCantCanciones,
+            JRadioButton rbtnActivo, JRadioButton rbtnInactivo,
+            JRadioButton rbtnPausa) {
 
     if (indice >= 0 && indice < listaArtistas.size()) {
         Artista artistaSeleccionado = listaArtistas.get(indice);
 
-        // Actualiza los componentes del formulario con los valores del artista seleccionado
-        txtNombre.setText(artistaSeleccionado.getNombre());
-        int tipo = artistaSeleccionado.getTipo();
-        rbtnSolista.setSelected(tipo == 1);
- 
-        rbtnBanda.setSelected(tipo == 2);
-    
-   
-        // Actualiza los géneros seleccionados en la lista
-        List<String> generosSeleccionados = artistaSeleccionado.getGeneros();
-        int[] indicesGeneros = new int[generosSeleccionados.size()];
-        DefaultListModel<String> modelo = (DefaultListModel<String>) lstGeneros.getModel();
+        // Actualiza los atributos del artista con los nuevos valores
+        artistaSeleccionado.setNombre(txtNombre.getText());
 
-        for (int i = 0; i < generosSeleccionados.size(); i++) {
-            String genero = generosSeleccionados.get(i);
-            int indiceGenero = modelo.indexOf(genero);
-            indicesGeneros[i] = indiceGenero;
+        int tipo = 0;
+        if (rbtnSolista.isSelected()) {
+            tipo = 1;
+        } else if (rbtnBanda.isSelected()) {
+            tipo = 2;
         }
+        artistaSeleccionado.setTipo(tipo);
 
-        lstGeneros.setSelectedIndices(indicesGeneros);
+        // Actualiza los géneros del artista con los seleccionados en la lista
+        List<String> nuevosGeneros = lstGeneros.getSelectedValuesList();
+        artistaSeleccionado.setGeneros(nuevosGeneros);
 
-        // Actualiza otros componentes según sea necesario
-        txtAnoInicial.setText(Integer.toString(artistaSeleccionado.getAno()));
-        txtOrigen.setText(artistaSeleccionado.getOrigen());
-        txtWeb.setText(artistaSeleccionado.getWeb());
-        txtCantAlbumes.setText(Integer.toString(artistaSeleccionado.getCantAlbumes()));
-        txtCantCanciones.setText(Integer.toString(artistaSeleccionado.getCantCanciones()));
+        // Actualiza otros atributos según sea necesario
+        artistaSeleccionado.setAno(Integer.parseInt(txtAnoInicial.getText()));
+        artistaSeleccionado.setOrigen(txtOrigen.getText());
+        artistaSeleccionado.setWeb(txtWeb.getText());
+        artistaSeleccionado.setCantAlbumes(Integer.parseInt(txtCantAlbumes.getText()));
+        artistaSeleccionado.setCantCanciones(Integer.parseInt(txtCantCanciones.getText()));
 
-        int estadoActual = artistaSeleccionado.getEstadoActual();
-        rbtnActivo.setSelected(estadoActual == 1);
-        rbtnInactivo.setSelected(estadoActual == 2);
-        rbtnPausa.setSelected(estadoActual == 3);
+        int estadoActual = 0;
+        if (rbtnActivo.isSelected()) {
+            estadoActual = 1;
+        } else if (rbtnInactivo.isSelected()) {
+            estadoActual = 2;
+        } else if (rbtnPausa.isSelected()) {
+            estadoActual = 3;
+        }
+        artistaSeleccionado.setEstadoActual(estadoActual);
+
     }
 }
-
 
     // recibe lista artistas y el indice seleccionado en la interfaz y lo remueve de la lista
     public static void eliminarArtista(ArrayList<Artista> listaArtistas, int indice) {

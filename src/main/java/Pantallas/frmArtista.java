@@ -78,6 +78,7 @@ public class frmArtista extends javax.swing.JFrame {
         btnMostrarArtista = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         lstGeneros = new javax.swing.JList<>();
+        ActualizarArtista = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,9 +101,9 @@ public class frmArtista extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Artistas");
+        jLabel2.setText("Lista de Artistas ");
 
-        jLabel3.setText("Registrar Artista");
+        jLabel3.setText("Actualizar | Registrar Artista");
 
         txtNombreArtista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,6 +183,13 @@ public class frmArtista extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(lstGeneros);
 
+        ActualizarArtista.setText("Actualizar Registro");
+        ActualizarArtista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActualizarArtistaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -190,79 +198,76 @@ public class frmArtista extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(125, 125, 125))
+                        .addGap(21, 21, 21)
+                        .addComponent(btnMostrarArtista)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEditarArtista)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEliminarArtista))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel7)
+                            .addGap(11, 11, 11)
+                            .addComponent(txtAnoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel11)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(txtCantCanciones))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel10)
+                                    .addGap(26, 26, 26)
+                                    .addComponent(txtCantAlbumes, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel8)
+                                        .addComponent(jLabel9))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtWeb, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addGap(18, 18, 18)
+                                .addComponent(rbtnActivo)
+                                .addGap(18, 18, 18)
+                                .addComponent(rbtnInactivo)
+                                .addGap(18, 18, 18)
+                                .addComponent(rbtnPausa))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(ActualizarArtista)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnGuardarArtista)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel6)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addComponent(btnMostrarArtista)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnEditarArtista)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnEliminarArtista))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(112, 112, 112)
-                                    .addComponent(btnGuardarArtista))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel7)
-                                            .addGap(11, 11, 11)
-                                            .addComponent(txtAnoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(jLabel11)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(txtCantCanciones))
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(jLabel10)
-                                                    .addGap(26, 26, 26)
-                                                    .addComponent(txtCantAlbumes, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jLabel8)
-                                                        .addComponent(jLabel9))
-                                                    .addGap(18, 18, 18)
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                        .addComponent(txtOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(txtWeb, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel12)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(rbtnActivo)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(rbtnInactivo)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(rbtnPausa)))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel6)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(30, 30, 30)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(rbtnSolista)
-                                        .addGap(30, 30, 30)
-                                        .addComponent(rbtnBanda))
-                                    .addComponent(txtNombreArtista, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18))))))
+                                .addComponent(rbtnSolista)
+                                .addGap(30, 30, 30)
+                                .addComponent(rbtnBanda))
+                            .addComponent(txtNombreArtista, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(30, 30, 30))
             .addGroup(layout.createSequentialGroup()
                 .addGap(278, 278, 278)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(82, 82, 82))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,8 +286,7 @@ public class frmArtista extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnEditarArtista)
                             .addComponent(btnEliminarArtista)
-                            .addComponent(btnMostrarArtista)
-                            .addComponent(btnGuardarArtista))
+                            .addComponent(btnMostrarArtista))
                         .addGap(39, 39, 39))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -323,7 +327,11 @@ public class frmArtista extends javax.swing.JFrame {
                             .addComponent(rbtnInactivo)
                             .addComponent(rbtnPausa)
                             .addComponent(rbtnActivo))
-                        .addContainerGap(84, Short.MAX_VALUE))))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnGuardarArtista)
+                            .addComponent(ActualizarArtista))
+                        .addContainerGap(43, Short.MAX_VALUE))))
         );
 
         pack();
@@ -376,6 +384,12 @@ public class frmArtista extends javax.swing.JFrame {
         cargarListaArtistas(); // Actualiza la interfaz después de eliminar
         JOptionPane.showMessageDialog(null, "Registro de Artista Eliminado");
     }//GEN-LAST:event_btnEliminarArtistaActionPerformed
+
+    private void ActualizarArtistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarArtistaActionPerformed
+        actualizarArtistaSeleccionado();
+        cargarListaArtistas();//Actualiza la interfaz después de actualizar
+        JOptionPane.showMessageDialog(null, "Datos de Artista Actualizados");
+    }//GEN-LAST:event_ActualizarArtistaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -526,7 +540,7 @@ public class frmArtista extends javax.swing.JFrame {
 
         if (indiceSeleccionado != -1) {
             Utilitario.editarArtista(listaArtistas, indiceSeleccionado, txtNombreArtista,
-                    rbtnSolista,rbtnBanda, lstGeneros, txtAnoInicial, txtOrigen,
+                    rbtnSolista, rbtnBanda, lstGeneros, txtAnoInicial, txtOrigen,
                     txtWeb, txtCantAlbumes, txtCantCanciones,
                     rbtnActivo, rbtnInactivo, rbtnPausa);
         }
@@ -544,8 +558,22 @@ public class frmArtista extends javax.swing.JFrame {
 
     }
 
+    public void actualizarArtistaSeleccionado() {
+
+        int indiceSeleccionado = lstArtistas.getSelectedIndex();
+
+        if (indiceSeleccionado != -1) {
+            Utilitario.actualizarArtista(listaArtistas, indiceSeleccionado, txtNombreArtista,
+                    rbtnSolista, rbtnBanda, lstGeneros, txtAnoInicial, txtOrigen,
+                    txtWeb, txtCantAlbumes, txtCantCanciones,
+                    rbtnActivo, rbtnInactivo, rbtnPausa);
+        }
+
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ActualizarArtista;
     private javax.swing.JButton btnEditarArtista;
     private javax.swing.JButton btnEliminarArtista;
     private javax.swing.JButton btnGuardarArtista;
