@@ -4,28 +4,86 @@
  */
 package Pantallas;
 
+import Clases.Artista;
+
+import Logica.Utilitario;
+import javax.swing.table.DefaultTableModel;
+
 
 public class frmFiltros extends javax.swing.JFrame {
-
+ 
     // Agregar ComboBox para cada columna
   
     /**
      * Creates new form frmFiltros
      */
+    
     public frmFiltros(frmPrincipal aThis, boolean par) {
         initComponents();
+        
         //Linea para que no se salga
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
    
-       
-
-        
-        
-        
-        
+        DefaultTableModel modeloTabla = new DefaultTableModel();
+//////////////////////////////////////////////////////Tabla/////////////////////////////////////////////
+        //*(Agregar las columnas al modelo de tabla
+        modeloTabla.addColumn("Web");//En realidad tiene que ser el nombre de la cancion
+        modeloTabla.addColumn("Genero");
+        modeloTabla.addColumn("Artista");
+        modeloTabla.addColumn("Origen");//Originalmente tiene que ser Duracion
+        // Recorrer la lista de artistas y agregar cada artista a una fila en el modelo de tabla
+        for (Artista artista : Utilitario.listaArtistas) {
+            Object[] fila = new Object[4];
+            fila[0] = artista.getWeb();
+            fila[1] = artista.getGeneros();
+            fila[2] = artista.getNombre();
+           fila[3] = artista.getOrigen();//Originalmente tiene que ser Duracion
+            modeloTabla.addRow(fila);
+        }
+        // Establecer el modelo de tabla en la jTableBusqueda
+         jTableBusqueda.setModel(modeloTabla);
+         
+/////////////////////////LLenar combobox/////////////////////////////////////////////////////////////////////////
+    for (Artista artista : Utilitario.listaArtistas) {
+     cmbArtistas.addItem(artista.getNombre());
+     cmbAlbum.addItem(artista.getWeb());
+     //  agregar los géneros al combo box cmbGenero
+    for (String genero : artista.getGeneros()) {
+        cmbGenero.addItem(genero);
     }
+ }
 
+    // Agregar ActionListener al cmbArtistas
+    cmbArtistas.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            cmbArtistasActionPerformed(evt);
+        }
+    });
 
+    // Agregar ActionListener al cmbAlbum
+    cmbAlbum.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            cmbAlbumActionPerformed(evt);
+        }
+    });
+
+    // Agregar ActionListener al cmbGenero
+    cmbGenero.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            cmbGeneroActionPerformed(evt);
+        }
+    });
+    }
+    
+
+    
+    
+    
+    
+    
+    
+    
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,22 +93,31 @@ public class frmFiltros extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        utilitario1 = new Logica.Utilitario();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         btnOrdenar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        cmbArtistas = new javax.swing.JComboBox<>();
+        cmbAlbum = new javax.swing.JComboBox<>();
+        cmbGenero = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         btnOrdenar1 = new javax.swing.JButton();
         btnOrdenar2 = new javax.swing.JButton();
-        btnOrdenar3 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableBusqueda = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 843, Short.MAX_VALUE)
+        );
 
         btnOrdenar.setText("^");
         btnOrdenar.addActionListener(new java.awt.event.ActionListener() {
@@ -59,50 +126,28 @@ public class frmFiltros extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Artista", "Albumes", "Cancion", "Genero"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cmbArtistas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Artistas" }));
+        cmbArtistas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                cmbArtistasActionPerformed(evt);
             }
         });
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox4.addActionListener(new java.awt.event.ActionListener() {
+        cmbAlbum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Album" }));
+        cmbAlbum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox4ActionPerformed(evt);
+                cmbAlbumActionPerformed(evt);
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        cmbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Genero" }));
+        cmbGenero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
-            }
-        });
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox3ActionPerformed(evt);
+                cmbGeneroActionPerformed(evt);
             }
         });
 
         jLabel1.setText("Mantenimiento Canciones");
-
-        jLabel2.setText("Mantenimiento Canciones");
 
         btnOrdenar1.setText("^");
         btnOrdenar1.addActionListener(new java.awt.event.ActionListener() {
@@ -118,92 +163,68 @@ public class frmFiltros extends javax.swing.JFrame {
             }
         });
 
-        btnOrdenar3.setText("^");
-        btnOrdenar3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOrdenar3ActionPerformed(evt);
+        jTableBusqueda.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Numero", "Canción", "Artista", "Duración"
             }
-        });
+        ));
+        jScrollPane1.setViewportView(jTableBusqueda);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(122, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1040, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnOrdenar)
-                        .addGap(12, 12, 12)
-                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnOrdenar1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(35, 35, 35)
+                        .addComponent(cmbArtistas, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(169, 169, 169)
+                        .addComponent(cmbAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(494, 494, 494))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(128, 128, 128)
+                .addComponent(btnOrdenar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnOrdenar1)
+                .addGap(253, 253, 253)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cmbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(btnOrdenar2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnOrdenar3)))
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(515, 515, 515)
-                    .addComponent(jLabel1)
-                    .addContainerGap(515, Short.MAX_VALUE)))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(515, 515, 515)
-                    .addComponent(jLabel2)
-                    .addContainerGap(515, Short.MAX_VALUE)))
+                        .addGap(93, 93, 93)))
+                .addGap(121, 121, 121))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(82, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnOrdenar)
-                    .addComponent(btnOrdenar1)
-                    .addComponent(btnOrdenar2)
-                    .addComponent(btnOrdenar3))
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbArtistas, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnOrdenar2)
+                    .addComponent(btnOrdenar)
+                    .addComponent(btnOrdenar1))
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(328, 328, 328)
-                    .addComponent(jLabel1)
-                    .addContainerGap(329, Short.MAX_VALUE)))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(328, 328, 328)
-                    .addComponent(jLabel2)
-                    .addContainerGap(329, Short.MAX_VALUE)))
-        );
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(14, 14, 14))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(27, 27, 27))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -211,33 +232,134 @@ public class frmFiltros extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    private void cmbArtistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbArtistasActionPerformed
+              
+     // Obtener el nombre del artista seleccionado del combo
+    String nombreArtistaSeleccionado = (String) cmbArtistas.getSelectedItem();
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    // Filtrar la tabla para mostrar solo las filas relacionadas con el artista seleccionado
+    filtrarTablaPorArtista(nombreArtistaSeleccionado);
+}
 
-    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox3ActionPerformed
+    private void filtrarTablaPorArtista(String nombreArtista) {
+    DefaultTableModel modeloTabla = (DefaultTableModel) jTableBusqueda.getModel();
 
-    private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox4ActionPerformed
+    // Limpiar las filas ocultas (restaurar la altura de las filas)
+    for (int fila = 0; fila < modeloTabla.getRowCount(); fila++) {
+        jTableBusqueda.setRowHeight(fila, jTableBusqueda.getRowHeight());
+    }
+
+    // Si el nombre del artista seleccionado es null, no se aplica ningún filtro
+    if (nombreArtista != null) {
+        // Obtener el índice de la columna "Artista" en el modelo de tabla
+        int columnaArtista = modeloTabla.findColumn("Artista");
+
+        // Iterar sobre las filas y ocultar las que no correspondan al artista seleccionado
+        for (int fila = 0; fila < modeloTabla.getRowCount(); fila++) {
+            Object valorArtista = modeloTabla.getValueAt(fila, columnaArtista);
+
+            if (valorArtista instanceof String) {
+                // Comparar el nombre del artista en la fila con el artista seleccionado
+                String nombreArtistaFila = (String) valorArtista;
+
+                if (!nombreArtistaFila.equals(nombreArtista)) {
+                    // Ocultar la fila si el artista no coincide
+                    jTableBusqueda.setRowHeight(fila, 0);
+                }
+            }
+        }
+    }
+    
+    }//GEN-LAST:event_cmbArtistasActionPerformed
+
+    private void cmbGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbGeneroActionPerformed
+        // Obtener el género seleccionado del combo
+    String generoSeleccionado = (String) cmbGenero.getSelectedItem();
+
+    // Filtrar la tabla para mostrar solo las filas relacionadas con el género seleccionado
+    filtrarTablaPorGenero(generoSeleccionado);
+}
+
+    private void filtrarTablaPorGenero(String genero) {
+    DefaultTableModel modeloTabla = (DefaultTableModel) jTableBusqueda.getModel();
+
+    // Limpiar las filas ocultas (restaurar la altura de las filas)
+    for (int fila = 0; fila < modeloTabla.getRowCount(); fila++) {
+        jTableBusqueda.setRowHeight(fila, jTableBusqueda.getRowHeight());
+    }
+
+    // Si el género seleccionado es null, no se aplica ningún filtro
+    if (genero != null) {
+        // Obtener el índice de la columna "Genero" en el modelo de tabla
+        int columnaGenero = modeloTabla.findColumn("Genero");
+
+        // Iterar sobre las filas y ocultar las que no correspondan al género seleccionado
+        for (int fila = 0; fila < modeloTabla.getRowCount(); fila++) {
+            Object valorGenero = modeloTabla.getValueAt(fila, columnaGenero);
+
+            if (valorGenero instanceof String) {
+                // Comparar el género en la fila con el género seleccionado
+                String generoFila = (String) valorGenero;
+
+                if (!generoFila.equals(genero)) {
+                    // Ocultar la fila si el género no coincide
+                    jTableBusqueda.setRowHeight(fila, 0);
+                }
+            }
+        }
+    }
+    }//GEN-LAST:event_cmbGeneroActionPerformed
+
+    private void cmbAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAlbumActionPerformed
+        // Obtener el álbum seleccionado del combo
+    String albumSeleccionado = (String) cmbAlbum.getSelectedItem();
+
+    // Filtrar la tabla para mostrar solo las filas relacionadas con el álbum seleccionado
+    filtrarTablaPorAlbum(albumSeleccionado);
+}
+
+private void filtrarTablaPorAlbum(String nombreAlbum) {
+    DefaultTableModel modeloTabla = (DefaultTableModel) jTableBusqueda.getModel();
+
+    // Limpiar las filas ocultas (restaurar la altura de las filas)
+    for (int fila = 0; fila < modeloTabla.getRowCount(); fila++) {
+        jTableBusqueda.setRowHeight(fila, jTableBusqueda.getRowHeight());
+    }
+
+    // Si el nombre del álbum seleccionado es null, no se aplica ningún filtro
+    if (nombreAlbum != null && !nombreAlbum.equals("Álbum")) {
+        // Obtener el índice de la columna "Web" en el modelo de tabla
+        int columnaAlbum = modeloTabla.findColumn("Web");
+
+        // Iterar sobre las filas y ocultar las que no correspondan al álbum seleccionado
+        for (int fila = 0; fila < modeloTabla.getRowCount(); fila++) {
+            Object valorAlbum = modeloTabla.getValueAt(fila, columnaAlbum);
+
+            if (valorAlbum instanceof String) {
+                // Comparar el nombre del álbum en la fila con el álbum seleccionado
+                String nombreAlbumFila = (String) valorAlbum;
+
+                if (!nombreAlbumFila.equals(nombreAlbum)) {
+                    // Ocultar la fila si el álbum no coincide
+                    jTableBusqueda.setRowHeight(fila, 0);
+                }
+            }
+        }
+    }
+    }//GEN-LAST:event_cmbAlbumActionPerformed
 
     private void btnOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenarActionPerformed
         // TODO add your handling code here:
@@ -250,11 +372,7 @@ public class frmFiltros extends javax.swing.JFrame {
     private void btnOrdenar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenar2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnOrdenar2ActionPerformed
-
-    private void btnOrdenar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenar3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnOrdenar3ActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */
@@ -301,16 +419,17 @@ public class frmFiltros extends javax.swing.JFrame {
     private javax.swing.JButton btnOrdenar;
     private javax.swing.JButton btnOrdenar1;
     private javax.swing.JButton btnOrdenar2;
-    private javax.swing.JButton btnOrdenar3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JComboBox<String> cmbAlbum;
+    private javax.swing.JComboBox<String> cmbArtistas;
+    private javax.swing.JComboBox<String> cmbGenero;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableBusqueda;
+    private Logica.Utilitario utilitario1;
     // End of variables declaration//GEN-END:variables
+
+
+
 }

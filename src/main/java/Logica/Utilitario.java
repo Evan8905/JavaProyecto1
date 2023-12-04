@@ -41,7 +41,7 @@ public class Utilitario {
         listaArtistas.add(new Artista("Adele", 2, Arrays.asList("Pop", "Soul"), 2006, "Reino Unido", "www.adele.com", 5, 15, 1));
         listaArtistas.add(new Artista("Metallica", 1, Arrays.asList("Metal", "Rock"), 1981, "Estados Unidos", "www.metallica.com", 10, 100, 1));
         listaArtistas.add(new Artista("Mozart", 2, Arrays.asList("Clásico"), 1756, "Austria", "www.mozart.com", 41, 626, 2));
-
+        
     }
 
     public static void inicializarGeneros() {
