@@ -52,6 +52,7 @@ public class frmGenero extends javax.swing.JFrame {
         btnMostrar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,6 +100,18 @@ public class frmGenero extends javax.swing.JFrame {
         });
 
         btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -121,10 +134,6 @@ public class frmGenero extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
-                        .addComponent(jLabel4)
-                        .addGap(169, 169, 169))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -136,15 +145,22 @@ public class frmGenero extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNombreGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(60, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(169, 169, 169))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnActualizar)
+                                .addGap(54, 54, 54)
+                                .addComponent(btnAgregar)
+                                .addGap(81, 81, 81))))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(266, 266, 266)
                 .addComponent(jLabel3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAgregar)
-                .addGap(161, 161, 161))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,7 +187,8 @@ public class frmGenero extends javax.swing.JFrame {
                     .addComponent(btnAgregar)
                     .addComponent(btnMostrar)
                     .addComponent(btnEliminar)
-                    .addComponent(btnEditar))
+                    .addComponent(btnEditar)
+                    .addComponent(btnActualizar))
                 .addGap(39, 39, 39))
         );
 
@@ -218,6 +235,16 @@ public class frmGenero extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Registro de Genero Eliminado");
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        editarGeneroSeleccionado();
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        actualizarGeneroSeleccionado();
+        cargarListaGeneros();//Actualiza la interfaz después de actualizar
+        JOptionPane.showMessageDialog(null, "Datos de Genero Actualizados");
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
     public void cargarListaGeneros() {
 
         // Limpiar el modelo antes de agregar elementos
@@ -227,6 +254,26 @@ public class frmGenero extends javax.swing.JFrame {
         for (Genero genero : ListaGeneros) {
             String nombre = genero.getNomGenero();
             modelo.addElement(nombre);
+        }
+
+    }
+
+    //este metodo solo captura el selecciona y lo manda a utilitario para que pinte la info en el formulario
+    public void editarGeneroSeleccionado() {
+
+        int indiceSeleccionado = lstGeneros.getSelectedIndex();
+
+        if (indiceSeleccionado != -1) {
+            Utilitario.editarGenero(ListaGeneros, indiceSeleccionado, txtNombreGenero, TextADescripcion);
+        }
+    }
+
+    public void actualizarGeneroSeleccionado() {
+
+        int indiceSeleccionado = lstGeneros.getSelectedIndex();
+
+        if (indiceSeleccionado != -1) {
+            Utilitario.actualizarGenero(ListaGeneros, indiceSeleccionado, txtNombreGenero, TextADescripcion);
         }
 
     }
@@ -286,6 +333,7 @@ public class frmGenero extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea TextADescripcion;
+    private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;

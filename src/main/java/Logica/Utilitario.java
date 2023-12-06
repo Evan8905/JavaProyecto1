@@ -11,6 +11,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
@@ -165,6 +166,32 @@ public class Utilitario {
 
         }
     }
+
+    public static void editarGenero(ArrayList<Genero> listaGeneros, int indice,
+            JTextField txtNombre, JTextArea textArea) {
+
+        if (indice >= 0 && indice < listaGeneros.size()) {
+            Genero generoSeleccionado = listaGeneros.get(indice);
+
+            // Actualiza los componentes del formulario con los valores del artista seleccionado
+            txtNombre.setText(generoSeleccionado.getNomGenero());
+            textArea.setText(generoSeleccionado.getDescripcion());
+
+        }
+    }
+
+    public static void actualizarGenero(ArrayList<Genero> listaGeneros, int indice,
+            JTextField txtNombre, JTextArea textArea) {
+
+        if (indice >= 0 && indice < listaGeneros.size()) {
+            Genero generoSeleccionado = listaGeneros.get(indice);
+
+            // Actualiza los atributos del Genero con los nuevos valores
+            generoSeleccionado.setNomGenero(txtNombre.getText());
+            generoSeleccionado.setDescripcion(textArea.getText());
+        }
+    }
+
     public static void eliminarGenero(ArrayList<Genero> listaGeneros, int indice) {
 
         if (indice >= 0 && indice < listaGeneros.size()) {
