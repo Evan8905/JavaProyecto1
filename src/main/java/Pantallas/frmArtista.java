@@ -502,7 +502,7 @@ public class frmArtista extends javax.swing.JFrame {
             String web = txtWeb.getText();
             int cantAlbumes = Integer.parseInt(txtCantAlbumes.getText());
             int cantCanciones = Integer.parseInt(txtCantCanciones.getText());
-            int estadoActual = 0;  // Puedes ajustar esto según tu lógica de manejo de 
+            int estadoActual = 0;  
 
             if (rbtnActivo.isSelected()) {
                 estadoActual = 1;

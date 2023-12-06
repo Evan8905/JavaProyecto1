@@ -18,7 +18,6 @@ public class App {
         formPrincipal.setVisible(true);
         formPrincipal.setLocationRelativeTo(null);
         formPrincipal.setResizable(false);
-
     }
 
 }
