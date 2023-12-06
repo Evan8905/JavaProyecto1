@@ -1,6 +1,7 @@
 package Pantallas;
 
 import Clases.Genero;
+import Logica.Utilitario;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -23,7 +24,7 @@ public class frmGenero extends javax.swing.JFrame {
         initComponents();
         // Con esta linea se le agregan los elementos a la lista de la interfaz
         lstGeneros.setModel(modelo);
-        
+
         //Linea para que no se salga al dar clic en la X
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
@@ -91,6 +92,11 @@ public class frmGenero extends javax.swing.JFrame {
         });
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnEditar.setText("Editar");
 
@@ -157,9 +163,7 @@ public class frmGenero extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel1)
                             .addComponent(jScrollPane2)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
@@ -205,6 +209,17 @@ public class frmGenero extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
+        cargarListaGeneros();
+    }//GEN-LAST:event_btnMostrarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        eliminarGeneroSeleccionado();
+        cargarListaGeneros(); // Actualiza la interfaz después de eliminar
+        JOptionPane.showMessageDialog(null, "Registro de Genero Eliminado");
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    public void cargarListaGeneros() {
+
         // Limpiar el modelo antes de agregar elementos
         modelo.clear();
 
@@ -213,7 +228,19 @@ public class frmGenero extends javax.swing.JFrame {
             String nombre = genero.getNomGenero();
             modelo.addElement(nombre);
         }
-    }//GEN-LAST:event_btnMostrarActionPerformed
+
+    }
+
+    public void eliminarGeneroSeleccionado() {
+
+        int indiceSeleccionado = lstGeneros.getSelectedIndex();
+
+        if (indiceSeleccionado != -1) {
+            Utilitario.eliminarGenero(ListaGeneros, indiceSeleccionado);
+
+        }
+
+    }
 
     /**
      * @param args the command line arguments
