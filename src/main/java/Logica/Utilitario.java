@@ -1,5 +1,6 @@
 package Logica;
 
+import Clases.Album;
 import Clases.Artista;
 import Clases.Genero;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class Utilitario {
 
     public static ArrayList<Artista> listaArtistas = new ArrayList<>();
     public static ArrayList<Genero> listaGeneros = new ArrayList<>();
-
+    public static ArrayList<Album> listaAlbum = new ArrayList<>();
     /**
      * Inicializa los datos del sistema. Este método se encarga de realizar la
      * inicialización de todos los datos del sistema.
@@ -52,6 +53,20 @@ public class Utilitario {
         listaGeneros.add(new Genero("Hip Hop", "El hip hop es un estilo musical que ..."));
         listaGeneros.add(new Genero("Clásico", "La música clásica es conocida por su ..."));
     }
+    
+                public static void inicializarAlbum() {
+              // Agregar instancias de Album a listaAlbum
+              listaAlbum.add(new Album("El Dorado", "Descripción de El Dorado"));
+              listaAlbum.add(new Album("Álbum2", "Descripción del Álbum2"));
+              listaAlbum.add(new Album("Álbum3", "Descripción del Álbum3"));
+              listaAlbum.add(new Album("Álbum4", "Descripción del Álbum4"));
+              listaAlbum.add(new Album("Álbum5", "Descripción del Álbum5"));
+          }
+
+
+    
+    
+    
 
     public static void editarArtista(ArrayList<Artista> listaArtistas, int indice,
             JTextField txtNombre, JRadioButton rbtnSolista, JRadioButton rbtnBanda,

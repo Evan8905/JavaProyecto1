@@ -4,6 +4,7 @@
  */
 package Pantallas;
 
+import Clases.Album;
 import Clases.Artista;
 
 import Logica.Utilitario;
@@ -51,8 +52,16 @@ public class frmFiltros extends javax.swing.JFrame {
     for (String genero : artista.getGeneros()) {
         cmbGenero.addItem(genero);
     }
+   /////////////////////////LLenar combobox/////////////////////////////////////////////////////////////////////////
+   
  }
 
+         
+    
+    
+    
+    
+    
     // Agregar ActionListener al cmbArtistas
     cmbArtistas.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -215,15 +224,17 @@ public class frmFiltros extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbArtistas, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cmbArtistas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cmbAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnOrdenar2)
-                    .addComponent(btnOrdenar)
-                    .addComponent(btnOrdenar1))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnOrdenar)
+                        .addComponent(btnOrdenar1)))
                 .addContainerGap())
         );
 
@@ -324,41 +335,14 @@ public class frmFiltros extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbGeneroActionPerformed
 
     private void cmbAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAlbumActionPerformed
-        // Obtener el álbum seleccionado del combo
-    String albumSeleccionado = (String) cmbAlbum.getSelectedItem();
+     // Obtener el género seleccionado del combo
+    String generoSeleccionado = (String) cmbGenero.getSelectedItem();
 
-    // Filtrar la tabla para mostrar solo las filas relacionadas con el álbum seleccionado
-    filtrarTablaPorAlbum(albumSeleccionado);
+    // Filtrar la tabla para mostrar solo las filas relacionadas con el género seleccionado
+    filtrarTablaPorGenero(generoSeleccionado);
 }
 
 private void filtrarTablaPorAlbum(String nombreAlbum) {
-    DefaultTableModel modeloTabla = (DefaultTableModel) jTableBusqueda.getModel();
-
-    // Limpiar las filas ocultas (restaurar la altura de las filas)
-    for (int fila = 0; fila < modeloTabla.getRowCount(); fila++) {
-        jTableBusqueda.setRowHeight(fila, jTableBusqueda.getRowHeight());
-    }
-
-    // Si el nombre del álbum seleccionado es null, no se aplica ningún filtro
-    if (nombreAlbum != null && !nombreAlbum.equals("Álbum")) {
-        // Obtener el índice de la columna "Web" en el modelo de tabla
-        int columnaAlbum = modeloTabla.findColumn("Web");
-
-        // Iterar sobre las filas y ocultar las que no correspondan al álbum seleccionado
-        for (int fila = 0; fila < modeloTabla.getRowCount(); fila++) {
-            Object valorAlbum = modeloTabla.getValueAt(fila, columnaAlbum);
-
-            if (valorAlbum instanceof String) {
-                // Comparar el nombre del álbum en la fila con el álbum seleccionado
-                String nombreAlbumFila = (String) valorAlbum;
-
-                if (!nombreAlbumFila.equals(nombreAlbum)) {
-                    // Ocultar la fila si el álbum no coincide
-                    jTableBusqueda.setRowHeight(fila, 0);
-                }
-            }
-        }
-    }
     }//GEN-LAST:event_cmbAlbumActionPerformed
 
     private void btnOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenarActionPerformed
