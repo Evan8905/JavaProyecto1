@@ -102,7 +102,6 @@ public class Utilitario {
     }
 
     // Manejo de artistas
-    
     public static void editarArtista(ArrayList<Artista> listaArtistas, int indice,
             JTextField txtNombre, JRadioButton rbtnSolista, JRadioButton rbtnBanda,
             JList<String> lstGeneros, JTextField txtAnoInicial,
@@ -204,7 +203,6 @@ public class Utilitario {
         }
     }
 
-    
     // Manejo de Generos
     public static void editarGenero(ArrayList<Genero> listaGeneros, int indice,
             JTextField txtNombre, JTextArea textArea) {
@@ -323,9 +321,51 @@ public class Utilitario {
         }
     }
 // Manejo de canciones 
-    
-    
-    
+
+    public static void eliminarCancion(ArrayList<Cancion> listaCancions, int indice) {
+
+        if (indice >= 0 && indice < listaCanciones.size()) {
+            Cancion cancionSeleccionado = listaCanciones.get(indice);
+            listaCanciones.remove(cancionSeleccionado);
+        }
+    }
+
+    public static void editarCancion(ArrayList<Cancion> listaCanciones, int indice,
+            JTextField txtNumero, JTextField txtTitulo, JTextField txtMinutos,
+            JTextField txtSegundos, JTextField txtLetra, JTextField txtGrabacion) {
+
+        if (indice >= 0 && indice < listaCanciones.size()) {
+            Cancion cancionSeleccionada = listaCanciones.get(indice);
+
+            // Actualiza los componentes del formulario con los valores del artista seleccionado
+            txtNumero.setText(Integer.toString(cancionSeleccionada.getNumero()));
+            txtTitulo.setText(cancionSeleccionada.getTitulo());
+            txtMinutos.setText(Integer.toString(cancionSeleccionada.getMinutos()));
+            txtSegundos.setText(Integer.toString(cancionSeleccionada.getSegundos()));
+            txtLetra.setText(cancionSeleccionada.getLetraAutor());
+            txtGrabacion.setText(Integer.toString(cancionSeleccionada.getAnoGrabacion()));
+
+//            // Actualiza los géneros seleccionados en la lista
+//            List<String> generosSeleccionados = albumSeleccionado.getGeneros();
+//            int[] indicesGeneros = new int[generosSeleccionados.size()];
+//            DefaultListModel<String> modelo = (DefaultListModel<String>) lstGeneros.getModel();
+//
+//            for (int i = 0; i < generosSeleccionados.size(); i++) {
+//                String genero = generosSeleccionados.get(i);
+//                int indiceGenero = modelo.indexOf(genero);
+//                indicesGeneros[i] = indiceGenero;
+//            }
+//            lstGeneros.setSelectedIndices(indicesGeneros);
+//
+//            txtDiscografia.setText(albumSeleccionado.getDiscografica());
+//            txtNumeroCanciones.setText(Integer.toString(albumSeleccionado.getCantCanciones()));
+        }
+    }
+
+    public static void actualizarCancion() {
+
+    }
+
 //    public static LinkedList<String> crearListaArtistas() {
 //        LinkedList<String> resultado = new LinkedList<>();
 //
