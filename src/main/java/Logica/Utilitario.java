@@ -2,6 +2,7 @@ package Logica;
 
 import Clases.Album;
 import Clases.Artista;
+import Clases.Cancion;
 import Clases.Genero;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,6 +24,7 @@ public class Utilitario {
     public static ArrayList<Artista> listaArtistas = new ArrayList<>();
     public static ArrayList<Genero> listaGeneros = new ArrayList<>();
     public static ArrayList<Album> listaAlbum = new ArrayList<>();
+    public static ArrayList<Cancion> listaCanciones = new ArrayList<>();
 
     /**
      * Inicializa los datos del sistema. Este método se encarga de realizar la
@@ -34,27 +36,32 @@ public class Utilitario {
         inicializarArtistas();
         inicializarGeneros();
         inicializarAlbum();
+        inicializarCanciones();
 
     }
 
     public static void inicializarArtistas() {
         // Agregar instancias de artistas a lstArtistas
         // Crear el objeto Artista y lo agregarlo a la lista de artistas
-        listaArtistas.add(new Artista("Shakira", 1, Arrays.asList("Pop", "Clásico"), 0, "Colombia", "www.shakira.com", 10, 20, 1));
-        listaArtistas.add(new Artista("Michael Jackson", 2, Arrays.asList("Pop", "R&B"), 1964, "Estados Unidos", "www.michaeljackson.com", 10, 30, 2));
-        listaArtistas.add(new Artista("Adele", 2, Arrays.asList("Pop", "Soul"), 2006, "Reino Unido", "www.adele.com", 5, 15, 1));
-        listaArtistas.add(new Artista("Metallica", 1, Arrays.asList("Metal", "Rock"), 1981, "Estados Unidos", "www.metallica.com", 10, 100, 1));
-        listaArtistas.add(new Artista("Mozart", 2, Arrays.asList("Clásico"), 1756, "Austria", "www.mozart.com", 41, 626, 2));
+        listaArtistas.add(new Artista("Ed Sheeran", 1, Arrays.asList("Pop", "Funk"), 0, "Colombia", "www.shakira.com", 10, 20, 1));
+        listaArtistas.add(new Artista("Queen", 2, Arrays.asList("Pop", "Funk"), 1964, "Estados Unidos", "www.michaeljackson.com", 10, 30, 2));
+        listaArtistas.add(new Artista("Luis Fonsi", 2, Arrays.asList("Pop", "Reggaetón"), 2006, "Reino Unido", "www.adele.com", 5, 15, 1));
+        listaArtistas.add(new Artista("Michael Jackson", 1, Arrays.asList("Metal", "Rock"), 1981, "Estados Unidos", "www.metallica.com", 10, 100, 1));
+        listaArtistas.add(new Artista("Eagles", 2, Arrays.asList("Clásico"), 1756, "Austria", "www.mozart.com", 41, 626, 2));
 
     }
 
     public static void inicializarGeneros() {
         // Agregar instancias de Generos a lstGeneros
-        listaGeneros.add(new Genero("Rock", "Este es un género popular de los años ..."));
-        listaGeneros.add(new Genero("Pop", "El género pop es conocido por su ..."));
-        listaGeneros.add(new Genero("Jazz", "El jazz es un género musical que ..."));
-        listaGeneros.add(new Genero("Hip Hop", "El hip hop es un estilo musical que ..."));
-        listaGeneros.add(new Genero("Clásico", "La música clásica es conocida por su ..."));
+        listaGeneros.add(new Genero("Pop", "Melodías pegajosas y estructuras de canciones accesibles."));
+        listaGeneros.add(new Genero("Rock", "Género diverso con guitarras eléctricas y estructuras centradas en la canción."));
+        listaGeneros.add(new Genero("Reggaetón", "Ritmos latinos, reggae y hip hop con letras pegajosas."));
+        listaGeneros.add(new Genero("Hip Hop", "Estilo musical y movimiento cultural con rap y ritmos percusivos."));
+        listaGeneros.add(new Genero("Disco", "Género de los años 70 con ritmos bailables y ambiente festivo."));
+        listaGeneros.add(new Genero("Funk", "Ritmos pegajosos y líneas de bajo prominentes."));
+        listaGeneros.add(new Genero("Metal", "Género con guitarras distorsionadas y voces expresivas."));
+        listaGeneros.add(new Genero("Clásico", "Música de períodos históricos, compleja y orquestada."));
+
     }
 
     public static void inicializarAlbum() {
@@ -66,6 +73,36 @@ public class Utilitario {
         listaAlbum.add(new Album(5, "Symphony No. 40", 5, "1788-07-25", Arrays.asList("Clásico"), "Deutsche Grammophon", 12));
     }
 
+    public static void inicializarCanciones() {
+        // Ed Sheeran (Pop, Funk)
+        listaCanciones.add(new Cancion(1, "Shape of You", 3, 54, "Ed Sheeran", 2017));
+        listaCanciones.add(new Cancion(2, "Thinking Out Loud", 4, 41, "Ed Sheeran", 2014));
+        listaCanciones.add(new Cancion(3, "Don't", 3, 39, "Ed Sheeran", 2014));
+
+        // Queen (Pop, Funk)
+        listaCanciones.add(new Cancion(4, "Bohemian Rhapsody", 5, 55, "Queen", 1975));
+        listaCanciones.add(new Cancion(5, "Another One Bites the Dust", 3, 36, "Queen", 1980));
+        listaCanciones.add(new Cancion(6, "We Will Rock You", 2, 2, "Queen", 1977));
+
+        // Luis Fonsi (Pop, Reggaetón)
+        listaCanciones.add(new Cancion(7, "Despacito", 3, 48, "Luis Fonsi", 2017));
+        listaCanciones.add(new Cancion(8, "Échame La Culpa", 2, 54, "Luis Fonsi", 2017));
+        listaCanciones.add(new Cancion(9, "Calypso", 3, 20, "Luis Fonsi", 2018));
+
+        // Michael Jackson (Metal, Rock)
+        listaCanciones.add(new Cancion(10, "Billie Jean", 4, 54, "Michael Jackson", 1982));
+        listaCanciones.add(new Cancion(11, "Thriller", 5, 57, "Michael Jackson", 1982));
+        listaCanciones.add(new Cancion(12, "Beat It", 4, 18, "Michael Jackson", 1983));
+
+        // Eagles (Clásico)
+        listaCanciones.add(new Cancion(13, "Hotel California", 6, 30, "Eagles", 1976));
+        listaCanciones.add(new Cancion(14, "Take It Easy", 3, 29, "Eagles", 1972));
+        listaCanciones.add(new Cancion(15, "Desperado", 3, 33, "Eagles", 1973));
+
+    }
+
+    // Manejo de artistas
+    
     public static void editarArtista(ArrayList<Artista> listaArtistas, int indice,
             JTextField txtNombre, JRadioButton rbtnSolista, JRadioButton rbtnBanda,
             JList<String> lstGeneros, JTextField txtAnoInicial,
@@ -167,6 +204,8 @@ public class Utilitario {
         }
     }
 
+    
+    // Manejo de Generos
     public static void editarGenero(ArrayList<Genero> listaGeneros, int indice,
             JTextField txtNombre, JTextArea textArea) {
 
@@ -201,6 +240,7 @@ public class Utilitario {
         }
     }
 
+    // Manejo de Albumes
     public static void eliminarAlbum(ArrayList<Album> listaAlbumes, int indice) {
 
         if (indice >= 0 && indice < listaAlbumes.size()) {
@@ -282,7 +322,10 @@ public class Utilitario {
             albumSeleccionado.setCantCanciones(Integer.parseInt(txtNumeroCanciones.getText()));
         }
     }
-
+// Manejo de canciones 
+    
+    
+    
 //    public static LinkedList<String> crearListaArtistas() {
 //        LinkedList<String> resultado = new LinkedList<>();
 //

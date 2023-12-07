@@ -634,7 +634,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel20">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Registrar Artista"/>
+        <Property name="text" type="java.lang.String" value="Registrar Canci&#xf3;n"/>
       </Properties>
     </Component>
   </SubComponents>
