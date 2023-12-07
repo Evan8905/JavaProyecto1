@@ -388,6 +388,7 @@ public class frmArtista extends javax.swing.JFrame {
     private void ActualizarArtistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarArtistaActionPerformed
         actualizarArtistaSeleccionado();
         cargarListaArtistas();//Actualiza la interfaz después de actualizar
+        limpiarFormulario();
         JOptionPane.showMessageDialog(null, "Datos de Artista Actualizados");
     }//GEN-LAST:event_ActualizarArtistaActionPerformed
 
@@ -502,7 +503,7 @@ public class frmArtista extends javax.swing.JFrame {
             String web = txtWeb.getText();
             int cantAlbumes = Integer.parseInt(txtCantAlbumes.getText());
             int cantCanciones = Integer.parseInt(txtCantCanciones.getText());
-            int estadoActual = 0;  
+            int estadoActual = 0;
 
             if (rbtnActivo.isSelected()) {
                 estadoActual = 1;
@@ -522,14 +523,8 @@ public class frmArtista extends javax.swing.JFrame {
             modelo.addElement(nombreArtista);
 
             // Limpia los campos después de agregar el artista
-            txtNombreArtista.setText("");
-            txtAnoInicial.setText("");
-            txtOrigen.setText("");
-            txtWeb.setText("");
-            txtCantAlbumes.setText("");
-            txtCantCanciones.setText("");
-            buttonGroupArtistas.clearSelection();
-            buttonGroupEstadoArtista.clearSelection();
+            limpiarFormulario();
+
             JOptionPane.showMessageDialog(rootPane, "Datos de Artista Guardados", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
         }
     }
@@ -568,6 +563,20 @@ public class frmArtista extends javax.swing.JFrame {
                     txtWeb, txtCantAlbumes, txtCantCanciones,
                     rbtnActivo, rbtnInactivo, rbtnPausa);
         }
+
+    }
+
+    public void limpiarFormulario() {
+
+        // Limpia los campos después de agregar el album
+        txtNombreArtista.setText("");
+        txtAnoInicial.setText("");
+        txtOrigen.setText("");
+        txtWeb.setText("");
+        txtCantAlbumes.setText("");
+        txtCantCanciones.setText("");
+        buttonGroupArtistas.clearSelection();
+        buttonGroupEstadoArtista.clearSelection();
 
     }
 

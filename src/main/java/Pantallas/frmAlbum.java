@@ -6,6 +6,7 @@ import Logica.Utilitario;
 import static Logica.Utilitario.listaGeneros;
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -124,7 +125,7 @@ public class frmAlbum extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Nombre");
+        jLabel4.setText("Nombre de Álbum");
 
         jLabel5.setText("Álbumes");
 
@@ -162,7 +163,7 @@ public class frmAlbum extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setText("Número");
+        jLabel8.setText("Número de Álbum");
 
         jLabel10.setText("Géneros");
 
@@ -183,6 +184,11 @@ public class frmAlbum extends javax.swing.JFrame {
         });
 
         btnGuardarAlbum.setText("Guardar Registro");
+        btnGuardarAlbum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarAlbumActionPerformed(evt);
+            }
+        });
 
         btnEditarAlbum.setText("Editar");
         btnEditarAlbum.addActionListener(new java.awt.event.ActionListener() {
@@ -206,6 +212,11 @@ public class frmAlbum extends javax.swing.JFrame {
         });
 
         btnActualizar.setText("Actualizar Registro");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         lstGeneros.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(lstGeneros);
@@ -233,54 +244,53 @@ public class frmAlbum extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addComponent(txtPubDate))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(70, 70, 70)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                            .addComponent(rbtnSencillo)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(rbtnRecopilatorio))
                                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                                    .addComponent(rbtnSencillo)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(rbtnRecopilatorio))
-                                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                                    .addComponent(rbtnEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(rbtnEp, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(rbtnEnVivo))
-                                                .addComponent(txtNombreAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                            .addGap(12, 12, 12)
-                                            .addComponent(txtNumeroAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtDiscografia, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
-                                        .addComponent(txtNumeroCanciones)))
+                                            .addComponent(rbtnEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(rbtnEp, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(rbtnEnVivo))))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                     .addComponent(btnActualizar)
                                     .addGap(18, 18, 18)
                                     .addComponent(btnGuardarAlbum))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(31, 31, 31)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtNombreAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtNumeroAlbum, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel10)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(txtDiscografia)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNumeroCanciones, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(12, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(95, 95, 95)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(124, 124, 124))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel3)
@@ -316,32 +326,37 @@ public class frmAlbum extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNombreAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(rbtnEstudio)
-                            .addComponent(rbtnEp)
-                            .addComponent(rbtnEnVivo))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rbtnSencillo)
-                            .addComponent(rbtnRecopilatorio))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtPubDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(45, 45, 45)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(txtDiscografia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12)
-                            .addComponent(txtNumeroCanciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(jLabel6))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(rbtnEnVivo)
+                                    .addComponent(rbtnEp)
+                                    .addComponent(rbtnEstudio))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(rbtnSencillo)
+                                    .addComponent(rbtnRecopilatorio))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtPubDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel11)
+                                    .addComponent(txtDiscografia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(txtNumeroCanciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel12))))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
 
@@ -418,6 +433,80 @@ public class frmAlbum extends javax.swing.JFrame {
         editarAlbumSeleccionado();
     }//GEN-LAST:event_btnEditarAlbumActionPerformed
 
+    private void btnGuardarAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarAlbumActionPerformed
+        crearAlbumes();
+    }//GEN-LAST:event_btnGuardarAlbumActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        actualizarAlbumSeleccionado();
+        limpiarFormulario();
+        cargarListaAlbumes();//Actualiza la interfaz después de actualizar
+        JOptionPane.showMessageDialog(null, "Datos de Álbumes Actualizados");
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    public void crearAlbumes() {
+        // Verificar si se ha ingresado la informacion para crear un album, caso contrario muestra una alerta
+        //!txtAnoInicial.getText().matches("\\d+") Con esta expresion de regex validamos que lo que se ingresa no sea un numero 
+        if (txtNumeroAlbum.getText().isBlank()) {
+            JOptionPane.showMessageDialog(rootPane, "Digite el número del Álbum", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (txtNombreAlbum.getText().isBlank()) {
+            JOptionPane.showMessageDialog(rootPane, "Digite el nombre del Álbum", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (!(rbtnEstudio.isSelected() || rbtnEp.isSelected() || rbtnEnVivo.isSelected() || rbtnSencillo.isSelected() || rbtnRecopilatorio.isSelected())) {
+
+            JOptionPane.showMessageDialog(rootPane, "Seleccione un Tipo", "Error", JOptionPane.ERROR_MESSAGE);
+
+        } else if (txtPubDate.getText().isBlank()) {
+            JOptionPane.showMessageDialog(rootPane, "Digite la fecha de publicación", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (lstGeneros.getSelectedValuesList().isEmpty()) {
+
+            JOptionPane.showMessageDialog(rootPane, "Seleccione al menos un Genero", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (txtDiscografia.getText().isBlank()) {
+
+            JOptionPane.showMessageDialog(rootPane, "Digite la discografía", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (txtNumeroCanciones.getText().isBlank()) {
+
+            JOptionPane.showMessageDialog(rootPane, "Digite la cant de Canciones", "Error", JOptionPane.ERROR_MESSAGE);
+
+        } else {
+
+            // Obtener la información ingresada
+            int nombreNumero = Integer.parseInt(txtNumeroAlbum.getText());
+            String nombreAlbum = txtNombreAlbum.getText();
+            int tipo = 0;
+            if (rbtnEstudio.isSelected()) {
+                tipo = 1;
+            } else if (rbtnEp.isSelected()) {
+                tipo = 2;
+            } else if (rbtnEnVivo.isSelected()) {
+                tipo = 3;
+            } else if (rbtnSencillo.isSelected()) {
+                tipo = 4;
+            } else if (rbtnRecopilatorio.isSelected()) {
+                tipo = 5;
+            }
+            String pubdate = txtPubDate.getText();
+
+            List<String> genero = lstGeneros.getSelectedValuesList();
+
+            String discografia = txtDiscografia.getText();
+            int nCanciones = Integer.parseInt(txtNumeroCanciones.getText());
+
+            // Crear un nuevo objeto Artista con la información capturada
+            Album nuevoAlbum = new Album(nombreNumero, nombreAlbum, tipo, pubdate, genero, discografia, nCanciones);
+
+            // Agrega el nuevo objeto al ArrayList
+            listaAlbumes.add(nuevoAlbum);
+
+            // Agrega el nombre del album al DefaultListModel
+            modelo.addElement(nombreAlbum);
+
+            // Limpia los campos después de agregar el album
+            limpiarFormulario();
+            JOptionPane.showMessageDialog(rootPane, "Datos de álbum Guardados", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+    }
+
     public void cargarListaAlbumes() {
         // Limpiar el modelo antes de agregar elementos
         modelo.clear();
@@ -451,8 +540,32 @@ public class frmAlbum extends javax.swing.JFrame {
         int indiceSeleccionado = lstAlbumes.getSelectedIndex();
 
         if (indiceSeleccionado != -1) {
-            Utilitario.editarAlbum(listaAlbumes, indiceSeleccionado, txtNumeroAlbum, txtNombreAlbum, rbtnEstudio, rbtnEp, rbtnEnVivo, rbtnSencillo, rbtnRecopilatorio, txtPubDate, lstGeneros, txtDiscografia, txtNumeroCanciones);
+            Utilitario.editarAlbum(listaAlbumes, indiceSeleccionado, txtNumeroAlbum, txtNombreAlbum,
+                    rbtnEstudio, rbtnEp, rbtnEnVivo, rbtnSencillo, rbtnRecopilatorio, txtPubDate, lstGeneros, txtDiscografia, txtNumeroCanciones);
         }
+
+    }
+
+    public void actualizarAlbumSeleccionado() {
+
+        int indiceSeleccionado = lstAlbumes.getSelectedIndex();
+
+        if (indiceSeleccionado != -1) {
+            Utilitario.actualizarAlbum(listaAlbumes, indiceSeleccionado, txtNumeroAlbum, txtNombreAlbum,
+                    rbtnEstudio, rbtnEp, rbtnEnVivo, rbtnSencillo, rbtnRecopilatorio, txtPubDate, lstGeneros, txtDiscografia, txtNumeroCanciones);
+        }
+
+    }
+
+    public void limpiarFormulario() {
+
+        // Limpia los campos después de agregar el album
+        txtNumeroAlbum.setText("");
+        txtNombreAlbum.setText("");
+        grupoOpcs.clearSelection();
+        txtPubDate.setText("");
+        txtDiscografia.setText("");
+        txtNumeroCanciones.setText("");
 
     }
 

@@ -228,7 +228,7 @@ public class Utilitario {
             rbtnSencillo.setSelected(tipo == 4);
             rbtnRecopilatorio.setSelected(tipo == 5);
             txtPubDate.setText(albumSeleccionado.getPubDate());
-            
+
             // Actualiza los géneros seleccionados en la lista
             List<String> generosSeleccionados = albumSeleccionado.getGeneros();
             int[] indicesGeneros = new int[generosSeleccionados.size()];
@@ -240,9 +240,46 @@ public class Utilitario {
                 indicesGeneros[i] = indiceGenero;
             }
             lstGeneros.setSelectedIndices(indicesGeneros);
-            
+
             txtDiscografia.setText(albumSeleccionado.getDiscografica());
             txtNumeroCanciones.setText(Integer.toString(albumSeleccionado.getCantCanciones()));
+        }
+    }
+
+    public static void actualizarAlbum(ArrayList<Album> listaAlbumes, int indice,
+            JTextField txtNumeroAlbum, JTextField txtNombreAlbum, JRadioButton rbtnEstudio, JRadioButton rbtnEp,
+            JRadioButton rbtnEnVivo, JRadioButton rbtnSencillo, JRadioButton rbtnRecopilatorio, JTextField txtPubDate,
+            JList<String> lstGeneros, JTextField txtDiscografia, JTextField txtNumeroCanciones
+    ) {
+        if (indice >= 0 && indice < listaAlbumes.size()) {
+            Album albumSeleccionado = listaAlbumes.get(indice);
+
+            // Actualiza los valores del álbum seleccionado con los valores ingresados
+            albumSeleccionado.setNumero(Integer.parseInt(txtNumeroAlbum.getText()));
+            albumSeleccionado.setNombre(txtNombreAlbum.getText());
+
+            int tipo = 0;
+            if (rbtnEstudio.isSelected()) {
+                tipo = 1;
+            } else if (rbtnEp.isSelected()) {
+                tipo = 2;
+            } else if (rbtnEnVivo.isSelected()) {
+                tipo = 3;
+            } else if (rbtnSencillo.isSelected()) {
+                tipo = 4;
+            } else if (rbtnRecopilatorio.isSelected()) {
+                tipo = 5;
+            }
+            albumSeleccionado.setTipo(tipo);
+
+            albumSeleccionado.setPubDate(txtPubDate.getText());
+
+            // Actualiza el género del álbum seleccionado
+            List<String> nuevoGenero = lstGeneros.getSelectedValuesList();
+            albumSeleccionado.setGeneros(new ArrayList<>(nuevoGenero));
+
+            albumSeleccionado.setDiscografica(txtDiscografia.getText());
+            albumSeleccionado.setCantCanciones(Integer.parseInt(txtNumeroCanciones.getText()));
         }
     }
 
