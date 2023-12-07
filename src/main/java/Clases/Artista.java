@@ -19,7 +19,9 @@ public class Artista {
     private int cantAlbumes;
     private int cantCanciones;
     private int estadoActual;  // 1 = Activo; 2 = Inactivo; 3 = Pausa.
-
+    private List<Album> albumes;
+    
+    
     public Artista(String nombre, int tipo, List<String> generos, int ano, String origen, String web, int cantAlbumes, int cantCanciones, int estadoActual) {
         this.nombre = nombre;
         this.tipo = tipo;
@@ -30,6 +32,7 @@ public class Artista {
         this.cantAlbumes = cantAlbumes;
         this.cantCanciones = cantCanciones;
         this.estadoActual = estadoActual;
+        this.albumes = albumes;
     }
 
 
@@ -110,6 +113,12 @@ public class Artista {
         this.estadoActual = estadoActual;
     }
 
+public List<Album> getAlbumes() {
+        return albumes;
+    }
 
+    public void setAlbumes(List<Album> albumes) {
+        this.albumes = albumes;
+    }
 
 }

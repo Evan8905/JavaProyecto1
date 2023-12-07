@@ -5,6 +5,8 @@ import Clases.Album;
 import Clases.Artista;
 
 import Logica.Utilitario;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -25,17 +27,19 @@ public class frmFiltros extends javax.swing.JFrame {
         DefaultTableModel modeloTabla = new DefaultTableModel();
 //////////////////////////////////////////////////////Tabla/////////////////////////////////////////////
         //*(Agregar las columnas al modelo de tabla
-        modeloTabla.addColumn("Web");//En realidad tiene que ser el nombre de la cancion
+        modeloTabla.addColumn("Cancion");
+        modeloTabla.addColumn("Duracion");
         modeloTabla.addColumn("Genero");
         modeloTabla.addColumn("Artista");
-        modeloTabla.addColumn("Origen");//Originalmente tiene que ser Duracion
+        modeloTabla.addColumn("Album");
         // Recorrer la lista de artistas y agregar cada artista a una fila en el modelo de tabla
         for (Artista artista : Utilitario.listaArtistas) {
-            Object[] fila = new Object[4];
-            fila[0] = artista.getWeb();
-            fila[1] = artista.getGeneros();
-            fila[2] = artista.getNombre();
-           fila[3] = artista.getOrigen();//Originalmente tiene que ser Duracion
+            Object[] fila = new Object[5];
+            //fila[0] = artista.getCancion();
+            //fila[1] = artista.getDuracion();
+            fila[2] = artista.getGeneros();
+            fila[3] = artista.getNombre();
+            fila[4] = artista.getAlbumes();
             modeloTabla.addRow(fila);
         }
         // Establecer el modelo de tabla en la jTableBusqueda
@@ -44,7 +48,7 @@ public class frmFiltros extends javax.swing.JFrame {
 /////////////////////////LLenar combobox/////////////////////////////////////////////////////////////////////////
     for (Artista artista : Utilitario.listaArtistas) {
      cmbArtistas.addItem(artista.getNombre());
-     cmbAlbum.addItem(artista.getWeb());
+     cmbAlbum.addItem(artista.getNombre());
      //  agregar los géneros al combo box cmbGenero
     for (String genero : artista.getGeneros()) {
         cmbGenero.addItem(genero);
@@ -287,13 +291,13 @@ public class frmFiltros extends javax.swing.JFrame {
 
     private void cmbGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbGeneroActionPerformed
         // Obtener el género seleccionado del combo
-    String generoSeleccionado = (String) cmbGenero.getSelectedItem();
+    String nombreGenero = (String) cmbGenero.getSelectedItem();
 
     // Filtrar la tabla para mostrar solo las filas relacionadas con el género seleccionado
-    filtrarTablaPorGenero(generoSeleccionado);
+    filtrarTablaPorGenero(nombreGenero );
 }
 
-    private void filtrarTablaPorGenero(String genero) {
+    private void filtrarTablaPorGenero(String nombreGenero) {
     DefaultTableModel modeloTabla = (DefaultTableModel) jTableBusqueda.getModel();
 
     // Limpiar las filas ocultas (restaurar la altura de las filas)
@@ -301,8 +305,8 @@ public class frmFiltros extends javax.swing.JFrame {
         jTableBusqueda.setRowHeight(fila, jTableBusqueda.getRowHeight());
     }
 
-    // Si el género seleccionado es null, no se aplica ningún filtro
-    if (genero != null) {
+    // Si el nombre del género seleccionado no es null, aplicar el filtro
+    if (nombreGenero != null && !nombreGenero.isEmpty()) {
         // Obtener el índice de la columna "Genero" en el modelo de tabla
         int columnaGenero = modeloTabla.findColumn("Genero");
 
@@ -311,10 +315,10 @@ public class frmFiltros extends javax.swing.JFrame {
             Object valorGenero = modeloTabla.getValueAt(fila, columnaGenero);
 
             if (valorGenero instanceof String) {
-                // Comparar el género en la fila con el género seleccionado
-                String generoFila = (String) valorGenero;
+                // Comparar el nombre del género en la fila con el género seleccionado
+                String nombreGeneroFila = (String) valorGenero;
 
-                if (!generoFila.equals(genero)) {
+                if (!nombreGeneroFila.equals(nombreGenero)) {
                     // Ocultar la fila si el género no coincide
                     jTableBusqueda.setRowHeight(fila, 0);
                 }
@@ -324,22 +328,81 @@ public class frmFiltros extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbGeneroActionPerformed
 
     private void cmbAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAlbumActionPerformed
-     // Obtener el género seleccionado del combo
-    String generoSeleccionado = (String) cmbGenero.getSelectedItem();
+     
+    // Obtener el álbum seleccionado del combo
+    String nombreAlbum = (String) cmbAlbum.getSelectedItem();
 
-    // Filtrar la tabla para mostrar solo las filas relacionadas con el género seleccionado
-    filtrarTablaPorGenero(generoSeleccionado);
-}
-
-private void filtrarTablaPorAlbum(String nombreAlbum) {
+    // Filtrar la tabla para mostrar solo las filas relacionadas con el álbum seleccionado
+    filtrarTablaPorAlbum(nombreAlbum);
+    
     }//GEN-LAST:event_cmbAlbumActionPerformed
 
+    private void filtrarTablaPorAlbum(String nombreAlbum) {
+    DefaultTableModel modeloTabla = (DefaultTableModel) jTableBusqueda.getModel();
+
+    // Limpiar las filas ocultas (restaurar la altura de las filas)
+    for (int fila = 0; fila < modeloTabla.getRowCount(); fila++) {
+        jTableBusqueda.setRowHeight(fila, jTableBusqueda.getRowHeight());
+    }
+
+    // Si el nombre del álbum seleccionado no es null, aplicar el filtro
+    if (nombreAlbum != null && !nombreAlbum.isEmpty()) {
+        // Obtener el índice de la columna "Album" en el modelo de tabla
+        int columnaAlbum = modeloTabla.findColumn("Album");
+
+        // Iterar sobre las filas y ocultar las que no correspondan al álbum seleccionado
+        for (int fila = 0; fila < modeloTabla.getRowCount(); fila++) {
+            Object valorAlbum = modeloTabla.getValueAt(fila, columnaAlbum);
+
+            if (valorAlbum instanceof String) {
+                // Comparar el nombre del álbum en la fila con el álbum seleccionado
+                String nombreAlbumFila = (String) valorAlbum;
+
+                if (!nombreAlbumFila.equals(nombreAlbum)) {
+                    // Ocultar la fila si el álbum no coincide
+                    jTableBusqueda.setRowHeight(fila, 0);
+                }
+            }
+        }
+    }
+}
+    
+    
+   
     private void btnOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenarActionPerformed
-        // TODO add your handling code here:
+        
+    // Obtener el nombre del artista seleccionado del combo
+    String nombreArtistaSeleccionado = (String) cmbArtistas.getSelectedItem();
+
+    // Limpiar los elementos actuales en cmbAlbum
+    cmbAlbum.removeAllItems();
+
+    // Buscar el artista correspondiente al nombre seleccionado
+    for (Artista artista : Utilitario.listaArtistas) {
+        if (artista.getNombre().equals(nombreArtistaSeleccionado)) {
+            // Agregar los álbumes del artista al combo box cmbAlbum
+            for (Album album : artista.getAlbumes()) {
+                cmbAlbum.addItem(album.getNombre());
+            }
+            break;  // Terminar el bucle una vez que se encuentre el artista
+        }
+    }
+
     }//GEN-LAST:event_btnOrdenarActionPerformed
 
     private void btnOrdenar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenar1ActionPerformed
-        // TODO add your handling code here:
+          DefaultComboBoxModel<String> modeloCombo = new DefaultComboBoxModel<>();
+    
+    // Accede a la lista de álbumes desde la clase Utilitario
+    ArrayList<Album> listaAlbumes = Utilitario.listaAlbum;
+    
+    // Recorre la lista de álbumes y agrega los nombres al modeloCombo
+    for (Album album : listaAlbumes) {
+        modeloCombo.addElement(album.getNombre());
+    }
+    
+    // Asigna el modeloCombo al JComboBox cmbAlbum
+    cmbAlbum.setModel(modeloCombo);
     }//GEN-LAST:event_btnOrdenar1ActionPerformed
 
     private void btnOrdenar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenar2ActionPerformed

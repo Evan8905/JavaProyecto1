@@ -77,9 +77,4 @@ public class Album {
     public void setCantCanciones(int cantCanciones) {
         this.cantCanciones = cantCanciones;
     }
-
-
-
-
-   
 }
