@@ -6,6 +6,7 @@ package Pantallas;
 
 import Clases.Album;
 import Clases.Artista;
+import Clases.Cancion;
 import Logica.Utilitario;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -22,44 +23,57 @@ public class frmInformacion extends javax.swing.JFrame {
     public frmInformacion() {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        DefaultTableModel modeloTabla = new DefaultTableModel(new Object[]{"Numero","Cancion","Duracion","Artista", "Álbum"}, 0);
+        jtableBusqueda.setModel(modeloTabla);
+
+        int maxSize = Math.max(Utilitario.listaAlbum.size(), Utilitario.listaArtistas.size());
+
         
-        DefaultTableModel modeloTabla = new DefaultTableModel();
-//////////////////////////////////////////////////////Tabla/////////////////////////////////////////////
-        //*(Agregar las columnas al modelo de tabla
-        modeloTabla.addColumn("Numero");
-        modeloTabla.addColumn("Cancion");
-        modeloTabla.addColumn("Duracion");
-        modeloTabla.addColumn("Artista");
-        modeloTabla.addColumn("Album");
         // Recorrer la lista de artistas y agregar cada artista a una fila en el modelo de tabla
       // Bucle para Album
-for (Album album : Utilitario.listaAlbum) {
-    // Obtén el nombre del álbum
-    String nombreAlbum = album.getNombre();
+    for (int i = 0; i < maxSize; i++) {
+        // Crea un array de objetos para representar una fila en la tabla
+        Object[] fila = new Object[5];
 
-    // Crea un array de objetos para representar una fila en la tabla
-    Object[] fila = new Object[5];
-    fila[4] = nombreAlbum;
+        // Agrega el nombre del artista si hay más artistas disponibles
+        if (i < Utilitario.listaCanciones.size()) {
+            Cancion numero = Utilitario.listaCanciones.get(i);
+            fila[0] = numero.getNumero();
+        }
+        
+        if (i < Utilitario.listaCanciones.size()) {
+            Cancion numero = Utilitario.listaCanciones.get(i);
+            fila[1] = numero.getTitulo();
+        }
+        
+        if (i < Utilitario.listaCanciones.size()) {
+            Cancion duracion = Utilitario.listaCanciones.get(i);
+            fila[2] = String.format("%d:%02d", duracion.getMinutos(), duracion.getSegundos());
+        }
+        
+        
+        
+        if (i < Utilitario.listaArtistas.size()) {
+            Artista artista = Utilitario.listaArtistas.get(i);
+            fila[3] = artista.getNombre();
+        }
 
-    // Agrega la fila al modelo de la tabla
-    modeloTabla.addRow(fila);
-}
+        // Agrega el nombre del álbum si hay más álbumes disponibles
+        if (i < Utilitario.listaAlbum.size()) {
+            Album album = Utilitario.listaAlbum.get(i);
+            fila[4] = album.getNombre();
+        }
+        
+        
+        
 
-// Bucle para Artista
-for (Artista artista : Utilitario.listaArtistas) {
-    // Crea un nuevo array de objetos para representar una nueva fila en la tabla
-    Object[] filaArtista = new Object[5];
-
-    // Obtén el nombre del artista
-    filaArtista[3] = artista.getNombre();
-
-    // Agrega la fila al modelo de la tabla
-    modeloTabla.addRow(filaArtista);
-}
-
-// Configura el modelo de la tabla
-jtableBusqueda.setModel(modeloTabla);
+        // Agrega la fila al modelo de la tabla
+        modeloTabla.addRow(fila);
     }
+
+    // Configura el modelo de la tabla
+    jtableBusqueda.setModel(modeloTabla);
+        }
    
 
     
