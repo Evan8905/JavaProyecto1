@@ -4,18 +4,27 @@
  */
 package Pantallas;
 
+import Clases.Cancion;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author eefre
  */
 public class frmCancion extends javax.swing.JFrame {
 
+    ArrayList<Cancion> listaCanciones = Logica.Utilitario.listaCanciones;
+
+    DefaultListModel modelo = new DefaultListModel();
+
     /**
      * Creates new form frmCancion
      */
     public frmCancion(frmPrincipal aThis, boolean par) {
-        
+
         initComponents();
+        lstCanciones.setModel(modelo);
         //Linea para que no se salga
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
@@ -369,7 +378,7 @@ public class frmCancion extends javax.swing.JFrame {
 
         btnGuardarCancion.setText("Guardar Registro");
 
-        jLabel20.setText("Registrar Artista");
+        jLabel20.setText("Registrar Canción");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -458,7 +467,7 @@ public class frmCancion extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtGrabacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnGuardarCancion))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
@@ -490,7 +499,7 @@ public class frmCancion extends javax.swing.JFrame {
 
     private void btnMostrarArtistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarArtistaActionPerformed
         // Limpiar el modelo antes de agregar elementos
-        
+
     }//GEN-LAST:event_btnMostrarArtistaActionPerformed
 
     private void txtNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroActionPerformed
@@ -514,8 +523,21 @@ public class frmCancion extends javax.swing.JFrame {
     }//GEN-LAST:event_txtGrabacionActionPerformed
 
     private void btnMostrarCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarCancionActionPerformed
-        // TODO add your handling code here:
+        cargarListaCanciones();
     }//GEN-LAST:event_btnMostrarCancionActionPerformed
+
+    public void cargarListaCanciones(){
+
+        // Limpiar el modelo antes de agregar elementos
+        modelo.clear();
+
+        // Iterar sobre la lista de artistas y agregar los nombres al modelo
+        for (Cancion cancion : listaCanciones) {
+            String titulo = cancion.getTitulo();
+            modelo.addElement(titulo);
+        }
+
+    }
 
     /**
      * @param args the command line arguments
