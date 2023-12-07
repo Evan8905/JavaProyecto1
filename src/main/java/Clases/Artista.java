@@ -113,7 +113,7 @@ public class Artista {
         this.estadoActual = estadoActual;
     }
 
-public List<Album> getAlbumes() {
+    public List<Album> getAlbumes() {
         return albumes;
     }
 

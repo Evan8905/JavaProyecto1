@@ -220,7 +220,7 @@ public class Utilitario {
 
             // Actualiza los componentes del formulario con los valores del artista seleccionado
             txtNumeroAlbum.setText(Integer.toString(albumSeleccionado.getNumero()));
-            txtNombreAlbum.setText(albumSeleccionado.getNombre());
+            txtNombreAlbum.setText(albumSeleccionado.getAlbum());
             int tipo = albumSeleccionado.getTipo();
             rbtnEstudio.setSelected(tipo == 1);
             rbtnEp.setSelected(tipo == 2);

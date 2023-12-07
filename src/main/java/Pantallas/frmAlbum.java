@@ -513,7 +513,7 @@ public class frmAlbum extends javax.swing.JFrame {
 
         // Iterar sobre la lista de almbumes y agregar los nombres al modelo
         for (Album album : listaAlbumes) {
-            String nombre = album.getNombre();
+            String nombre = album.getAlbum();
             modelo.addElement(nombre);
         }
     }

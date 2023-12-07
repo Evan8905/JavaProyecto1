@@ -100,6 +100,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Informaci&#xf3;n general"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemInformacionGeneralActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemBusqueda">
               <Properties>

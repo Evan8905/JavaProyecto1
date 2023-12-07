@@ -125,6 +125,11 @@ public class frmPrincipal extends javax.swing.JFrame {
         itemMostrar.setText("Consultas");
 
         itemInformacionGeneral.setText("Información general");
+        itemInformacionGeneral.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemInformacionGeneralActionPerformed(evt);
+            }
+        });
         itemMostrar.add(itemInformacionGeneral);
 
         itemBusqueda.setText("Búsqueda");
@@ -221,6 +226,22 @@ public class frmPrincipal extends javax.swing.JFrame {
         formFiltros.setResizable(false);
         formFiltros.setVisible(true);
     }//GEN-LAST:event_itemBusquedaActionPerformed
+
+    private void itemInformacionGeneralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemInformacionGeneralActionPerformed
+        
+         // Crear una instancia de frmInformacion
+        frmInformacion forminfo = new frmInformacion();
+
+        // Configurar la ventana
+        forminfo.setTitle("Informacion General");
+        forminfo.setLocationRelativeTo(this);
+        forminfo.setResizable(false);
+
+        // Hacer visible la ventana
+        forminfo.setVisible(true);
+
+      
+    }//GEN-LAST:event_itemInformacionGeneralActionPerformed
 
     /**
      * @param args the command line arguments

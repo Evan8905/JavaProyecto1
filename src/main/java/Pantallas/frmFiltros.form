@@ -82,14 +82,14 @@
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
-                  <Component id="btnOrdenar" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnOrdenarArtistas" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="btnOrdenar1" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnOrdenarAlbum" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="253" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="cmbGenero" min="-2" pref="215" max="-2" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="btnOrdenar2" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnOrdenarGenero" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -114,10 +114,10 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnOrdenar2" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnOrdenarGenero" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnOrdenar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnOrdenar1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnOrdenarArtistas" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnOrdenarAlbum" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -126,12 +126,12 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="btnOrdenar">
+        <Component class="javax.swing.JButton" name="btnOrdenarArtistas">
           <Properties>
             <Property name="text" type="java.lang.String" value="^"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOrdenarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOrdenarArtistasActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="cmbArtistas">
@@ -184,20 +184,20 @@
             <Property name="text" type="java.lang.String" value="Mantenimiento Canciones"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnOrdenar1">
+        <Component class="javax.swing.JButton" name="btnOrdenarAlbum">
           <Properties>
             <Property name="text" type="java.lang.String" value="^"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOrdenar1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOrdenarAlbumActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnOrdenar2">
+        <Component class="javax.swing.JButton" name="btnOrdenarGenero">
           <Properties>
             <Property name="text" type="java.lang.String" value="^"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOrdenar2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOrdenarGeneroActionPerformed"/>
           </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">

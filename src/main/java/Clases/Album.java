@@ -5,21 +5,23 @@ import java.util.List;
 public class Album {
     
     private int numero;
-    private String nombre;
+    private String album;
     private int tipo;
     private String pubDate;
     private List<String> generos;
     private String discografica;
     private int cantCanciones;
+    
 
     public Album(int numero, String nombre, int tipo, String pubDate, List<String> generos, String discografica, int cantCanciones) {
         this.numero = numero;
-        this.nombre = nombre;
+        this.album = album;
         this.tipo = tipo;
         this.pubDate = pubDate;
         this.generos = generos;
         this.discografica = discografica;
         this.cantCanciones = cantCanciones;
+        
     }
 
     public int getNumero() {
@@ -30,12 +32,12 @@ public class Album {
         this.numero = numero;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getAlbum() {
+        return album;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombre(String album) {
+        this.album = album;
     }
 
     public int getTipo() {
@@ -77,4 +79,8 @@ public class Album {
     public void setCantCanciones(int cantCanciones) {
         this.cantCanciones = cantCanciones;
     }
+    
+    
+ 
+    
 }
