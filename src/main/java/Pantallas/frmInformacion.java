@@ -4,6 +4,12 @@
  */
 package Pantallas;
 
+import Clases.Album;
+import Clases.Artista;
+import Logica.Utilitario;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author TheTrooper
@@ -16,8 +22,59 @@ public class frmInformacion extends javax.swing.JFrame {
     public frmInformacion() {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-    }
+        
+        DefaultTableModel modeloTabla = new DefaultTableModel();
+//////////////////////////////////////////////////////Tabla/////////////////////////////////////////////
+        //*(Agregar las columnas al modelo de tabla
+        modeloTabla.addColumn("Numero");
+        modeloTabla.addColumn("Cancion");
+        modeloTabla.addColumn("Duracion");
+        modeloTabla.addColumn("Artista");
+        modeloTabla.addColumn("Album");
+        // Recorrer la lista de artistas y agregar cada artista a una fila en el modelo de tabla
+      // Bucle para Album
+for (Album album : Utilitario.listaAlbum) {
+    // Obtén el nombre del álbum
+    String nombreAlbum = album.getNombre();
 
+    // Crea un array de objetos para representar una fila en la tabla
+    Object[] fila = new Object[5];
+    fila[4] = nombreAlbum;
+
+    // Agrega la fila al modelo de la tabla
+    modeloTabla.addRow(fila);
+}
+
+// Bucle para Artista
+for (Artista artista : Utilitario.listaArtistas) {
+    // Crea un nuevo array de objetos para representar una nueva fila en la tabla
+    Object[] filaArtista = new Object[5];
+
+    // Obtén el nombre del artista
+    filaArtista[3] = artista.getNombre();
+
+    // Agrega la fila al modelo de la tabla
+    modeloTabla.addRow(filaArtista);
+}
+
+// Configura el modelo de la tabla
+jtableBusqueda.setModel(modeloTabla);
+    }
+   
+
+    
+        
+
+
+  
+
+    
+    
+    
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,6 +87,15 @@ public class frmInformacion extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtableBusqueda = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        lstInfoAlbum = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        lstInfoCancion = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        lstInfoArtista = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,28 +112,78 @@ public class frmInformacion extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jtableBusqueda);
 
+        lstInfoAlbum.setColumns(20);
+        lstInfoAlbum.setRows(5);
+        jScrollPane2.setViewportView(lstInfoAlbum);
+
+        lstInfoCancion.setColumns(20);
+        lstInfoCancion.setRows(5);
+        jScrollPane3.setViewportView(lstInfoCancion);
+
+        lstInfoArtista.setColumns(20);
+        lstInfoArtista.setRows(5);
+        jScrollPane4.setViewportView(lstInfoArtista);
+
+        jLabel1.setText("Info Album");
+
+        jLabel2.setText("Info Artista");
+
+        jLabel3.setText("Info Cancion");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(73, 73, 73)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(189, 189, 189)
+                .addComponent(jLabel3)
+                .addGap(105, 105, 105))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 770, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(239, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3))
+                .addGap(9, 9, 9)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane3))
+                .addGap(0, 19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -108,11 +224,24 @@ public class frmInformacion extends javax.swing.JFrame {
                 new frmInformacion().setVisible(true);
             }
         });
+        
+        
+        
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jtableBusqueda;
+    private javax.swing.JTextArea lstInfoAlbum;
+    private javax.swing.JTextArea lstInfoArtista;
+    private javax.swing.JTextArea lstInfoCancion;
     // End of variables declaration//GEN-END:variables
 }

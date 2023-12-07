@@ -50,8 +50,7 @@ public class frmFiltros extends javax.swing.JFrame {
     jTableBusqueda.setModel(modeloTabla);
    
         
-        // Establecer el modelo de tabla en la jTableBusqueda
-         jTableBusqueda.setModel(modeloTabla);
+        
          
 /////////////////////////LLenar combobox/////////////////////////////////////////////////////////////////////////
     for (Artista artista : Utilitario.listaArtistas) {
