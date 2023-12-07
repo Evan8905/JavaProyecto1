@@ -59,10 +59,10 @@ public class Utilitario {
 
     public static void inicializarAlbum() {
         // Agregar instancias de Album a listaAlbum
-        listaAlbum.add(new Album(1, "Verano Sin ti", 2, "2020-06-05", Arrays.asList("Pop", "Clásico"), "Sony Music", 10));
-        listaAlbum.add(new Album(2, "Greatest Hits", 1, "2010-11-15", Arrays.asList("Pop", "R&B"), "Sony Music", 20));
-        listaAlbum.add(new Album(3, "21", 3, "2011-01-19", Arrays.asList("Pop", "Soul"), "XL Recordings", 15));
-        listaAlbum.add(new Album(4, "Master of Puppets", 4, "1986-03-03", Arrays.asList("Metal", "Rock"), "Elektra Records", 8));
+        listaAlbum.add(new Album(1, "Verano Sin ti", 2, "2020-06-05", Arrays.asList("Pop"), "Sony Music", 10));
+        listaAlbum.add(new Album(2, "Greatest Hits", 1, "2010-11-15", Arrays.asList("Pop"), "Sony Music", 20));
+        listaAlbum.add(new Album(3, "21", 3, "2011-01-19", Arrays.asList("Pop"), "XL Recordings", 15));
+        listaAlbum.add(new Album(4, "Master of Puppets", 4, "1986-03-03", Arrays.asList("Metal"), "Elektra Records", 8));
         listaAlbum.add(new Album(5, "Symphony No. 40", 5, "1788-07-25", Arrays.asList("Clásico"), "Deutsche Grammophon", 12));
     }
 
@@ -198,6 +198,51 @@ public class Utilitario {
             Genero generoSeleccionado = listaGeneros.get(indice);
             listaGeneros.remove(generoSeleccionado);
 
+        }
+    }
+
+    public static void eliminarAlbum(ArrayList<Album> listaAlbumes, int indice) {
+
+        if (indice >= 0 && indice < listaAlbumes.size()) {
+            Album albumSeleccionado = listaAlbumes.get(indice);
+            listaAlbumes.remove(albumSeleccionado);
+        }
+    }
+
+    public static void editarAlbum(ArrayList<Album> listaAlbumes, int indice,
+            JTextField txtNumeroAlbum, JTextField txtNombreAlbum, JRadioButton rbtnEstudio, JRadioButton rbtnEp,
+            JRadioButton rbtnEnVivo, JRadioButton rbtnSencillo, JRadioButton rbtnRecopilatorio, JTextField txtPubDate,
+            JList<String> lstGeneros, JTextField txtDiscografia, JTextField txtNumeroCanciones
+    ) {
+
+        if (indice >= 0 && indice < listaAlbum.size()) {
+            Album albumSeleccionado = listaAlbum.get(indice);
+
+            // Actualiza los componentes del formulario con los valores del artista seleccionado
+            txtNumeroAlbum.setText(Integer.toString(albumSeleccionado.getNumero()));
+            txtNombreAlbum.setText(albumSeleccionado.getNombre());
+            int tipo = albumSeleccionado.getTipo();
+            rbtnEstudio.setSelected(tipo == 1);
+            rbtnEp.setSelected(tipo == 2);
+            rbtnEnVivo.setSelected(tipo == 3);
+            rbtnSencillo.setSelected(tipo == 4);
+            rbtnRecopilatorio.setSelected(tipo == 5);
+            txtPubDate.setText(albumSeleccionado.getPubDate());
+            
+            // Actualiza los géneros seleccionados en la lista
+            List<String> generosSeleccionados = albumSeleccionado.getGeneros();
+            int[] indicesGeneros = new int[generosSeleccionados.size()];
+            DefaultListModel<String> modelo = (DefaultListModel<String>) lstGeneros.getModel();
+
+            for (int i = 0; i < generosSeleccionados.size(); i++) {
+                String genero = generosSeleccionados.get(i);
+                int indiceGenero = modelo.indexOf(genero);
+                indicesGeneros[i] = indiceGenero;
+            }
+            lstGeneros.setSelectedIndices(indicesGeneros);
+            
+            txtDiscografia.setText(albumSeleccionado.getDiscografica());
+            txtNumeroCanciones.setText(Integer.toString(albumSeleccionado.getCantCanciones()));
         }
     }
 
