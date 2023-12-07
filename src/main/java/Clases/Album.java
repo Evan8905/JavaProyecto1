@@ -5,7 +5,7 @@ import java.util.List;
 public class Album {
     
     private int numero;
-    private String album;
+    private String nombre;
     private int tipo;
     private String pubDate;
     private List<String> generos;
@@ -15,7 +15,7 @@ public class Album {
 
     public Album(int numero, String nombre, int tipo, String pubDate, List<String> generos, String discografica, int cantCanciones) {
         this.numero = numero;
-        this.album = album;
+        this.nombre = nombre;
         this.tipo = tipo;
         this.pubDate = pubDate;
         this.generos = generos;
@@ -32,13 +32,15 @@ public class Album {
         this.numero = numero;
     }
 
-    public String getAlbum() {
-        return album;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombre(String album) {
-        this.album = album;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
+
+
 
     public int getTipo() {
         return tipo;

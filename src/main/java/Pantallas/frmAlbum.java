@@ -339,7 +339,7 @@ public class frmAlbum extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(rbtnSencillo)
                                     .addComponent(rbtnRecopilatorio))
                                 .addGap(18, 18, 18)
@@ -513,7 +513,7 @@ public class frmAlbum extends javax.swing.JFrame {
 
         // Iterar sobre la lista de almbumes y agregar los nombres al modelo
         for (Album album : listaAlbumes) {
-            String nombre = album.getAlbum();
+            String nombre = album.getNombre();
             modelo.addElement(nombre);
         }
     }
