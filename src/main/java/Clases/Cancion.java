@@ -1,4 +1,3 @@
-
 package Clases;
 
 /**
@@ -6,7 +5,8 @@ package Clases;
  * @author eefre
  */
 public class Cancion {
-  private int numero;
+
+    private int numero;
     private String titulo;
     private int minutos;
     private int segundos;
@@ -54,8 +54,6 @@ public class Cancion {
         this.segundos = segundos;
     }
 
-
-
     public String getLetraAutor() {
         return letraAutor;
     }
@@ -71,6 +69,5 @@ public class Cancion {
     public void setAnoGrabacion(int anoGrabacion) {
         this.anoGrabacion = anoGrabacion;
     }
-    
-    
+
 }
