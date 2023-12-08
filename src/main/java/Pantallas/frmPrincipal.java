@@ -118,6 +118,11 @@ public class frmPrincipal extends javax.swing.JFrame {
         crudCancion.add(crudGenero);
 
         crudGeneroArtista.setText("Géneros por artista");
+        crudGeneroArtista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crudGeneroArtistaActionPerformed(evt);
+            }
+        });
         crudCancion.add(crudGeneroArtista);
 
         jMenuBar1.add(crudCancion);
@@ -242,6 +247,15 @@ public class frmPrincipal extends javax.swing.JFrame {
 
       
     }//GEN-LAST:event_itemInformacionGeneralActionPerformed
+
+    private void crudGeneroArtistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crudGeneroArtistaActionPerformed
+        frmGeneroArtista formGeneroArtista = new frmGeneroArtista();
+
+        formGeneroArtista.setTitle("Albumes");
+        formGeneroArtista.setLocationRelativeTo(this);
+        formGeneroArtista.setResizable(false);
+        formGeneroArtista.setVisible(true);
+    }//GEN-LAST:event_crudGeneroArtistaActionPerformed
 
     /**
      * @param args the command line arguments

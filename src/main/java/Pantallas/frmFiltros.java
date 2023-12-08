@@ -87,7 +87,7 @@ public class frmFiltros extends javax.swing.JFrame {
      jTableBusqueda.setModel(modeloTabla);
         
          
-/////////////////////////LLenar combobox/////////////////////////////////////////////////////////////////////////
+/////////////////////////LLenar combobox//////////////////////////////////////////////
     for (Artista artista : Utilitario.listaArtistas) {
         cmbArtistas.addItem(artista.getNombre());
 
@@ -103,9 +103,6 @@ public class frmFiltros extends javax.swing.JFrame {
     }
 
          
-    
-    
-    
     
     
     // Agregar ActionListener al cmbArtistas
@@ -263,8 +260,6 @@ public class frmFiltros extends javax.swing.JFrame {
 }
 
     
-      
-    
     private void filtrarTablaPorArtista(String nombreArtista) {
     
         DefaultTableModel modeloTabla = (DefaultTableModel) jTableBusqueda.getModel();
@@ -313,8 +308,6 @@ public class frmFiltros extends javax.swing.JFrame {
 }
     
    
-    
-    
        
     /**
      * @param args the command line arguments

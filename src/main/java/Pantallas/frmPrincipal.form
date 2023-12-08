@@ -88,6 +88,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="G&#xe9;neros por artista"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="crudGeneroArtistaActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
