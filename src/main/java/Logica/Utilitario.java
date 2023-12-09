@@ -43,11 +43,16 @@ public class Utilitario {
     public static void inicializarArtistas() {
         // Agregar instancias de artistas a lstArtistas
         // Crear el objeto Artista y lo agregarlo a la lista de artistas
-        listaArtistas.add(new Artista("Ed Sheeran", 1, Arrays.asList("Pop", "Funk"), 0, "Colombia", "www.shakira.com", 10, 20, 1));
-        listaArtistas.add(new Artista("Queen", 2, Arrays.asList("Pop", "Funk"), 1964, "Estados Unidos", "www.michaeljackson.com", 10, 30, 2));
-        listaArtistas.add(new Artista("Luis Fonsi", 2, Arrays.asList("Pop", "Reggaetón"), 2006, "Reino Unido", "www.adele.com", 5, 15, 1));
-        listaArtistas.add(new Artista("Michael Jackson", 1, Arrays.asList("Metal", "Rock"), 1981, "Estados Unidos", "www.metallica.com", 10, 100, 1));
-        listaArtistas.add(new Artista("Eagles", 2, Arrays.asList("Clásico"), 1756, "Austria", "www.mozart.com", 41, 626, 2));
+//        listaArtistas.add(new Artista("Ed Sheeran", 1, Arrays.asList("Pop", "Funk"), 0, "Colombia", "www.shakira.com", 10, 20, 1));
+//        listaArtistas.add(new Artista("Queen", 2, Arrays.asList("Pop", "Funk"), 1964, "Estados Unidos", "www.michaeljackson.com", 10, 30, 2));
+//        listaArtistas.add(new Artista("Luis Fonsi", 2, Arrays.asList("Pop", "Reggaetón"), 2006, "Reino Unido", "www.adele.com", 5, 15, 1));
+//        listaArtistas.add(new Artista("Michael Jackson", 1, Arrays.asList("Metal", "Rock"), 1981, "Estados Unidos", "www.metallica.com", 10, 100, 1));
+//        listaArtistas.add(new Artista("Eagles", 2, Arrays.asList("Clásico"), 1756, "Austria", "www.mozart.com", 41, 626, 2));
+        listaArtistas.add(new Artista(1, "Ed Sheeran", 1, Arrays.asList("Pop", "Funk"), 0, "Colombia", "www.shakira.com", 10, 20, 1));
+        listaArtistas.add(new Artista(2, "Queen", 2, Arrays.asList("Pop", "Funk"), 1964, "Estados Unidos", "www.michaeljackson.com", 10, 30, 2));
+        listaArtistas.add(new Artista(3, "Luis Fonsi", 2, Arrays.asList("Pop", "Reggaetón"), 2006, "Reino Unido", "www.adele.com", 5, 15, 1));
+        listaArtistas.add(new Artista(4, "Michael Jackson", 1, Arrays.asList("Metal", "Rock"), 1981, "Estados Unidos", "www.metallica.com", 10, 100, 1));
+        listaArtistas.add(new Artista(5, "Eagles", 2, Arrays.asList("Clásico"), 1756, "Austria", "www.mozart.com", 41, 626, 2));
 
     }
 
@@ -66,11 +71,29 @@ public class Utilitario {
 
     public static void inicializarAlbum() {
         // Agregar instancias de Album a listaAlbum
-        listaAlbum.add(new Album(1, "Verano Sin ti", 2, "2020-06-05", Arrays.asList("Pop"), "Sony Music", 10));
-        listaAlbum.add(new Album(2, "Greatest Hits", 1, "2010-11-15", Arrays.asList("Pop"), "Sony Music", 20));
-        listaAlbum.add(new Album(3, "21", 3, "2011-01-19", Arrays.asList("Pop"), "XL Recordings", 15));
-        listaAlbum.add(new Album(4, "Master of Puppets", 4, "1986-03-03", Arrays.asList("Metal"), "Elektra Records", 8));
-        listaAlbum.add(new Album(5, "Symphony No. 40", 5, "1788-07-25", Arrays.asList("Clásico"), "Deutsche Grammophon", 12));
+
+//    listaAlbum.add(new Album(1, "Verano Sin ti", 2, "2020-06-05", Arrays.asList("Pop"), "Sony Music", 10));
+//    listaAlbum.add(new Album(2, "Greatest Hits", 1, "2010-11-15", Arrays.asList("Pop"), "Sony Music", 20));
+//    listaAlbum.add(new Album(3, "21", 3, "2011-01-19", Arrays.asList("Pop"), "XL Recordings", 15));
+//    listaAlbum.add(new Album(4, "Master of Puppets", 4, "1986-03-03", Arrays.asList("Metal"), "Elektra Records", 8));
+//    listaAlbum.add(new Album(5, "Symphony No. 40", 5, "1788-07-25", Arrays.asList("Clásico"), "Deutsche Grammophon", 12));
+        listaAlbum.add(new Album(1, "Verano Sin ti", 2, "2020-06-05", Arrays.asList("Pop"), "Sony Music", 10, 1));
+        listaAlbum.add(new Album(2, "Greatest Hits", 1, "2010-11-15", Arrays.asList("Pop"), "Sony Music", 20, 2));
+        listaAlbum.add(new Album(3, "21", 3, "2011-01-19", Arrays.asList("Pop"), "XL Recordings", 15, 3));
+        listaAlbum.add(new Album(4, "Master of Puppets", 4, "1986-03-03", Arrays.asList("Metal"), "Elektra Records", 8, 4));
+        listaAlbum.add(new Album(5, "Symphony No. 40", 5, "1788-07-25", Arrays.asList("Clásico"), "Deutsche Grammophon", 12, 5));
+
+    }
+
+// Método para obtener las canciones por número de álbum
+    public static List<Cancion> obtenerCancionesPorAlbum(int numeroAlbum) {
+        List<Cancion> canciones = new ArrayList<>();
+        for (Cancion cancion : listaCanciones) {
+            if (cancion.getNumero() == numeroAlbum) {
+                canciones.add(cancion);
+            }
+        }
+        return canciones;
     }
 
     public static void inicializarCanciones() {
@@ -239,18 +262,18 @@ public class Utilitario {
     }
 
     // Manejo de Albumes
-public static void eliminarAlbum(Artista artistaSeleccionado, int indice) {
-    // Obtén la lista de álbumes del artista
-    List<Album> albumesArtista = artistaSeleccionado.getAlbumes();
+    public static void eliminarAlbum(Artista artistaSeleccionado, int indice) {
+        // Obtén la lista de álbumes del artista
+        List<Album> albumesArtista = artistaSeleccionado.getAlbumes();
 
-    if (indice >= 0 && indice < albumesArtista.size()) {
-        // Elimina el álbum seleccionado de la lista del artista
-        albumesArtista.remove(indice);
+        if (indice >= 0 && indice < albumesArtista.size()) {
+            // Elimina el álbum seleccionado de la lista del artista
+            albumesArtista.remove(indice);
 
-        // Después de eliminar, actualiza la lista de álbumes en la interfaz
-        //cargarListaAlbumes(artistaSeleccionado);
+            // Después de eliminar, actualiza la lista de álbumes en la interfaz
+            //cargarListaAlbumes(artistaSeleccionado);
+        }
     }
-}
 
     public static void editarAlbum(Artista artista, int indice,
             JTextField txtNumeroAlbum, JTextField txtNombreAlbum, JRadioButton rbtnEstudio, JRadioButton rbtnEp,
@@ -382,27 +405,17 @@ public static void eliminarAlbum(Artista artistaSeleccionado, int indice) {
         return null;  // Retorna null si no se encuentra el artista
     }
 
-//    public static LinkedList<String> crearListaArtistas() {
-//        LinkedList<String> resultado = new LinkedList<>();
-//
-//        for (Artista elemento : listaArtistas) {
-//            String artista = elemento.getNombre();
-//            resultado.add(artista);
-//            System.out.println("Nombre: " + elemento.getNombre());
-//        }
-//
-//        return resultado;
-//    }
-//
-//    public static LinkedList<String> crearListaGeneros() {
-//        LinkedList<String> resultado = new LinkedList<>();
-//
-//        for (Genero elemento : listaGeneros) {
-//            String genero = elemento.getNomGenero();
-//            resultado.add(genero);
-//            System.out.println("Nombre: " + elemento.getNomGenero());
-//        }
-//
-//        return resultado;
-//    }
+    public static Album obtenerAlbumPorNombre(String nombreAlbum) {
+        // Itera sobre la lista de artistas para encontrar el que coincida con el nombre del álbum
+        for (Artista artista : listaArtistas) {
+            List<Album> albumesArtista = artista.getAlbumes();
+            for (Album album : albumesArtista) {
+                if (album.getNombre().equals(nombreAlbum)) {
+                    return album;  // Devuelve el álbum encontrado
+                }
+            }
+        }
+        return null;  // Retorna null si no se encuentra el álbum
+    }
+
 }

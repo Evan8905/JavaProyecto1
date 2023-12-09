@@ -1,28 +1,25 @@
 package Clases;
 
-import Logica.Utilitario;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author eefre
- */
 public class Artista {
 
+    private int numero;  // Agregamos esta variable para almacenar el número asociado al artista
     private String nombre;
-    private int tipo; // 1 = Solista; 2 = Banda. // se tuvo que hacer asi y no con true or false porque generaba problemas a la hora de editar
-    private List<String> generos; // Puede ser 1 o varios
-    private int ano; // Año en que el artista inició su carrera musical.
-    private String origen; // Nacionalidad del artista
+    private int tipo; // 1 = Solista; 2 = Banda.
+    private List<String> generos;
+    private int ano;
+    private String origen;
     private String web;
     private int cantAlbumes;
     private int cantCanciones;
-    private int estadoActual;  // 1 = Activo; 2 = Inactivo; 3 = Pausa.
+    private int estadoActual;
     private List<Album> albumes;
-    
-    
-    public Artista(String nombre, int tipo, List<String> generos, int ano, String origen, String web, int cantAlbumes, int cantCanciones, int estadoActual) {
+
+    // Modificamos el constructor para incluir el número
+    public Artista(int numero, String nombre, int tipo, List<String> generos, int ano, String origen, String web, int cantAlbumes, int cantCanciones, int estadoActual) {
+        this.numero = numero;
         this.nombre = nombre;
         this.tipo = tipo;
         this.generos = generos;
@@ -32,10 +29,18 @@ public class Artista {
         this.cantAlbumes = cantAlbumes;
         this.cantCanciones = cantCanciones;
         this.estadoActual = estadoActual;
-        //  Inicializar la lista de álbumes como una nueva ArrayList
+        // Inicializa la lista de álbumes como una nueva ArrayList
         this.albumes = new ArrayList<>();
     }
 
+    // Agregamos los métodos get y set para el número
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
 
     public String getNombre() {
         return nombre;
@@ -53,8 +58,6 @@ public class Artista {
         this.tipo = tipo;
     }
 
-
-
     public List<String> getGeneros() {
         return generos;
     }
@@ -62,7 +65,6 @@ public class Artista {
     public void setGeneros(List<String> generos) {
         this.generos = generos;
     }
-
 
     public int getAno() {
         return ano;
@@ -95,8 +97,6 @@ public class Artista {
     public void setCantAlbumes(int cantAlbumes) {
         this.cantAlbumes = cantAlbumes;
     }
-
-
 
     public int getCantCanciones() {
         return cantCanciones;

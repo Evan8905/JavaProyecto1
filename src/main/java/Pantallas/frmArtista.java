@@ -457,64 +457,43 @@ public class frmArtista extends javax.swing.JFrame {
     }
 
     public void crearArtista() {
-
         // Verificar si se ha ingresado la informacion para crear un artista, caso contrario muestra una alerta
-        //!txtAnoInicial.getText().matches("\\d+") Con esta expresion de regex validamos que lo que se ingresa no sea un numero 
+        // !txtAnoInicial.getText().matches("\\d+") Con esta expresion de regex validamos que lo que se ingresa no sea un numero
         if (txtNombreArtista.getText().isBlank()) {
             JOptionPane.showMessageDialog(rootPane, "Digite el nombre del Artista", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (!(rbtnSolista.isSelected() || rbtnBanda.isSelected())) {
-
             JOptionPane.showMessageDialog(rootPane, "Seleccione un Tipo", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (lstGeneros.getSelectedValuesList().isEmpty()) {
-
             JOptionPane.showMessageDialog(rootPane, "Seleccione al menos un Genero", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (txtAnoInicial.getText().isBlank() || !txtAnoInicial.getText().matches("\\d+")) {
-
             JOptionPane.showMessageDialog(rootPane, "Digite un año válido", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (txtOrigen.getText().isBlank()) {
-
             JOptionPane.showMessageDialog(rootPane, "Digite el origen (Nacionalidad)", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (txtWeb.getText().isBlank()) {
-
             JOptionPane.showMessageDialog(rootPane, "Digite el sitio web", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (txtCantAlbumes.getText().isBlank() || !txtCantAlbumes.getText().matches("\\d+")) {
-
             JOptionPane.showMessageDialog(rootPane, "Digite una cantidad válida de Álbumes", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (txtCantCanciones.getText().isBlank() || !txtCantCanciones.getText().matches("\\d+")) {
-
             JOptionPane.showMessageDialog(rootPane, "Digite una cantidad válida de Canciones", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (!(rbtnActivo.isSelected() || rbtnInactivo.isSelected() || rbtnPausa.isSelected())) {
-
             JOptionPane.showMessageDialog(rootPane, "Seleccione el Estado Actual", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-
             // Obtener la información ingresada
             String nombreArtista = txtNombreArtista.getText();
-            int tipo = 0;
-            if (rbtnSolista.isSelected()) {
-                tipo = 1;
-            } else if (rbtnBanda.isSelected()) {
-                tipo = 2;
-            }
-
+            int tipo = rbtnSolista.isSelected() ? 1 : 2;
             List<String> generos = lstGeneros.getSelectedValuesList();
             int anoInicio = Integer.parseInt(txtAnoInicial.getText());
             String origen = txtOrigen.getText();
             String web = txtWeb.getText();
             int cantAlbumes = Integer.parseInt(txtCantAlbumes.getText());
             int cantCanciones = Integer.parseInt(txtCantCanciones.getText());
-            int estadoActual = 0;
+            int estadoActual = rbtnActivo.isSelected() ? 1 : (rbtnInactivo.isSelected() ? 2 : 3);
 
-            if (rbtnActivo.isSelected()) {
-                estadoActual = 1;
-            } else if (rbtnInactivo.isSelected()) {
-                estadoActual = 2;
-            } else if (rbtnPausa.isSelected()) {
-                estadoActual = 3;
-            }
+            // Obtener el siguiente número disponible
+            int siguienteNumeroArtista = obtenerSiguienteNumeroArtista(listaArtistas);
 
             // Crear un nuevo objeto Artista con la información capturada
-            Artista nuevoArtista = new Artista(nombreArtista, tipo, generos, anoInicio, origen, web, cantAlbumes, cantCanciones, estadoActual);
+            Artista nuevoArtista = new Artista(siguienteNumeroArtista, nombreArtista, tipo, generos, anoInicio, origen, web, cantAlbumes, cantCanciones, estadoActual);
 
             // Agrega el nuevo objeto al ArrayList
             listaArtistas.add(nuevoArtista);
@@ -527,6 +506,16 @@ public class frmArtista extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(rootPane, "Datos de Artista Guardados", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
         }
+    }
+
+    private int obtenerSiguienteNumeroArtista(List<Artista> listaArtistas) {
+        if (listaArtistas.isEmpty()) {
+            return 1; // Si la lista está vacía, el siguiente número será 1
+        }
+
+        // Buscar el número máximo entre los artistas existentes y sumar 1
+        int maxNumero = listaArtistas.stream().mapToInt(Artista::getNumero).max().orElse(0);
+        return maxNumero + 1;
     }
 
     public void editarArtistaSeleccionado() {
