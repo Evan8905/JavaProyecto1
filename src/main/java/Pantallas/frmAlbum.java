@@ -484,125 +484,65 @@ public class frmAlbum extends javax.swing.JFrame {
         // Cargar los géneros del artista en la lista lstGeneros
         cargarGenerosDeArtista(artistaSeleccionado);
     }//GEN-LAST:event_cmbArtistasActionPerformed
-public void crearAlbumes() {
-    // Verificar si se ha seleccionado un artista
-    if (cmbArtistas.getSelectedItem() == null) {
-        JOptionPane.showMessageDialog(rootPane, "Seleccione un Artista", "Error", JOptionPane.ERROR_MESSAGE);
-        return; // Salir del método si no se seleccionó un artista
-    }
-
-    // Obtener el artista seleccionado
-    String nombreArtistaSeleccionado = (String) cmbArtistas.getSelectedItem();
-    Artista artistaSeleccionado = Utilitario.obtenerArtistaPorNombre(nombreArtistaSeleccionado);
-
-    // Verificar si se ha ingresado la información para crear un álbum, caso contrario muestra una alerta
-    if (txtNumeroAlbum.getText().isBlank() || txtNombreAlbum.getText().isBlank()
-            || !(rbtnEstudio.isSelected() || rbtnEp.isSelected() || rbtnEnVivo.isSelected()
-            || rbtnSencillo.isSelected() || rbtnRecopilatorio.isSelected())
-            || txtPubDate.getText().isBlank() || lstGeneros.getSelectedValuesList().isEmpty()
-            || txtDiscografia.getText().isBlank() || txtNumeroCanciones.getText().isBlank()) {
-
-        JOptionPane.showMessageDialog(rootPane, "Complete todos los campos para crear un Álbum", "Error", JOptionPane.ERROR_MESSAGE);
-
-    } else {
-        // Obtener la información ingresada
-        int numeroAlbum = Integer.parseInt(txtNumeroAlbum.getText());
-        String nombreAlbum = txtNombreAlbum.getText();
-        int tipo = 0;
-        if (rbtnEstudio.isSelected()) {
-            tipo = 1;
-        } else if (rbtnEp.isSelected()) {
-            tipo = 2;
-        } else if (rbtnEnVivo.isSelected()) {
-            tipo = 3;
-        } else if (rbtnSencillo.isSelected()) {
-            tipo = 4;
-        } else if (rbtnRecopilatorio.isSelected()) {
-            tipo = 5;
+    public void crearAlbumes() {
+        // Verificar si se ha seleccionado un artista
+        if (cmbArtistas.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(rootPane, "Seleccione un Artista", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Salir del método si no se seleccionó un artista
         }
-        String pubDate = txtPubDate.getText();
-        List<String> generos = lstGeneros.getSelectedValuesList();
-        String discografia = txtDiscografia.getText();
-        int numeroCanciones = Integer.parseInt(txtNumeroCanciones.getText());
 
-        // Crear un nuevo objeto Album con la información capturada, incluyendo el número del artista
-        Album nuevoAlbum = new Album(numeroAlbum, nombreAlbum, tipo, pubDate, generos, discografia, numeroCanciones, artistaSeleccionado.getNumero());
+        // Obtener el artista seleccionado
+        String nombreArtistaSeleccionado = (String) cmbArtistas.getSelectedItem();
+        Artista artistaSeleccionado = Utilitario.obtenerArtistaPorNombre(nombreArtistaSeleccionado);
 
-        // Agregar el álbum a la lista general de álbumes
-        Utilitario.listaAlbum.add(nuevoAlbum);
+        // Verificar si se ha ingresado la información para crear un álbum, caso contrario muestra una alerta
+        if (txtNumeroAlbum.getText().isBlank() || txtNombreAlbum.getText().isBlank()
+                || !(rbtnEstudio.isSelected() || rbtnEp.isSelected() || rbtnEnVivo.isSelected()
+                || rbtnSencillo.isSelected() || rbtnRecopilatorio.isSelected())
+                || txtPubDate.getText().isBlank() || lstGeneros.getSelectedValuesList().isEmpty()
+                || txtDiscografia.getText().isBlank() || txtNumeroCanciones.getText().isBlank()) {
 
-        // Asignar el álbum al artista seleccionado
-        artistaSeleccionado.getAlbumes().add(nuevoAlbum);
+            JOptionPane.showMessageDialog(rootPane, "Complete todos los campos para crear un Álbum", "Error", JOptionPane.ERROR_MESSAGE);
 
-        // Actualizar el modelo del JList con los álbumes del artista
-        DefaultListModel<String> modeloAlbumesArtista = (DefaultListModel<String>) lstAlbumes.getModel();
-        modeloAlbumesArtista.addElement(nombreAlbum);
+        } else {
+            // Obtener la información ingresada
+            int numeroAlbum = Integer.parseInt(txtNumeroAlbum.getText());
+            String nombreAlbum = txtNombreAlbum.getText();
+            int tipo = 0;
+            if (rbtnEstudio.isSelected()) {
+                tipo = 1;
+            } else if (rbtnEp.isSelected()) {
+                tipo = 2;
+            } else if (rbtnEnVivo.isSelected()) {
+                tipo = 3;
+            } else if (rbtnSencillo.isSelected()) {
+                tipo = 4;
+            } else if (rbtnRecopilatorio.isSelected()) {
+                tipo = 5;
+            }
+            String pubDate = txtPubDate.getText();
+            List<String> generos = lstGeneros.getSelectedValuesList();
+            String discografia = txtDiscografia.getText();
+            int numeroCanciones = Integer.parseInt(txtNumeroCanciones.getText());
 
-        // Limpia los campos después de agregar el álbum
-        limpiarFormulario();
-        JOptionPane.showMessageDialog(rootPane, "Datos de álbum Guardados", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            // Crear un nuevo objeto Album con la información capturada, incluyendo el número del artista
+            Album nuevoAlbum = new Album(numeroAlbum, nombreAlbum, tipo, pubDate, generos, discografia, numeroCanciones, artistaSeleccionado.getNumero());
+
+            // Agregar el álbum a la lista general de álbumes
+            Utilitario.listaAlbum.add(nuevoAlbum);
+
+            // Asignar el álbum al artista seleccionado
+            artistaSeleccionado.getAlbumes().add(nuevoAlbum);
+
+            // Actualizar el modelo del JList con los álbumes del artista
+            DefaultListModel<String> modeloAlbumesArtista = (DefaultListModel<String>) lstAlbumes.getModel();
+            modeloAlbumesArtista.addElement(nombreAlbum);
+
+            // Limpia los campos después de agregar el álbum
+            limpiarFormulario();
+            JOptionPane.showMessageDialog(rootPane, "Datos de álbum Guardados", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
-}
-
-//    public void crearAlbumes() {
-//
-//        // Verificar si se ha seleccionado un artista
-//        if (cmbArtistas.getSelectedItem() == null) {
-//            JOptionPane.showMessageDialog(rootPane, "Seleccione un Artista", "Error", JOptionPane.ERROR_MESSAGE);
-//            return; // Salir del método si no se seleccionó un artista
-//        }
-//
-//        // Obtener el artista seleccionado
-//        String nombreArtistaSeleccionado = (String) cmbArtistas.getSelectedItem();
-//        Artista artistaSeleccionado = Utilitario.obtenerArtistaPorNombre(nombreArtistaSeleccionado);
-//
-//        // Verificar si se ha ingresado la informacion para crear un album, caso contrario muestra una alerta
-//        if (txtNumeroAlbum.getText().isBlank() || txtNombreAlbum.getText().isBlank()
-//                || !(rbtnEstudio.isSelected() || rbtnEp.isSelected() || rbtnEnVivo.isSelected()
-//                || rbtnSencillo.isSelected() || rbtnRecopilatorio.isSelected())
-//                || txtPubDate.getText().isBlank() || lstGeneros.getSelectedValuesList().isEmpty()
-//                || txtDiscografia.getText().isBlank() || txtNumeroCanciones.getText().isBlank()) {
-//
-//            JOptionPane.showMessageDialog(rootPane, "Complete todos los campos para crear un Álbum", "Error", JOptionPane.ERROR_MESSAGE);
-//
-//        } else {
-//
-//            // Obtener la información ingresada
-//            int nombreNumero = Integer.parseInt(txtNumeroAlbum.getText());
-//            String nombreAlbum = txtNombreAlbum.getText();
-//            int tipo = 0;
-//            if (rbtnEstudio.isSelected()) {
-//                tipo = 1;
-//            } else if (rbtnEp.isSelected()) {
-//                tipo = 2;
-//            } else if (rbtnEnVivo.isSelected()) {
-//                tipo = 3;
-//            } else if (rbtnSencillo.isSelected()) {
-//                tipo = 4;
-//            } else if (rbtnRecopilatorio.isSelected()) {
-//                tipo = 5;
-//            }
-//            String pubdate = txtPubDate.getText();
-//            List<String> genero = lstGeneros.getSelectedValuesList();
-//            String discografia = txtDiscografia.getText();
-//            int nCanciones = Integer.parseInt(txtNumeroCanciones.getText());
-//
-//            // Crear un nuevo objeto Artista con la información capturada
-//            Album nuevoAlbum = new Album(nombreNumero, nombreAlbum, tipo, pubdate, genero, discografia, nCanciones);
-//
-//            // Asignar el álbum al artista seleccionado
-//            List<Album> albumesArtista = artistaSeleccionado.getAlbumes();
-//            albumesArtista.add(nuevoAlbum);
-//
-//            // Actualizar el modelo del JList con los álbumes del artista
-//            DefaultListModel<String> modeloAlbumesArtista = (DefaultListModel<String>) lstAlbumes.getModel();
-//            modeloAlbumesArtista.addElement(nombreAlbum);
-//
-//            // Limpia los campos después de agregar el álbum
-//            limpiarFormulario();
-//            JOptionPane.showMessageDialog(rootPane, "Datos de álbum Guardados", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-//        }
-//    }
 
     public void cargarListaAlbumes(Artista artistaSeleccionado) {
         // Limpiar el modelo antes de agregar elementos

@@ -1,11 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Pantallas;
 
 import Clases.Artista;
 import Logica.Utilitario;
+import java.util.List;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -13,12 +12,16 @@ import Logica.Utilitario;
  */
 public class frmGeneroArtista extends javax.swing.JFrame {
 
+    DefaultListModel modeloGenero = new DefaultListModel();
+
     /**
      * Creates new form frmGeneroArtista
      */
     public frmGeneroArtista() {
         initComponents();
+
         cargarComboArtistas();
+        lstGeneros.setModel(modeloGenero);
 
         //Linea para que no se salga
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -34,17 +37,19 @@ public class frmGeneroArtista extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        lstGenerosArtista = new javax.swing.JList<>();
-        cmbArtistas = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        cmbArtistas = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        lstGeneros = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Mantenimiento Géneros por Artista");
 
-        jScrollPane1.setViewportView(lstGenerosArtista);
+        jLabel2.setText("Artistas");
+
+        jLabel3.setText("Generos de Artista Seleccionado ");
 
         cmbArtistas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -52,53 +57,78 @@ public class frmGeneroArtista extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Artistas");
-
-        jLabel3.setText("Generos de Artista Seleccionado ");
+        lstGeneros.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane2.setViewportView(lstGeneros);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+                .addGap(117, 117, 117)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(cmbArtistas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(172, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(161, 161, 161))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbArtistas, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(104, 104, 104))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmbArtistas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbArtistas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(56, 56, 56)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41))
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmbArtistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbArtistasActionPerformed
+        // Verificar si se ha seleccionado un artista
+        if (cmbArtistas.getSelectedItem() == null) {
+            // También puedes mostrar un mensaje aquí si lo deseas
+            return; // Salir del método si no se seleccionó un artista
+        }
 
+        // Obtener el artista seleccionado
+        String nombreArtistaSeleccionado = (String) cmbArtistas.getSelectedItem();
+        Artista artistaSeleccionado = Utilitario.obtenerArtistaPorNombre(nombreArtistaSeleccionado);
+
+        // Cargar los géneros del artista en la lista lstGeneros
+        //cargarGenerosDeArtista(artistaSeleccionado);
     }//GEN-LAST:event_cmbArtistasActionPerformed
 
     private void cargarComboArtistas() {
         for (Artista artista : Utilitario.listaArtistas) {
             cmbArtistas.addItem(artista.getNombre());
+        }
+    }
+
+    public void cargarGenerosDeArtista(Artista artistaSeleccionado) {
+        // Limpiar la lista de géneros antes de agregar los géneros del artista
+        DefaultListModel<String> modeloGeneros = (DefaultListModel<String>) lstGeneros.getModel();
+        modeloGeneros.clear();
+
+        // Obtener los géneros del artista seleccionado
+        List<String> generosArtista = artistaSeleccionado.getGeneros();
+
+        // Agregar los géneros del artista a la lista
+        for (String genero : generosArtista) {
+            modeloGeneros.addElement(genero);
         }
     }
 
@@ -142,7 +172,7 @@ public class frmGeneroArtista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<String> lstGenerosArtista;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JList<String> lstGeneros;
     // End of variables declaration//GEN-END:variables
 }

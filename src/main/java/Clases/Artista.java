@@ -17,7 +17,6 @@ public class Artista {
     private int estadoActual;
     private List<Album> albumes;
 
-    // Modificamos el constructor para incluir el número
     public Artista(int numero, String nombre, int tipo, List<String> generos, int ano, String origen, String web, int cantAlbumes, int cantCanciones, int estadoActual) {
         this.numero = numero;
         this.nombre = nombre;
@@ -33,7 +32,6 @@ public class Artista {
         this.albumes = new ArrayList<>();
     }
 
-    // Agregamos los métodos get y set para el número
     public int getNumero() {
         return numero;
     }

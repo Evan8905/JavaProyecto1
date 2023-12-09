@@ -42,12 +42,7 @@ public class Utilitario {
 
     public static void inicializarArtistas() {
         // Agregar instancias de artistas a lstArtistas
-        // Crear el objeto Artista y lo agregarlo a la lista de artistas
-//        listaArtistas.add(new Artista("Ed Sheeran", 1, Arrays.asList("Pop", "Funk"), 0, "Colombia", "www.shakira.com", 10, 20, 1));
-//        listaArtistas.add(new Artista("Queen", 2, Arrays.asList("Pop", "Funk"), 1964, "Estados Unidos", "www.michaeljackson.com", 10, 30, 2));
-//        listaArtistas.add(new Artista("Luis Fonsi", 2, Arrays.asList("Pop", "Reggaetón"), 2006, "Reino Unido", "www.adele.com", 5, 15, 1));
-//        listaArtistas.add(new Artista("Michael Jackson", 1, Arrays.asList("Metal", "Rock"), 1981, "Estados Unidos", "www.metallica.com", 10, 100, 1));
-//        listaArtistas.add(new Artista("Eagles", 2, Arrays.asList("Clásico"), 1756, "Austria", "www.mozart.com", 41, 626, 2));
+
         listaArtistas.add(new Artista(1, "Ed Sheeran", 1, Arrays.asList("Pop", "Funk"), 0, "Colombia", "www.shakira.com", 10, 20, 1));
         listaArtistas.add(new Artista(2, "Queen", 2, Arrays.asList("Pop", "Funk"), 1964, "Estados Unidos", "www.michaeljackson.com", 10, 30, 2));
         listaArtistas.add(new Artista(3, "Luis Fonsi", 2, Arrays.asList("Pop", "Reggaetón"), 2006, "Reino Unido", "www.adele.com", 5, 15, 1));
@@ -72,11 +67,6 @@ public class Utilitario {
     public static void inicializarAlbum() {
         // Agregar instancias de Album a listaAlbum
 
-//    listaAlbum.add(new Album(1, "Verano Sin ti", 2, "2020-06-05", Arrays.asList("Pop"), "Sony Music", 10));
-//    listaAlbum.add(new Album(2, "Greatest Hits", 1, "2010-11-15", Arrays.asList("Pop"), "Sony Music", 20));
-//    listaAlbum.add(new Album(3, "21", 3, "2011-01-19", Arrays.asList("Pop"), "XL Recordings", 15));
-//    listaAlbum.add(new Album(4, "Master of Puppets", 4, "1986-03-03", Arrays.asList("Metal"), "Elektra Records", 8));
-//    listaAlbum.add(new Album(5, "Symphony No. 40", 5, "1788-07-25", Arrays.asList("Clásico"), "Deutsche Grammophon", 12));
         listaAlbum.add(new Album(1, "Verano Sin ti", 2, "2020-06-05", Arrays.asList("Pop"), "Sony Music", 10, 1));
         listaAlbum.add(new Album(2, "Greatest Hits", 1, "2010-11-15", Arrays.asList("Pop"), "Sony Music", 20, 2));
         listaAlbum.add(new Album(3, "21", 3, "2011-01-19", Arrays.asList("Pop"), "XL Recordings", 15, 3));
@@ -85,7 +75,7 @@ public class Utilitario {
 
     }
 
-// Método para obtener las canciones por número de álbum
+    // Método para obtener las canciones por número de álbum
     public static List<Cancion> obtenerCancionesPorAlbum(int numeroAlbum) {
         List<Cancion> canciones = new ArrayList<>();
         for (Cancion cancion : listaCanciones) {

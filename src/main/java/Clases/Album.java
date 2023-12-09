@@ -16,17 +16,7 @@ public class Album {
     private Artista artista; // Nuevo atributo
     private final int numeroArtista;
 
-//    public Album(int numero, String nombre, int tipo, String pubDate, List<String> generos, String discografica, int cantCanciones) {
-//        this.numero = numero;
-//        this.nombre = nombre;
-//        this.tipo = tipo;
-//        this.pubDate = pubDate;
-//        this.generos = generos;
-//        this.discografica = discografica;
-//        this.cantCanciones = cantCanciones;
-//        this.canciones = canciones;
-//        this.artista = artista;
-//    }
+
     public Album(int numero, String nombre, int tipo, String pubDate, List<String> generos, String discografica, int cantCanciones, int numeroArtista) {
         this.numero = numero;
         this.nombre = nombre;
