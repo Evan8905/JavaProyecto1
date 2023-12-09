@@ -239,24 +239,30 @@ public class Utilitario {
     }
 
     // Manejo de Albumes
-    public static void eliminarAlbum(ArrayList<Album> listaAlbumes, int indice) {
+public static void eliminarAlbum(Artista artistaSeleccionado, int indice) {
+    // Obtén la lista de álbumes del artista
+    List<Album> albumesArtista = artistaSeleccionado.getAlbumes();
 
-        if (indice >= 0 && indice < listaAlbumes.size()) {
-            Album albumSeleccionado = listaAlbumes.get(indice);
-            listaAlbumes.remove(albumSeleccionado);
-        }
+    if (indice >= 0 && indice < albumesArtista.size()) {
+        // Elimina el álbum seleccionado de la lista del artista
+        albumesArtista.remove(indice);
+
+        // Después de eliminar, actualiza la lista de álbumes en la interfaz
+        //cargarListaAlbumes(artistaSeleccionado);
     }
+}
 
-    public static void editarAlbum(ArrayList<Album> listaAlbumes, int indice,
+    public static void editarAlbum(Artista artista, int indice,
             JTextField txtNumeroAlbum, JTextField txtNombreAlbum, JRadioButton rbtnEstudio, JRadioButton rbtnEp,
             JRadioButton rbtnEnVivo, JRadioButton rbtnSencillo, JRadioButton rbtnRecopilatorio, JTextField txtPubDate,
-            JList<String> lstGeneros, JTextField txtDiscografia, JTextField txtNumeroCanciones
-    ) {
+            JList<String> lstGeneros, JTextField txtDiscografia, JTextField txtNumeroCanciones) {
 
-        if (indice >= 0 && indice < listaAlbum.size()) {
-            Album albumSeleccionado = listaAlbum.get(indice);
+        List<Album> albumesArtista = artista.getAlbumes();
 
-            // Actualiza los componentes del formulario con los valores del artista seleccionado
+        if (indice >= 0 && indice < albumesArtista.size()) {
+            Album albumSeleccionado = albumesArtista.get(indice);
+
+            // Actualiza los componentes del formulario con los valores del álbum seleccionado
             txtNumeroAlbum.setText(Integer.toString(albumSeleccionado.getNumero()));
             txtNombreAlbum.setText(albumSeleccionado.getNombre());
             int tipo = albumSeleccionado.getTipo();
@@ -267,30 +273,29 @@ public class Utilitario {
             rbtnRecopilatorio.setSelected(tipo == 5);
             txtPubDate.setText(albumSeleccionado.getPubDate());
 
-            // Actualiza los géneros seleccionados en la lista
             List<String> generosSeleccionados = albumSeleccionado.getGeneros();
-            int[] indicesGeneros = new int[generosSeleccionados.size()];
             DefaultListModel<String> modelo = (DefaultListModel<String>) lstGeneros.getModel();
+            modelo.clear();
 
-            for (int i = 0; i < generosSeleccionados.size(); i++) {
-                String genero = generosSeleccionados.get(i);
-                int indiceGenero = modelo.indexOf(genero);
-                indicesGeneros[i] = indiceGenero;
+            for (String genero : generosSeleccionados) {
+                modelo.addElement(genero);
             }
-            lstGeneros.setSelectedIndices(indicesGeneros);
 
             txtDiscografia.setText(albumSeleccionado.getDiscografica());
             txtNumeroCanciones.setText(Integer.toString(albumSeleccionado.getCantCanciones()));
         }
     }
 
-    public static void actualizarAlbum(ArrayList<Album> listaAlbumes, int indice,
+    public static void actualizarAlbum(Artista artistaSeleccionado, int indice,
             JTextField txtNumeroAlbum, JTextField txtNombreAlbum, JRadioButton rbtnEstudio, JRadioButton rbtnEp,
             JRadioButton rbtnEnVivo, JRadioButton rbtnSencillo, JRadioButton rbtnRecopilatorio, JTextField txtPubDate,
-            JList<String> lstGeneros, JTextField txtDiscografia, JTextField txtNumeroCanciones
-    ) {
-        if (indice >= 0 && indice < listaAlbumes.size()) {
-            Album albumSeleccionado = listaAlbumes.get(indice);
+            JList<String> lstGeneros, JTextField txtDiscografia, JTextField txtNumeroCanciones) {
+
+        // Obtén el álbum seleccionado del artista
+        List<Album> albumesArtista = artistaSeleccionado.getAlbumes();
+
+        if (indice >= 0 && indice < albumesArtista.size()) {
+            Album albumSeleccionado = albumesArtista.get(indice);
 
             // Actualiza los valores del álbum seleccionado con los valores ingresados
             albumSeleccionado.setNumero(Integer.parseInt(txtNumeroAlbum.getText()));
@@ -318,10 +323,13 @@ public class Utilitario {
 
             albumSeleccionado.setDiscografica(txtDiscografia.getText());
             albumSeleccionado.setCantCanciones(Integer.parseInt(txtNumeroCanciones.getText()));
+
+            // Después de realizar las actualizaciones, puedes refrescar la lista de álbumes
+            //cargarListaAlbumes(artistaSeleccionado);
         }
     }
-// Manejo de canciones 
 
+// Manejo de canciones 
     public static void eliminarCancion(ArrayList<Cancion> listaCancions, int indice) {
 
         if (indice >= 0 && indice < listaCanciones.size()) {
@@ -362,6 +370,16 @@ public class Utilitario {
             cancionSeleccionada.setLetraAutor(txtLetra.getText());
             cancionSeleccionada.setAnoGrabacion(Integer.parseInt(txtGrabacion.getText()));
         }
+    }
+
+    public static Artista obtenerArtistaPorNombre(String nombreArtista) {
+        // Itera sobre la lista de artistas para encontrar el que coincida con el nombre
+        for (Artista artista : listaArtistas) {
+            if (artista.getNombre().equals(nombreArtista)) {
+                return artista;  // Devuelve el artista encontrado
+            }
+        }
+        return null;  // Retorna null si no se encuentra el artista
     }
 
 //    public static LinkedList<String> crearListaArtistas() {

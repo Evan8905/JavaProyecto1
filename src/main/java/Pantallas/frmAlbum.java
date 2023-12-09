@@ -1,6 +1,7 @@
 package Pantallas;
 
 import Clases.Album;
+import Clases.Artista;
 import Clases.Genero;
 import Logica.Utilitario;
 import static Logica.Utilitario.listaGeneros;
@@ -17,9 +18,11 @@ import javax.swing.JOptionPane;
 public class frmAlbum extends javax.swing.JFrame {
 
     ArrayList<Album> listaAlbumes = Logica.Utilitario.listaAlbum;
+    ArrayList<Artista> listaArtistas = Logica.Utilitario.listaArtistas;
 
     DefaultListModel modelo = new DefaultListModel();
     DefaultListModel modeloGenero = new DefaultListModel();
+    //DefaultListModel modeloGeneroArtista = new DefaultListModel();
 
     /**
      * Creates new form frmAlbum
@@ -28,9 +31,12 @@ public class frmAlbum extends javax.swing.JFrame {
         initComponents();
         lstAlbumes.setModel(modelo);
         lstGeneros.setModel(modeloGenero);
+        //lstGeneros.setModel(modeloGeneroArtista);
+
         //Linea para que no se salga
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        cargarCombos();
+        cargarComboArtistas();
+        //cargarGeneroArtista();
 
     }
 
@@ -79,6 +85,7 @@ public class frmAlbum extends javax.swing.JFrame {
         txtPubDate = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         lstGeneros = new javax.swing.JList<>();
+        cmbArtistas = new javax.swing.JComboBox<>();
 
         jLabel2.setText("Mantenimiento de Artistas");
 
@@ -127,7 +134,7 @@ public class frmAlbum extends javax.swing.JFrame {
 
         jLabel4.setText("Nombre de Álbum");
 
-        jLabel5.setText("Álbumes");
+        jLabel5.setText("Seleccione un Artista");
 
         grupoOpcs.add(rbtnEp);
         rbtnEp.setText("EP");
@@ -221,12 +228,21 @@ public class frmAlbum extends javax.swing.JFrame {
         lstGeneros.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(lstGeneros);
 
+        cmbArtistas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbArtistasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(115, 115, 115)
+                        .addComponent(jLabel5))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -237,9 +253,9 @@ public class frmAlbum extends javax.swing.JFrame {
                                 .addComponent(btnEditarAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(26, 26, 26)
                                 .addComponent(btnEliminarAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(143, 143, 143)
-                        .addComponent(jLabel5)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(cmbArtistas, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
@@ -251,18 +267,18 @@ public class frmAlbum extends javax.swing.JFrame {
                                     .addComponent(txtPubDate))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(70, 70, 70)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                            .addComponent(rbtnSencillo)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(rbtnRecopilatorio))
+                                    .addGap(51, 51, 51)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(rbtnEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(rbtnEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(18, 18, 18)
                                             .addComponent(rbtnEp, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(18, 18, 18)
-                                            .addComponent(rbtnEnVivo))))
+                                            .addComponent(rbtnEnVivo))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(rbtnSencillo)
+                                            .addGap(37, 37, 37)
+                                            .addComponent(rbtnRecopilatorio))))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                     .addComponent(btnActualizar)
                                     .addGap(18, 18, 18)
@@ -308,8 +324,7 @@ public class frmAlbum extends javax.swing.JFrame {
                 .addGap(47, 47, 47)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
+                        .addGap(365, 365, 365)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(btnEliminarAlbum)
@@ -321,42 +336,50 @@ public class frmAlbum extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(txtNumeroAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtNumeroAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbArtistas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNombreAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(jLabel6))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(rbtnEnVivo)
-                                    .addComponent(rbtnEp)
-                                    .addComponent(rbtnEstudio))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(rbtnSencillo)
-                                    .addComponent(rbtnRecopilatorio))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtPubDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel11)
-                                    .addComponent(txtDiscografia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(txtNumeroCanciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel12))))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(29, 29, 29)
+                                        .addComponent(jLabel6))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(rbtnEnVivo)
+                                            .addComponent(rbtnEp)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rbtnEstudio)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(rbtnRecopilatorio)
+                                            .addComponent(rbtnSencillo))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(txtPubDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel7))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel10)
+                                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel11)
+                                            .addComponent(txtDiscografia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtNumeroCanciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel12)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
 
@@ -365,9 +388,8 @@ public class frmAlbum extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -420,12 +442,15 @@ public class frmAlbum extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNumeroCancionesActionPerformed
 
     private void btnMostrarAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarAlbumActionPerformed
-        cargarListaAlbumes();
+
+        refrescaListaAlbumes();
+        // Verificar si se ha seleccionado un artista
+
     }//GEN-LAST:event_btnMostrarAlbumActionPerformed
 
     private void btnEliminarAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarAlbumActionPerformed
         eliminarAlbumSeleccionado();
-        cargarListaAlbumes(); // Actualiza la interfaz después de eliminar
+        refrescaListaAlbumes(); // Actualiza la interfaz después de eliminar
         JOptionPane.showMessageDialog(null, "Álbum Eliminado");
     }//GEN-LAST:event_btnEliminarAlbumActionPerformed
 
@@ -435,37 +460,51 @@ public class frmAlbum extends javax.swing.JFrame {
 
     private void btnGuardarAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarAlbumActionPerformed
         crearAlbumes();
+        limpiarFormulario();
     }//GEN-LAST:event_btnGuardarAlbumActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         actualizarAlbumSeleccionado();
         limpiarFormulario();
-        cargarListaAlbumes();//Actualiza la interfaz después de actualizar
+        refrescaListaAlbumes();//Actualiza la interfaz después de actualizar
         JOptionPane.showMessageDialog(null, "Datos de Álbumes Actualizados");
     }//GEN-LAST:event_btnActualizarActionPerformed
 
+    private void cmbArtistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbArtistasActionPerformed
+        // Verificar si se ha seleccionado un artista
+        if (cmbArtistas.getSelectedItem() == null) {
+            // También puedes mostrar un mensaje aquí si lo deseas
+            return; // Salir del método si no se seleccionó un artista
+        }
+
+        // Obtener el artista seleccionado
+        String nombreArtistaSeleccionado = (String) cmbArtistas.getSelectedItem();
+        Artista artistaSeleccionado = Utilitario.obtenerArtistaPorNombre(nombreArtistaSeleccionado);
+
+        // Cargar los géneros del artista en la lista lstGeneros
+        cargarGenerosDeArtista(artistaSeleccionado);
+    }//GEN-LAST:event_cmbArtistasActionPerformed
+
     public void crearAlbumes() {
+
+        // Verificar si se ha seleccionado un artista
+        if (cmbArtistas.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(rootPane, "Seleccione un Artista", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Salir del método si no se seleccionó un artista
+        }
+
+        // Obtener el artista seleccionado
+        String nombreArtistaSeleccionado = (String) cmbArtistas.getSelectedItem();
+        Artista artistaSeleccionado = Utilitario.obtenerArtistaPorNombre(nombreArtistaSeleccionado);
+
         // Verificar si se ha ingresado la informacion para crear un album, caso contrario muestra una alerta
-        //!txtAnoInicial.getText().matches("\\d+") Con esta expresion de regex validamos que lo que se ingresa no sea un numero 
-        if (txtNumeroAlbum.getText().isBlank()) {
-            JOptionPane.showMessageDialog(rootPane, "Digite el número del Álbum", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (txtNombreAlbum.getText().isBlank()) {
-            JOptionPane.showMessageDialog(rootPane, "Digite el nombre del Álbum", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (!(rbtnEstudio.isSelected() || rbtnEp.isSelected() || rbtnEnVivo.isSelected() || rbtnSencillo.isSelected() || rbtnRecopilatorio.isSelected())) {
+        if (txtNumeroAlbum.getText().isBlank() || txtNombreAlbum.getText().isBlank()
+                || !(rbtnEstudio.isSelected() || rbtnEp.isSelected() || rbtnEnVivo.isSelected()
+                || rbtnSencillo.isSelected() || rbtnRecopilatorio.isSelected())
+                || txtPubDate.getText().isBlank() || lstGeneros.getSelectedValuesList().isEmpty()
+                || txtDiscografia.getText().isBlank() || txtNumeroCanciones.getText().isBlank()) {
 
-            JOptionPane.showMessageDialog(rootPane, "Seleccione un Tipo", "Error", JOptionPane.ERROR_MESSAGE);
-
-        } else if (txtPubDate.getText().isBlank()) {
-            JOptionPane.showMessageDialog(rootPane, "Digite la fecha de publicación", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (lstGeneros.getSelectedValuesList().isEmpty()) {
-
-            JOptionPane.showMessageDialog(rootPane, "Seleccione al menos un Genero", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (txtDiscografia.getText().isBlank()) {
-
-            JOptionPane.showMessageDialog(rootPane, "Digite la discografía", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (txtNumeroCanciones.getText().isBlank()) {
-
-            JOptionPane.showMessageDialog(rootPane, "Digite la cant de Canciones", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Complete todos los campos para crear un Álbum", "Error", JOptionPane.ERROR_MESSAGE);
 
         } else {
 
@@ -485,81 +524,133 @@ public class frmAlbum extends javax.swing.JFrame {
                 tipo = 5;
             }
             String pubdate = txtPubDate.getText();
-
             List<String> genero = lstGeneros.getSelectedValuesList();
-
             String discografia = txtDiscografia.getText();
             int nCanciones = Integer.parseInt(txtNumeroCanciones.getText());
 
             // Crear un nuevo objeto Artista con la información capturada
             Album nuevoAlbum = new Album(nombreNumero, nombreAlbum, tipo, pubdate, genero, discografia, nCanciones);
 
-            // Agrega el nuevo objeto al ArrayList
-            listaAlbumes.add(nuevoAlbum);
+            // Asignar el álbum al artista seleccionado
+            List<Album> albumesArtista = artistaSeleccionado.getAlbumes();
+            albumesArtista.add(nuevoAlbum);
 
-            // Agrega el nombre del album al DefaultListModel
-            modelo.addElement(nombreAlbum);
+            // Actualizar el modelo del JList con los álbumes del artista
+            DefaultListModel<String> modeloAlbumesArtista = (DefaultListModel<String>) lstAlbumes.getModel();
+            modeloAlbumesArtista.addElement(nombreAlbum);
 
-            // Limpia los campos después de agregar el album
+            // Limpia los campos después de agregar el álbum
             limpiarFormulario();
             JOptionPane.showMessageDialog(rootPane, "Datos de álbum Guardados", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
         }
-
     }
 
-    public void cargarListaAlbumes() {
+    public void cargarListaAlbumes(Artista artistaSeleccionado) {
         // Limpiar el modelo antes de agregar elementos
         modelo.clear();
 
-        // Iterar sobre la lista de almbumes y agregar los nombres al modelo
-        for (Album album : listaAlbumes) {
+        // Obtener la lista de álbumes del artista seleccionado
+        List<Album> albumesArtista = artistaSeleccionado.getAlbumes();
+
+        // Iterar sobre la lista de álbumes y agregar los nombres al modelo
+        for (Album album : albumesArtista) {
             String nombre = album.getNombre();
             modelo.addElement(nombre);
         }
+
+        // Asignar el modelo al JList
+        lstAlbumes.setModel(modelo);
     }
 
-    public void cargarCombos() {
-        modeloGenero.clear();
+    public void cargarGenerosDeArtista(Artista artistaSeleccionado) {
+        // Limpiar la lista de géneros antes de agregar los géneros del artista
+        DefaultListModel<String> modeloGeneros = (DefaultListModel<String>) lstGeneros.getModel();
+        modeloGeneros.clear();
 
-        for (Genero genero : listaGeneros) {
-            String nombre = genero.getNomGenero();
-            modeloGenero.addElement(nombre);
+        // Obtener los géneros del artista seleccionado
+        List<String> generosArtista = artistaSeleccionado.getGeneros();
+
+        // Agregar los géneros del artista a la lista
+        for (String genero : generosArtista) {
+            modeloGeneros.addElement(genero);
         }
     }
 
     public void eliminarAlbumSeleccionado() {
+        // Obtener el artista seleccionado
+        String nombreArtistaSeleccionado = cmbArtistas.getSelectedItem().toString();
+        Artista artistaSeleccionado = Utilitario.obtenerArtistaPorNombre(nombreArtistaSeleccionado);
 
         int indiceSeleccionado = lstAlbumes.getSelectedIndex();
 
-        if (indiceSeleccionado != -1) {
-            Utilitario.eliminarAlbum(listaAlbumes, indiceSeleccionado);
+        if (indiceSeleccionado != -1 && artistaSeleccionado != null) {
+            Utilitario.eliminarAlbum(artistaSeleccionado, indiceSeleccionado);
         }
     }
 
     public void editarAlbumSeleccionado() {
+        // Verificar si se ha seleccionado un artista
+        if (cmbArtistas.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(rootPane, "Seleccione un Artista", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Salir del método si no se seleccionó un artista
+        }
+
+        // Obtener el artista seleccionado
+        String nombreArtistaSeleccionado = cmbArtistas.getSelectedItem().toString();
+        Artista artistaSeleccionado = Utilitario.obtenerArtistaPorNombre(nombreArtistaSeleccionado);
+
+        // Continuar con la edición del álbum
         int indiceSeleccionado = lstAlbumes.getSelectedIndex();
 
         if (indiceSeleccionado != -1) {
-            Utilitario.editarAlbum(listaAlbumes, indiceSeleccionado, txtNumeroAlbum, txtNombreAlbum,
+            Utilitario.editarAlbum(artistaSeleccionado, indiceSeleccionado, txtNumeroAlbum, txtNombreAlbum,
                     rbtnEstudio, rbtnEp, rbtnEnVivo, rbtnSencillo, rbtnRecopilatorio, txtPubDate, lstGeneros, txtDiscografia, txtNumeroCanciones);
         }
-
     }
 
     public void actualizarAlbumSeleccionado() {
+        // Verificar si se ha seleccionado un artista
+        if (cmbArtistas.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(rootPane, "Seleccione un Artista", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Salir del método si no se seleccionó un artista
+        }
 
+        // Obtener el artista seleccionado
+        String nombreArtistaSeleccionado = cmbArtistas.getSelectedItem().toString();
+        Artista artistaSeleccionado = Utilitario.obtenerArtistaPorNombre(nombreArtistaSeleccionado);
+
+        // Continuar con la actualización del álbum
         int indiceSeleccionado = lstAlbumes.getSelectedIndex();
 
         if (indiceSeleccionado != -1) {
-            Utilitario.actualizarAlbum(listaAlbumes, indiceSeleccionado, txtNumeroAlbum, txtNombreAlbum,
+            Utilitario.actualizarAlbum(artistaSeleccionado, indiceSeleccionado, txtNumeroAlbum, txtNombreAlbum,
                     rbtnEstudio, rbtnEp, rbtnEnVivo, rbtnSencillo, rbtnRecopilatorio, txtPubDate, lstGeneros, txtDiscografia, txtNumeroCanciones);
         }
+    }
+
+    private void cargarComboArtistas() {
+        for (Artista artista : Utilitario.listaArtistas) {
+            cmbArtistas.addItem(artista.getNombre());
+        }
+    }
+
+    public void refrescaListaAlbumes() {
+        if (cmbArtistas.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(rootPane, "Seleccione un Artista", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Salir del método si no se seleccionó un artista
+        }
+
+        // Obtener el artista seleccionado
+        String nombreArtistaSeleccionado = (String) cmbArtistas.getSelectedItem();
+        Artista artistaSeleccionado = Utilitario.obtenerArtistaPorNombre(nombreArtistaSeleccionado);
+
+        // Llamar al método para cargar la lista de álbumes
+        cargarListaAlbumes(artistaSeleccionado);
 
     }
 
     public void limpiarFormulario() {
-
-        // Limpia los campos después de agregar el album
+        // Limpia los campos después de agregar el álbum
         txtNumeroAlbum.setText("");
         txtNombreAlbum.setText("");
         grupoOpcs.clearSelection();
@@ -567,6 +658,10 @@ public class frmAlbum extends javax.swing.JFrame {
         txtDiscografia.setText("");
         txtNumeroCanciones.setText("");
 
+        // Limpia la selección de elementos en el JList
+        lstGeneros.clearSelection();
+        DefaultListModel<String> modeloGeneros = (DefaultListModel<String>) lstGeneros.getModel();
+        modeloGeneros.clear();
     }
 
     /**
@@ -618,6 +713,7 @@ public class frmAlbum extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardarAlbum;
     private javax.swing.JButton btnGuardarArtista;
     private javax.swing.JButton btnMostrarAlbum;
+    private javax.swing.JComboBox<String> cmbArtistas;
     private javax.swing.JComboBox<String> cmbGeneros;
     private javax.swing.ButtonGroup grupoOpcs;
     private javax.swing.JLabel jLabel1;

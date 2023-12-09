@@ -32,7 +32,8 @@ public class Artista {
         this.cantAlbumes = cantAlbumes;
         this.cantCanciones = cantCanciones;
         this.estadoActual = estadoActual;
-        this.albumes = albumes;
+        //  Inicializar la lista de álbumes como una nueva ArrayList
+        this.albumes = new ArrayList<>();
     }
 
 
